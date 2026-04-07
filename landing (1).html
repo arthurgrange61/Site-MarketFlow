@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketFlow – Bienvenue</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --black: #07101f;
+    --deep: #0a1628;
+    --gray: #0f1f35;
+    --gray2: #152540;
+    --white: #f5f4f0;
+    --blue: #3B82F6;
+    --blue-dim: rgba(59,130,246,0.15);
+    --blue-glow: rgba(59,130,246,0.08);
+    --line: rgba(245,244,240,0.08);
+    --line-blue: rgba(59,130,246,0.2);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 48px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(7,16,31,0.9);
+    backdrop-filter: blur(16px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; letter-spacing: 3px;
+    color: var(--white); text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: rgba(245,244,240,0.45); text-decoration: none; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--blue); color: var(--white);
+    padding: 10px 24px; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+    text-decoration: none; display: inline-block; transition: opacity 0.3s;
+    border-radius: 2px;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+    padding: 120px 24px 100px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 100%, rgba(7,16,31,0.8) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 72%);
+  }
+  .hero-tag {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+    position: relative;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 10vw, 130px);
+    line-height: 0.9; letter-spacing: -1px;
+    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+    position: relative;
+  }
+  .hero-title em { font-style: normal; color: var(--blue); }
+  .hero-sub {
+    max-width: 500px; font-size: 15px; line-height: 1.75;
+    color: rgba(245,244,240,0.45);
+    margin-top: 28px; margin-bottom: 64px;
+    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+    position: relative;
+  }
+
+  /* BUBBLES */
+  .bubbles {
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.8s 0.85s forwards;
+    position: relative;
+  }
+  .bubble {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-decoration: none;
+    border-radius: 50%;
+    border: 1px solid var(--line-blue);
+    background: var(--blue-glow);
+    backdrop-filter: blur(10px);
+    transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s, background 0.3s, box-shadow 0.3s;
+    cursor: pointer; position: relative; overflow: hidden;
+  }
+  .bubble::after {
+    content: '';
+    position: absolute; inset: 0; border-radius: 50%;
+    background: radial-gradient(circle at 38% 32%, rgba(59,130,246,0.18) 0%, transparent 65%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .bubble:hover {
+    transform: scale(1.09) translateY(-8px);
+    border-color: var(--blue);
+    background: rgba(59,130,246,0.12);
+    box-shadow: 0 20px 60px rgba(59,130,246,0.15);
+  }
+  .bubble:hover::after { opacity: 1; }
+  .bubble-lg { width: 210px; height: 210px; }
+  .bubble-md { width: 175px; height: 175px; }
+  .bubble-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px; letter-spacing: 2px;
+    color: var(--white); text-align: center;
+    padding: 0 20px; line-height: 1.1;
+  }
+  .bubble-sub {
+    font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--blue); margin-top: 8px; text-align: center;
+    padding: 0 16px;
+  }
+  .bubble.featured { border-color: rgba(59,130,246,0.35); background: rgba(59,130,246,0.06); }
+
+  /* Float animation */
+  .bubble:nth-child(1) { animation: float 6s ease-in-out infinite; }
+  .bubble:nth-child(2) { animation: float 7.5s ease-in-out 0.8s infinite; }
+  .bubble:nth-child(3) { animation: float 5.5s ease-in-out 1.5s infinite; }
+  .bubble:hover { animation: none !important; }
+
+  /* SCROLL HINT */
+  .scroll-hint {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeUp 0.8s 1.4s forwards;
+  }
+  .scroll-hint span { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,244,240,0.2); }
+  .scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, rgba(59,130,246,0.4), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+
+  /* INTRO SECTION */
+  .section-intro {
+    padding: 90px 48px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    border-top: 1px solid var(--line);
+  }
+  .intro-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px, 4.5vw, 58px); line-height: 1; margin-bottom: 22px; }
+  .intro-title span { color: var(--blue); }
+  .intro-desc { font-size: 15px; line-height: 1.8; color: rgba(245,244,240,0.45); margin-bottom: 32px; }
+  .intro-link { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: gap 0.3s; }
+  .intro-link:hover { gap: 18px; }
+
+  .mini-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .mini-stat { background: var(--deep); padding: 32px 24px; }
+  .mini-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; color: var(--blue); }
+  .mini-stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,244,240,0.3); margin-top: 6px; }
+
+  /* CTA BAND */
+  .cta-band {
+    background: var(--blue);
+    padding: 56px 48px;
+    display: flex; justify-content: space-between; align-items: center; gap: 40px;
+  }
+  .cta-band-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(26px, 3.5vw, 48px); color: var(--white); line-height: 1; }
+  .cta-band-btn { background: var(--white); color: var(--black); padding: 16px 36px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: opacity 0.3s; flex-shrink: 0; border-radius: 2px; }
+  .cta-band-btn:hover { opacity: 0.88; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--line); padding: 36px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; display: flex; align-items: center; gap: 8px; }
+  .footer-logo-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+  .footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+  .footer-links a { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,244,240,0.28); text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--blue); }
+  .footer-contact { font-size: 12px; color: rgba(245,244,240,0.25); letter-spacing: 0.5px; text-align: right; line-height: 1.8; }
+  .footer-contact a { color: rgba(245,244,240,0.35); text-decoration: none; transition: color 0.3s; }
+  .footer-contact a:hover { color: var(--blue); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+  @keyframes scrollPulse { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 18px 20px; }
+    .nav-links { display: none; }
+    .nav-cta { padding: 9px 16px; font-size: 12px; }
+    .hero { padding: 100px 20px 90px; min-height: 100svh; }
+    .hero-title { font-size: clamp(44px, 13vw, 80px); }
+    .bubbles { gap: 14px; }
+    .bubble-lg { width: 150px; height: 150px; }
+    .bubble-md { width: 130px; height: 130px; }
+    .bubble-label { font-size: 16px; padding: 0 12px; }
+    .bubble-sub { font-size: 10px; margin-top: 5px; }
+    .section-intro { grid-template-columns: 1fr; gap: 40px; padding: 60px 20px; }
+    .mini-stats { grid-template-columns: 1fr 1fr 1fr; }
+    .mini-stat { padding: 20px 14px; }
+    .mini-stat-num { font-size: 34px; }
+    .cta-band { flex-direction: column; text-align: center; padding: 44px 20px; gap: 28px; }
+    footer { flex-direction: column; align-items: flex-start; padding: 28px 20px; }
+    .footer-contact { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="landing.html" class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    MarketFlow
+  </a>
+  <ul class="nav-links">
+    <li><a href="agents.html">Agents IA</a></li>
+    <li><a href="agents.html#offres">Nos offres</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Audit gratuit</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <p class="hero-tag">Agence d'implémentation IA — Rouen, FR</p>
+  <h1 class="hero-title">
+    Libérez votre talent,<br>
+    vos agents <em>IA</em><br>
+    s'occupent du reste.
+  </h1>
+  <p class="hero-sub">MarketFlow implémente des agents IA dans votre entreprise — pour automatiser votre croissance, votre relation client et vos opérations. Dès 89€/mois.</p>
+
+  <div class="bubbles">
+    <a href="agents.html" class="bubble bubble-lg featured">
+      <div class="bubble-label">Nos Agents IA</div>
+      <div class="bubble-sub">7 experts dédiés</div>
+    </a>
+    <a href="agents.html#offres" class="bubble bubble-lg featured">
+      <div class="bubble-label">Nos Offres</div>
+      <div class="bubble-sub">Dès 89€ / mois</div>
+    </a>
+    <a href="#contact" class="bubble bubble-md">
+      <div class="bubble-label">Audit Gratuit</div>
+      <div class="bubble-sub">Sans engagement</div>
+    </a>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Découvrir</span>
+  </div>
+</section>
+
+<section class="section-intro">
+  <div>
+    <h2 class="intro-title">Pourquoi<br><span>MarketFlow ?</span></h2>
+    <p class="intro-desc">Nous ne vendons pas des outils IA. Nous implémentons des agents dans votre business, prenons en charge leur mise en place de A à Z et formons vos équipes — pour que vous voyez des résultats dès le premier mois.</p>
+    <a href="marketflow.html#process" class="intro-link">Voir notre méthode →</a>
+  </div>
+  <div class="mini-stats">
+    <div class="mini-stat">
+      <div class="mini-stat-num">7</div>
+      <div class="mini-stat-label">Agents IA disponibles</div>
+    </div>
+    <div class="mini-stat">
+      <div class="mini-stat-num">14j</div>
+      <div class="mini-stat-label">Mise en production</div>
+    </div>
+    <div class="mini-stat">
+      <div class="mini-stat-num">3×</div>
+      <div class="mini-stat-label">ROI moyen constaté</div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band" id="contact">
+  <div class="cta-band-title">Prêt à automatiser<br>votre croissance ?</div>
+  <a href="tel:0782227986" class="cta-band-btn">Nous appeler — 07 82 22 79 86</a>
+</div>
+
+<footer>
+  <div class="footer-logo"><div class="footer-logo-dot"></div> MarketFlow</div>
+  <div class="footer-links">
+    <a href="agents.html">Agents IA</a>
+    <a href="agents.html#offres">Offres</a>
+    <a href="marketflow.html">Site principal</a>
+  </div>
+  <div class="footer-contact">
+    <a href="tel:0782227986">07 82 22 79 86</a><br>
+    <a href="mailto:arthur.grange61@gmail.com">arthur.grange61@gmail.com</a><br>
+    <span>© 2025 MarketFlow – Rouen, FR</span>
+  </div>
+</footer>
+
+</body>
+</html>
