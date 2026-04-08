@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketFlow – Nos Agents IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --black: #07101f;
+    --deep: #0a1628;
+    --gray: #0f1f35;
+    --gray2: #152540;
+    --white: #f5f4f0;
+    --blue: #3B82F6;
+    --blue-dim: rgba(59,130,246,0.12);
+    --blue-glow: rgba(59,130,246,0.06);
+    --line: rgba(245,244,240,0.08);
+    --line-blue: rgba(59,130,246,0.18);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 22px 48px; border-bottom: 1px solid var(--line); background: rgba(7,16,31,0.9); backdrop-filter: blur(16px); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(245,244,240,0.45); text-decoration: none; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); }
+  .nav-cta { background: var(--blue); color: var(--white); padding: 10px 22px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; display: inline-block; transition: opacity 0.3s; border-radius: 2px; }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* PAGE HERO */
+  .page-hero { min-height: 50vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 72px; position: relative; overflow: hidden; margin-top: 71px; }
+  .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 80%, rgba(59,130,246,0.1) 0%, transparent 55%); }
+  .page-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 72px 72px; mask-image: radial-gradient(ellipse at 30% 70%, black 20%, transparent 70%); }
+  .page-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; position: relative; }
+  .page-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 9vw, 115px); line-height: 0.9; letter-spacing: -2px; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; position: relative; }
+  .page-title em { font-style: normal; color: var(--blue); }
+  .page-sub { max-width: 540px; font-size: 15px; line-height: 1.75; color: rgba(245,244,240,0.45); margin-top: 28px; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; position: relative; }
+
+  /* MARQUEE */
+  .marquee-wrap { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; padding: 16px 0; background: var(--deep); }
+  .marquee-track { display: flex; gap: 56px; animation: marquee 26s linear infinite; width: max-content; }
+  .marquee-item { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 4px; color: rgba(245,244,240,0.25); white-space: nowrap; text-transform: uppercase; }
+  .marquee-item span { color: var(--blue); opacity: 0.4; margin-right: 56px; }
+
+  /* SECTION */
+  .section { padding: 90px 48px; }
+  .section-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); margin-bottom: 52px; display: flex; align-items: center; gap: 16px; opacity: 0.7; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line-blue); }
+
+  /* AGENTS GRID */
+  .agents-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .agent-card { background: var(--deep); padding: 48px 44px; position: relative; overflow: hidden; transition: background 0.4s; }
+  .agent-card:hover { background: var(--gray); }
+  .agent-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--blue), transparent); transform: scaleX(0); transition: transform 0.5s; opacity: 0.6; }
+  .agent-card:hover::before { transform: scaleX(1); }
+  .agent-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .agent-num { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 3px; color: var(--blue); opacity: 0.4; }
+  .agent-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px; color: var(--white); margin-bottom: 6px; line-height: 1; }
+  .agent-role { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); opacity: 0.6; margin-bottom: 18px; }
+  .agent-desc { font-size: 14px; line-height: 1.8; color: rgba(245,244,240,0.82); margin-bottom: 26px; font-weight: 400; }
+  .agent-features { display: flex; flex-direction: column; gap: 8px; }
+  .agent-feature { display: flex; align-items: center; gap: 12px; font-size: 13px; color: rgba(245,244,240,0.45); }
+  .agent-feature::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--blue); opacity: 0.5; flex-shrink: 0; }
+
+  /* STATS */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stat { background: var(--deep); padding: 44px; text-align: center; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 68px; line-height: 1; color: var(--blue); }
+  .stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,244,240,0.3); margin-top: 8px; }
+
+  /* PRICING */
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .pricing-card { background: var(--deep); padding: 48px 40px; position: relative; transition: background 0.3s; display: flex; flex-direction: column; }
+  .pricing-card:hover { background: var(--gray); }
+  .pricing-card.featured { background: var(--gray2); border-left: 2px solid var(--blue); }
+  .pricing-card.featured:hover { background: #1c2f52; }
+  .pricing-badge { display: inline-block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--black); background: var(--blue); padding: 4px 12px; margin-bottom: 24px; border-radius: 2px; align-self: flex-start; }
+  .pricing-name { font-family: 'Bebas Neue', sans-serif; font-size: 38px; letter-spacing: 1px; line-height: 1; margin-bottom: 4px; }
+  .pricing-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 16px; }
+  .pricing-amount { font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 1; color: var(--white); }
+  .pricing-amount.custom { font-size: 40px; margin-top: 16px; color: var(--blue); }
+  .pricing-period { font-size: 13px; color: rgba(245,244,240,0.35); letter-spacing: 1px; }
+  .pricing-desc { font-size: 14px; color: rgba(245,244,240,0.5); line-height: 1.7; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--line); flex-grow: 0; }
+  .agents-included { margin-bottom: 24px; }
+  .agents-included-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,244,240,0.25); margin-bottom: 12px; }
+  .agents-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .agent-tag { font-size: 11px; letter-spacing: 0.5px; padding: 5px 10px; border: 1px solid var(--line-blue); color: rgba(245,244,240,0.55); border-radius: 2px; }
+  .agent-tag.hi { border-color: rgba(59,130,246,0.3); color: rgba(245,244,240,0.8); }
+  .agent-tag.star { border-color: var(--blue); color: var(--blue); }
+  .pricing-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; flex-grow: 1; }
+  .pricing-feature { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: rgba(245,244,240,0.55); line-height: 1.5; }
+  .check { color: var(--blue); font-size: 12px; margin-top: 1px; flex-shrink: 0; }
+  .pricing-cta { display: block; width: 100%; padding: 16px; background: transparent; color: var(--white); border: 1px solid rgba(245,244,240,0.15); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; text-decoration: none; transition: border-color 0.3s, background 0.3s; border-radius: 2px; margin-top: auto; }
+  .pricing-cta:hover { border-color: var(--blue); color: var(--blue); }
+  .pricing-cta.solid { background: var(--blue); color: var(--white); border-color: var(--blue); }
+  .pricing-cta.solid:hover { opacity: 0.88; }
+  .pricing-cta.outline-blue { border-color: rgba(59,130,246,0.4); color: var(--blue); }
+  .pricing-cta.outline-blue:hover { background: var(--blue-dim); border-color: var(--blue); }
+
+  /* CTA */
+  .cta-section { padding: 120px 48px; text-align: center; position: relative; overflow: hidden; }
+  .cta-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(59,130,246,0.06) 0%, transparent 65%); }
+  .cta-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 7vw, 90px); line-height: 1; margin-bottom: 20px; position: relative; }
+  .cta-sub { font-size: 15px; color: rgba(245,244,240,0.4); margin-bottom: 44px; position: relative; }
+  .cta-btn { background: var(--blue); color: var(--white); padding: 18px 52px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; display: inline-block; transition: transform 0.3s, opacity 0.3s; border-radius: 2px; position: relative; }
+  .cta-btn:hover { transform: translateY(-3px); opacity: 0.9; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--line); padding: 36px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; display: flex; align-items: center; gap: 8px; }
+  .footer-logo-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+  .footer-copy { font-size: 12px; color: rgba(245,244,240,0.2); letter-spacing: 0.5px; }
+  .footer-contact { font-size: 12px; color: rgba(245,244,240,0.25); text-align: right; line-height: 1.8; }
+  .footer-contact a { color: rgba(245,244,240,0.35); text-decoration: none; transition: color 0.3s; }
+  .footer-contact a:hover { color: var(--blue); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* MOBILE */
+  @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 768px) {
+    nav { padding: 18px 20px; }
+    .nav-links { display: none; }
+    .nav-cta { padding: 9px 16px; font-size: 12px; }
+    .page-hero { padding: 0 20px 60px; }
+    .section { padding: 60px 20px; }
+    .agents-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card { padding: 36px 24px; }
+    .cta-section { padding: 80px 20px; }
+    footer { flex-direction: column; align-items: flex-start; padding: 28px 20px; }
+    .footer-contact { text-align: left; }
+    .agent-card[style*="grid-column"] .agent-features { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 480px) {
+    .agent-card[style*="grid-column"] .agent-features { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index_v4.html" class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    MarketFlow
+  </a>
+  <ul class="nav-links">
+    <li><a href="marketflow_v4.html">Accueil</a></li>
+    <li><a href="agents_v4.html" class="active">Agents IA</a></li>
+    <li><a href="#offres">Nos offres</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Audit gratuit</a>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <p class="page-tag">Intelligence artificielle — 7 agents spécialisés</p>
+  <h1 class="page-title">Vos agents.<br><em>Votre équipe.</em></h1>
+  <p class="page-sub">Chaque agent est un expert IA dédié à un domaine précis de votre business. Ensemble, ils automatisent, optimisent et font croître votre entreprise — 24h/24, sans effort manuel.</p>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Agent Commercial <span>✦</span></span>
+    <span class="marquee-item">Agent Social Media <span>✦</span></span>
+    <span class="marquee-item">Agent SEO <span>✦</span></span>
+    <span class="marquee-item">Agent Comptable <span>✦</span></span>
+    <span class="marquee-item">Agent Juridique <span>✦</span></span>
+    <span class="marquee-item">Agent Recrutement <span>✦</span></span>
+    <span class="marquee-item">Agent Téléphonique <span>✦</span></span>
+    <span class="marquee-item">Agent Commercial <span>✦</span></span>
+    <span class="marquee-item">Agent Social Media <span>✦</span></span>
+    <span class="marquee-item">Agent SEO <span>✦</span></span>
+    <span class="marquee-item">Agent Comptable <span>✦</span></span>
+    <span class="marquee-item">Agent Juridique <span>✦</span></span>
+    <span class="marquee-item">Agent Recrutement <span>✦</span></span>
+    <span class="marquee-item">Agent Téléphonique <span>✦</span></span>
+  </div>
+</div>
+
+<section class="section" id="agents">
+  <p class="section-label">Les 7 agents</p>
+  <div class="agents-grid">
+
+    <div class="agent-card">
+      <div class="agent-header"><div class="agent-num">01</div></div>
+      <div class="agent-name">Agent Commercial</div>
+      <div class="agent-role">Prospection LinkedIn & Développement réseau</div>
+      <p class="agent-desc">Un commercial IA qui travaille sans relâche, 7j/7. Cet agent identifie vos cibles sur LinkedIn, envoie des messages personnalisés et relance les prospects inactifs — pour remplir votre pipeline sans que vous ayez à décrocher le téléphone.</p>
+      <div class="agent-features">
+        <div class="agent-feature">Identification de vos prospects idéaux</div>
+        <div class="agent-feature">Envoi de messages LinkedIn personnalisés</div>
+        <div class="agent-feature">Développement de réseau automatisé</div>
+        <div class="agent-feature">Suivi et relances automatiques</div>
+        <div class="agent-feature">50+ connexions ciblées par jour</div>
+        <div class="agent-feature">Qualification des prospects dès le premier contact</div>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><div class="agent-num">02</div></div>
+      <div class="agent-name">Agent Social Media</div>
+      <div class="agent-role">Contenu, visuels & publication automatisée</div>
+      <p class="agent-desc">Vos réseaux sociaux gérés de A à Z, sans effort. Cet agent conçoit vos visuels, rédige vos publications et les programme sur l'ensemble de vos plateformes. Une présence en ligne constante et professionnelle, même quand vous êtes débordé.</p>
+      <div class="agent-features">
+        <div class="agent-feature">Création de visuels ultra-qualitatifs</div>
+        <div class="agent-feature">Génération automatique de posts et légendes</div>
+        <div class="agent-feature">Gestion d'un calendrier éditorial complet</div>
+        <div class="agent-feature">Publication sur tous vos réseaux sociaux</div>
+        <div class="agent-feature">Suppression d'arrière-plan en un clic</div>
+        <div class="agent-feature">Création de carrousels et miniatures vidéo</div>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><div class="agent-num">03</div></div>
+      <div class="agent-name">Agent SEO</div>
+      <div class="agent-role">Référencement naturel & Contenu web</div>
+      <p class="agent-desc">Améliorez votre visibilité sur Google sans rédiger une seule ligne. Cet agent produit des articles optimisés pour le référencement et les publie directement sur votre site — à un rythme qu'aucune équipe humaine ne pourrait tenir.</p>
+      <div class="agent-features">
+        <div class="agent-feature">Production jusqu'à 300 articles SEO/mois</div>
+        <div class="agent-feature">Publication automatique sur votre site</div>
+        <div class="agent-feature">Audit SEO instantané de votre site</div>
+        <div class="agent-feature">Génération de mots-clés stratégiques</div>
+        <div class="agent-feature">Compatible WordPress, Wix, PrestaShop</div>
+        <div class="agent-feature">Planification éditoriale intelligente</div>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><div class="agent-num">04</div></div>
+      <div class="agent-name">Agent Comptable</div>
+      <div class="agent-role">Finances, budgets & prévisions</div>
+      <p class="agent-desc">La gestion financière de votre entreprise, sans les allers-retours avec votre comptable. Cet agent analyse vos chiffres, génère vos rapports et vous conseille sur votre trésorerie — à la demande, dans le format de votre choix.</p>
+      <div class="agent-features">
+        <div class="agent-feature">Gestion et suivi des budgets</div>
+        <div class="agent-feature">Prévisions financières sur 3 à 12 mois</div>
+        <div class="agent-feature">Génération de rapports financiers</div>
+        <div class="agent-feature">Analyse de performance de l'entreprise</div>
+        <div class="agent-feature">Conseils d'optimisation de trésorerie</div>
+        <div class="agent-feature">Relances clients en impayé automatisées</div>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><div class="agent-num">05</div></div>
+      <div class="agent-name">Agent Juridique</div>
+      <div class="agent-role">Droit français, contrats & conformité</div>
+      <p class="agent-desc">Des réponses juridiques fiables, sans attendre et sans facturer à l'heure. Entraîné sur l'intégralité du droit français, cet agent rédige vos contrats, vérifie votre conformité et sécurise vos documents légaux — en langage clair, accessible à tous.</p>
+      <div class="agent-features">
+        <div class="agent-feature">Réponses basées sur le droit français</div>
+        <div class="agent-feature">Rédaction de contrats, statuts, CGV</div>
+        <div class="agent-feature">Vérification de conformité RGPD</div>
+        <div class="agent-feature">Génération de procès-verbaux d'AG</div>
+        <div class="agent-feature">Veille légale et conformité continue</div>
+        <div class="agent-feature">Disponible 24h/24, sans frais d'avocat</div>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><div class="agent-num">06</div></div>
+      <div class="agent-name">Agent Recrutement</div>
+      <div class="agent-role">RH, offres d'emploi & tri de candidatures</div>
+      <p class="agent-desc">Recrutez plus vite, avec moins d'effort. Cet agent rédige vos offres, les publie sur LinkedIn, collecte les candidatures et trie les CV selon vos critères — pour que vous ne passiez du temps qu'avec les profils qui en valent la peine.</p>
+      <div class="agent-features">
+        <div class="agent-feature">Rédaction et publication d'offres d'emploi</div>
+        <div class="agent-feature">Collecte automatique des candidatures</div>
+        <div class="agent-feature">Tri et analyse des CV selon vos critères</div>
+        <div class="agent-feature">Sélection des meilleurs profils</div>
+        <div class="agent-feature">Recrutements sur mesure et personnalisés</div>
+        <div class="agent-feature">Gain de temps considérable sur vos RH</div>
+      </div>
+    </div>
+
+    <!-- 07 Téléphonique — pleine largeur -->
+    <div class="agent-card" style="grid-column: 1 / -1;">
+      <div class="agent-header"><div class="agent-num">07</div></div>
+      <div class="agent-name">Agent Téléphonique</div>
+      <div class="agent-role">Relation client & Accueil automatisé — Inclus dans le Pack Pro</div>
+      <p class="agent-desc" style="max-width: 700px;">Ne laissez plus un seul appel sans réponse. Cet agent gère vos appels entrants en temps réel : il accueille, comprend la demande, oriente le client et prend des rendez-vous — sans jamais déranger votre équipe. Elle n'intervient que lorsque c'est vraiment nécessaire.</p>
+      <div class="agent-features" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 32px;">
+        <div class="agent-feature">Réception d'appels 24h/24, 7j/7</div>
+        <div class="agent-feature">Qualification intelligente des demandes</div>
+        <div class="agent-feature">Prise de rendez-vous par téléphone</div>
+        <div class="agent-feature">Transfert automatique vers un humain</div>
+        <div class="agent-feature">Compte-rendu instantané après chaque appel</div>
+        <div class="agent-feature">Disponible en 140 langues</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">7</div><div class="stat-label">Agents spécialisés</div></div>
+  <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Disponibilité totale</div></div>
+  <div class="stat"><div class="stat-num">14j</div><div class="stat-label">Délai de mise en place</div></div>
+</div>
+
+<!-- OFFRES -->
+<section class="section" id="offres">
+  <p class="section-label">Nos offres</p>
+  <div class="pricing-grid">
+
+    <!-- Pack Croissance -->
+    <div class="pricing-card">
+      <div class="pricing-name">Pack Croissance</div>
+      <div class="pricing-price">
+        <div class="pricing-amount">89€</div>
+        <div class="pricing-period">/ mois HT</div>
+      </div>
+      <p class="pricing-desc">Pour les entreprises qui veulent automatiser leur croissance rapidement. 4 agents IA déployés, configurés et opérationnels en moins de 14 jours — sans effort de votre côté.</p>
+      <div class="agents-included">
+        <div class="agents-included-label">Agents inclus</div>
+        <div class="agents-tags">
+          <div class="agent-tag hi">Agent Commercial</div>
+          <div class="agent-tag hi">Agent Social Media</div>
+          <div class="agent-tag hi">Agent SEO</div>
+          <div class="agent-tag hi">Agent Comptable</div>
+        </div>
+      </div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><span class="check">✓</span><span>Audit gratuit de votre business avant démarrage</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Mise en place 100 % prise en charge par notre équipe</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Formation complète à l'utilisation des agents</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Intégration à vos outils existants (CRM, réseaux, site web…)</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Suivi mensuel des performances et optimisations</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Rapport d'activité mensuel personnalisé</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Support réactif 5j/7</span></div>
+      </div>
+      <a href="#contact" class="pricing-cta">Démarrer avec ce pack</a>
+    </div>
+
+    <!-- Pack Pro -->
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Le plus complet</div>
+      <div class="pricing-name">Pack Pro</div>
+      <div class="pricing-price">
+        <div class="pricing-amount">149€</div>
+        <div class="pricing-period">/ mois HT</div>
+      </div>
+      <p class="pricing-desc">La solution pour tout automatiser — y compris votre relation client téléphonique. 7 agents déployés, zéro tâche manuelle, une croissance pilotée par l'IA de bout en bout.</p>
+      <div class="agents-included">
+        <div class="agents-included-label">Agents inclus</div>
+        <div class="agents-tags">
+          <div class="agent-tag hi">Agent Commercial</div>
+          <div class="agent-tag hi">Agent Social Media</div>
+          <div class="agent-tag hi">Agent SEO</div>
+          <div class="agent-tag hi">Agent Comptable</div>
+          <div class="agent-tag hi">Agent Juridique</div>
+          <div class="agent-tag hi">Agent Recrutement</div>
+          <div class="agent-tag star">Agent Téléphonique</div>
+        </div>
+      </div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><span class="check">✓</span><span>Tout ce qui est inclus dans le Pack Croissance</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Agent Téléphonique 24h/24 — 140 langues, 10 000 appels simultanés</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Agents Juridique et Recrutement inclus</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Intégrations avancées : HubSpot, Slack, Notion, Google Agenda…</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Accompagnement stratégique mensuel en 1:1</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Support prioritaire 7j/7</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Accès aux nouvelles fonctionnalités en avant-première</span></div>
+      </div>
+      <a href="#contact" class="pricing-cta solid">Démarrer avec ce pack</a>
+    </div>
+
+    <!-- Pack Élite -->
+    <div class="pricing-card">
+      <div class="pricing-name">Pack Élite</div>
+      <div class="pricing-price">
+        <div class="pricing-amount custom">Sur mesure</div>
+      </div>
+      <p class="pricing-desc">Vous avez des besoins spécifiques, une équipe plus grande ou une stratégie IA plus ambitieuse ? On conçoit une solution 100 % personnalisée, de A à Z, adaptée à votre secteur et vos objectifs.</p>
+      <div class="agents-included">
+        <div class="agents-included-label">Agents inclus</div>
+        <div class="agents-tags">
+          <div class="agent-tag star">Sélection sur mesure</div>
+          <div class="agent-tag hi">Agents illimités</div>
+        </div>
+      </div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><span class="check">✓</span><span>Tout ce qui est inclus dans le Pack Pro</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Sélection et configuration des agents selon votre activité</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Intégrations spécifiques à votre stack technologique</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Stratégie IA définie avec vous lors d'un workshop dédié</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Account manager dédié, disponible à tout moment</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>Tableaux de bord et reporting personnalisés</span></div>
+        <div class="pricing-feature"><span class="check">✓</span><span>SLA garanti et support prioritaire 7j/7</span></div>
+      </div>
+      <a href="#contact" class="pricing-cta outline-blue">Nous contacter</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section class="cta-section" id="contact">
+  <div class="cta-bg"></div>
+  <h2 class="cta-title">Pas sûr du pack<br>qui vous convient ?</h2>
+  <p class="cta-sub">On fait un audit gratuit de votre business et on vous conseille sur les agents les plus impactants.</p>
+  <a href="tel:0782227986" class="cta-btn">Appeler le 07 82 22 79 86</a>
+</section>
+
+<footer>
+  <div class="footer-logo"><div class="footer-logo-dot"></div> MarketFlow</div>
+  <div class="footer-copy">© 2025 MarketFlow – Rouen, FR</div>
+  <div class="footer-contact">
+    <a href="tel:0782227986">07 82 22 79 86</a><br>
+    <a href="mailto:contact@marketflow.fr">contact@marketflow.fr</a>
+  </div>
+</footer>
+
+</body>
+</html>
