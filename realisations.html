@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketFlow – Réalisations</title>
+<meta name="description" content="Découvrez les projets d'automatisation IA réalisés par MarketFlow pour ses clients : e-commerce, conseil, social media. Des résultats concrets et mesurables.">
+<meta name="author" content="MarketFlow">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Réalisations & Cas Clients – MarketFlow">
+<meta property="og:description" content="Découvrez les projets d'automatisation IA réalisés par MarketFlow pour ses clients : e-commerce, conseil, social media. Des résultats concrets et mesurables.">
+<meta property="og:url" content="https://agencemarketflow.fr/realisations.html">
+<meta property="og:site_name" content="MarketFlow">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Réalisations & Cas Clients – MarketFlow">
+<meta name="twitter:description" content="Découvrez les projets d'automatisation IA réalisés par MarketFlow pour ses clients : e-commerce, conseil, social media. Des résultats concrets et mesurables.">
+<link rel="canonical" href="https://agencemarketflow.fr/realisations.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%236366F1'/><circle cx='16' cy='16' r='7' fill='none' stroke='white' stroke-width='2.5'/><circle cx='16' cy='16' r='3' fill='white'/></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #ffffff; --bg-soft: #F5F3FF;
+  --text: #111827; --text-muted: #6B7280; --text-light: #9CA3AF;
+  --indigo: #6366F1; --violet: #8B5CF6;
+  --grad: linear-gradient(135deg, #6366F1, #8B5CF6);
+  --line: rgba(99,102,241,0.12);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 18px 48px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.94); backdrop-filter: blur(16px); }
+.nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--indigo); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: var(--indigo); }
+.nav-cta { background: var(--grad); color: #fff; padding: 10px 24px; font-size: 13px; font-weight: 500; text-decoration: none; border-radius: 6px; transition: opacity 0.3s; }
+.nav-cta:hover { opacity: 0.85; }
+
+.page-hero { min-height: 52vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 72px; position: relative; overflow: hidden; margin-top: 71px; background: var(--bg-soft); }
+.page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(99,102,241,0.1) 0%, transparent 55%); }
+.page-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 72px 72px; mask-image: radial-gradient(ellipse at 60% 40%, black 20%, transparent 70%); }
+.page-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--indigo); margin-bottom: 20px; opacity: 0; animation: fadeUp 0.7s 0.1s forwards; position: relative; }
+.page-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 9vw, 110px); line-height: 0.92; letter-spacing: -2px; color: var(--text); opacity: 0; animation: fadeUp 0.7s 0.3s forwards; position: relative; }
+.page-title em { font-style: normal; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.page-sub { max-width: 580px; font-size: 16px; line-height: 1.75; color: var(--text-muted); margin-top: 24px; opacity: 0; animation: fadeUp 0.7s 0.5s forwards; position: relative; }
+
+/* Stats rapides */
+.stats-row { display: flex; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fff; }
+.stats-row-item { flex: 1; padding: 32px 48px; text-align: center; border-right: 1px solid var(--line); }
+.stats-row-item:last-child { border-right: none; }
+.stats-row-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.stats-row-label { font-size: 12px; color: var(--text-light); letter-spacing: 0.5px; margin-top: 4px; }
+
+/* Projets */
+.projects-section { padding: 96px 48px; }
+.projects-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--indigo); margin-bottom: 64px; display: flex; align-items: center; gap: 16px; }
+.projects-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+.project-card {
+  display: grid; grid-template-columns: 420px 1fr; gap: 0;
+  border: 1px solid var(--line); border-radius: 20px; overflow: hidden;
+  margin-bottom: 32px; transition: box-shadow 0.3s;
+}
+.project-card:hover { box-shadow: 0 20px 60px rgba(99,102,241,0.10); }
+.project-card.reverse { grid-template-columns: 1fr 420px; }
+.project-card.reverse .project-visual { order: 2; }
+.project-card.reverse .project-content { order: 1; }
+
+.project-visual {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 380px; position: relative; overflow: hidden;
+}
+.project-visual.dark { background: #080e1d; }
+.project-visual.cream { background: #F5EFE6; }
+.project-visual.cream-light { background: #F2EDE4; }
+
+/* Neoma logo CSS */
+.logo-neoma { text-align: center; }
+.logo-neoma-compass { width: 120px; height: 120px; margin: 0 auto 20px; position: relative; }
+.logo-neoma-compass svg { width: 100%; height: 100%; }
+.logo-neoma-text { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 6px; background: linear-gradient(135deg, #4B5EAA, #7B85C8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.logo-neoma-sub { font-size: 11px; letter-spacing: 4px; color: rgba(255,255,255,0.35); margin-top: 4px; text-transform: uppercase; }
+
+/* Bijouterie logo CSS */
+.logo-bijouterie { text-align: center; }
+.logo-bijouterie-e { font-family: Georgia, serif; font-size: 96px; line-height: 1; background: linear-gradient(135deg, #C9A84C, #E8CC7A, #B8941F); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+.logo-bijouterie-name { font-family: Georgia, serif; font-size: 22px; color: #B8941F; letter-spacing: 1px; }
+
+/* ASEG logo CSS */
+.logo-aseg { text-align: center; }
+.logo-aseg-letters { font-family: 'Bebas Neue', sans-serif; font-size: 64px; letter-spacing: 8px; background: linear-gradient(135deg, #C9A84C, #E8CC7A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+.logo-aseg-sub { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #B8941F; }
+
+/* Contenu projet */
+.project-content { padding: 56px 52px; display: flex; flex-direction: column; justify-content: center; gap: 0; background: #fff; }
+.project-client { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--indigo); margin-bottom: 8px; }
+.project-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(26px, 3vw, 38px); line-height: 1.05; color: var(--text); margin-bottom: 20px; }
+.project-desc { font-size: 15px; line-height: 1.8; color: var(--text-muted); margin-bottom: 28px; }
+.project-deliverables { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.project-deliverable { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.project-deliverable::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--indigo); flex-shrink: 0; margin-top: 6px; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.project-tag { font-size: 11px; letter-spacing: 0.5px; padding: 5px 12px; border: 1px solid var(--line); color: var(--text-muted); border-radius: 4px; }
+.project-tag.hi { border-color: rgba(99,102,241,0.3); color: var(--indigo); background: rgba(99,102,241,0.04); }
+
+/* CTA band */
+.cta-band { background: var(--grad); padding: 72px 48px; text-align: center; position: relative; overflow: hidden; }
+.cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 65%); }
+.cta-band h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px, 5vw, 60px); color: #fff; margin-bottom: 16px; position: relative; }
+.cta-band p { font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 36px; position: relative; }
+.cta-band-btn { background: #fff; color: var(--indigo); padding: 14px 36px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-block; position: relative; transition: opacity 0.3s, transform 0.3s; }
+.cta-band-btn:hover { opacity: 0.92; transform: translateY(-2px); }
+
+footer { border-top: 1px solid var(--line); padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; background: var(--bg-soft); }
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; display: flex; align-items: center; gap: 8px; color: var(--text); }
+.footer-logo-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--indigo); }
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a { font-size: 12px; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: var(--indigo); }
+.footer-contact { font-size: 12px; color: var(--text-muted); text-align: right; line-height: 1.9; }
+.footer-contact a { color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+.footer-contact a:hover { color: var(--indigo); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 1024px) {
+  .project-card { grid-template-columns: 1fr; }
+  .project-card.reverse { grid-template-columns: 1fr; }
+  .project-card.reverse .project-visual { order: 1; }
+  .project-card.reverse .project-content { order: 2; }
+  .project-visual { min-height: 260px; }
+}
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .page-hero { padding: 0 20px 56px; }
+  .stats-row { flex-direction: column; }
+  .stats-row-item { border-right: none; border-bottom: 1px solid var(--line); }
+  .stats-row-item:last-child { border-bottom: none; }
+  .projects-section { padding: 64px 20px; }
+  .project-content { padding: 36px 24px; }
+  .cta-band { padding: 56px 20px; }
+  footer { flex-direction: column; align-items: flex-start; padding: 32px 20px; }
+  .footer-contact { text-align: left; }
+}
+
+/* ── Section Contact ── */
+.contact-section { padding: 100px 48px; background: var(--bg); }
+.contact-inner { max-width: 1020px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: flex-start; }
+.contact-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--indigo); margin-bottom: 16px; }
+.contact-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(38px, 5vw, 56px); line-height: 1; color: var(--text); margin-bottom: 20px; }
+.contact-title em { font-style: normal; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.contact-sub { font-size: 15px; color: var(--text-muted); line-height: 1.75; margin-bottom: 36px; }
+.contact-links { display: flex; flex-direction: column; gap: 14px; }
+.contact-link { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.contact-link:hover { color: var(--indigo); }
+.contact-form { display: flex; flex-direction: column; gap: 16px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 20px; padding: 40px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 12px; font-weight: 500; color: var(--text); }
+.form-group input, .form-group textarea { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); background: #fff; outline: none; transition: border-color 0.2s; resize: none; }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--indigo); }
+.form-group textarea { min-height: 110px; }
+.form-submit { background: var(--grad); color: #fff; border: none; border-radius: 8px; padding: 14px 28px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity 0.2s, transform 0.2s; box-shadow: 0 8px 24px rgba(99,102,241,0.22); }
+.form-submit:hover { opacity: 0.88; transform: translateY(-2px); }
+.form-submit:disabled { opacity: 0.6; cursor: default; transform: none; }
+.form-feedback { padding: 12px 16px; border-radius: 8px; font-size: 13px; display: none; margin-top: 4px; }
+.form-feedback.success { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+.form-feedback.error { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; }
+@media (max-width: 820px) { .contact-inner { grid-template-columns: 1fr; gap: 40px; } .form-row { grid-template-columns: 1fr; } .contact-form { padding: 28px 20px; } }
+
+/* ── Menu mobile hamburger ── */
+.nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 110; }
+.nav-burger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (max-width: 768px) {
+  .nav-burger { display: flex; }
+  .nav-cta { display: none; }
+  .nav-links { display: none !important; position: fixed; top: 57px; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); padding: 8px 0; flex-direction: column; gap: 0; z-index: 99; box-shadow: 0 8px 24px rgba(99,102,241,0.08); }
+  .nav-links.open { display: flex !important; }
+  .nav-links li { border-bottom: 1px solid var(--line); }
+  .nav-links li:last-child { border-bottom: none; }
+  .nav-links a { display: block; padding: 16px 24px; font-size: 15px; color: var(--text) !important; letter-spacing: 0; text-transform: none !important; }
+  .nav-links a:hover, .nav-links a.active { color: var(--indigo) !important; background: var(--bg-soft); }
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><div class="nav-logo-dot"></div>MarketFlow</a>
+  <ul class="nav-links">
+    <li><a href="presentation.html">L'agence</a></li>
+    <li><a href="agents.html">Agents IA</a></li>
+    <li><a href="formation.html">Formation</a></li>
+    <li><a href="realisations.html" class="active">Réalisations</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Audit gratuit</a>
+  <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <p class="page-tag">Réalisations — Cas clients</p>
+  <h1 class="page-title">Nos <em>projets</em></h1>
+  <p class="page-sub">Des automatisations concrètes, des résultats mesurables. Voici les projets que nous avons réalisés pour nos clients.</p>
+</section>
+
+
+<section class="projects-section">
+  <p class="projects-label">Cas clients</p>
+
+  <!-- Projet 1 : Neoma Conseil -->
+  <div class="project-card">
+    <div class="project-visual dark">
+      <div class="logo-neoma">
+        <div class="logo-neoma-compass">
+          <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="60" r="54" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+            <circle cx="60" cy="60" r="38" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+            <circle cx="60" cy="60" r="22" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+            <!-- Nord-Sud (rouge vers le haut, bleu vers le bas) -->
+            <polygon points="60,4 54,60 66,60" fill="url(#redBlue)"/>
+            <polygon points="60,116 54,60 66,60" fill="#3B5EA6" opacity="0.8"/>
+            <!-- Est-Ouest -->
+            <polygon points="116,60 60,54 60,66" fill="#3B5EA6" opacity="0.6"/>
+            <polygon points="4,60 60,54 60,66" fill="#3B5EA6" opacity="0.5"/>
+            <!-- Diagonales -->
+            <polygon points="96,24 58,62 64,66" fill="rgba(200,80,80,0.4)"/>
+            <polygon points="24,96 58,62 64,66" fill="#3B5EA6" opacity="0.3"/>
+            <polygon points="96,96 62,58 66,64" fill="#3B5EA6" opacity="0.3"/>
+            <polygon points="24,24 62,58 66,64" fill="rgba(200,80,80,0.3)"/>
+            <defs>
+              <linearGradient id="redBlue" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#CC3333"/>
+                <stop offset="100%" stop-color="#3B5EA6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="logo-neoma-text">NEOMA CONSEIL</div>
+        <div class="logo-neoma-sub">Cabinet de conseil</div>
+      </div>
+    </div>
+    <div class="project-content">
+      <div class="project-client">Neoma Conseil — Cabinet de conseil</div>
+      <h2 class="project-title">Création d'une proposition commerciale marketing automatisée</h2>
+      <p class="project-desc">Neoma Conseil avait besoin de produire des propositions commerciales marketing de qualité en un minimum de temps. Nous avons conçu un système automatisé qui génère des propals personnalisées, structurées et professionnelles à partir de quelques informations clés sur le prospect.</p>
+      <div class="project-deliverables">
+        <div class="project-deliverable">Analyse automatique du profil prospect et de son secteur d'activité</div>
+        <div class="project-deliverable">Génération d'une proposition commerciale complète et personnalisée en quelques secondes</div>
+        <div class="project-deliverable">Mise en page professionnelle prête à envoyer au client</div>
+        <div class="project-deliverable">Intégration directe dans les outils existants du cabinet</div>
+      </div>
+      <div class="project-tags">
+        <span class="project-tag hi">Automatisation</span>
+        <span class="project-tag hi">Marketing</span>
+        <span class="project-tag">Agent IA</span>
+        <span class="project-tag">Proposition commerciale</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 2 : Bijouterie d'Emilie — Shopify -->
+  <div class="project-card reverse">
+    <div class="project-visual cream">
+      <div class="logo-bijouterie">
+        <div class="logo-bijouterie-e">E</div>
+        <div class="logo-bijouterie-name">La bijouterie d'Emilie</div>
+      </div>
+    </div>
+    <div class="project-content">
+      <div class="project-client">La bijouterie d'Emilie — E-commerce</div>
+      <h2 class="project-title">Boutique Shopify 100% automatisée</h2>
+      <p class="project-desc">La bijouterie d'Emilie souhaitait lancer sa boutique en ligne sans y consacrer des heures chaque jour. Nous avons mis en place une boutique Shopify entièrement automatisée : de la gestion des commandes à la relation client, tout fonctionne sans intervention manuelle.</p>
+      <div class="project-deliverables">
+        <div class="project-deliverable">Création et configuration complète de la boutique Shopify</div>
+        <div class="project-deliverable">Automatisation de la gestion des commandes et du stock</div>
+        <div class="project-deliverable">Emails de confirmation, suivi et relance automatiques</div>
+        <div class="project-deliverable">Intégration d'un agent IA pour le service client en ligne</div>
+        <div class="project-deliverable">Fiches produits générées automatiquement par IA</div>
+      </div>
+      <div class="project-tags">
+        <span class="project-tag hi">E-commerce</span>
+        <span class="project-tag hi">Shopify</span>
+        <span class="project-tag">Automatisation</span>
+        <span class="project-tag">Service client IA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 3 : Bijouterie d'Emilie — Réseaux sociaux -->
+  <div class="project-card">
+    <div class="project-visual cream-light">
+      <div class="logo-bijouterie">
+        <div class="logo-bijouterie-e">E</div>
+        <div class="logo-bijouterie-name">La bijouterie d'Emilie</div>
+      </div>
+    </div>
+    <div class="project-content">
+      <div class="project-client">La bijouterie d'Emilie — Social Media</div>
+      <h2 class="project-title">Automatisation à 100% du contenu des réseaux sociaux</h2>
+      <p class="project-desc">En parallèle de la boutique, nous avons déployé un agent Social Media qui gère l'intégralité de la présence en ligne de la bijouterie : création des visuels, rédaction des légendes, publication sur tous les réseaux — de manière autonome, en cohérence avec l'identité de la marque.</p>
+      <div class="project-deliverables">
+        <div class="project-deliverable">Création automatique de visuels aux couleurs de la marque</div>
+        <div class="project-deliverable">Rédaction et publication de posts sur Instagram, Facebook et Pinterest</div>
+        <div class="project-deliverable">Calendrier éditorial géré et planifié automatiquement</div>
+        <div class="project-deliverable">Reels et contenus vidéo courts générés par IA</div>
+        <div class="project-deliverable">Suivi des performances et ajustements automatiques</div>
+      </div>
+      <div class="project-tags">
+        <span class="project-tag hi">Social Media</span>
+        <span class="project-tag hi">Agent IA</span>
+        <span class="project-tag">Instagram</span>
+        <span class="project-tag">Contenu automatique</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Projet 4 : ASEG Influence -->
+  <div class="project-card reverse">
+    <div class="project-visual cream">
+      <div class="logo-aseg">
+        <div class="logo-aseg-letters">ASEG</div>
+        <div class="logo-aseg-sub">Agence d'Influence<br>Réseaux Sociaux</div>
+      </div>
+    </div>
+    <div class="project-content">
+      <div class="project-client">ASEG Influence — Agence Social Media</div>
+      <h2 class="project-title">Création du site web de l'agence</h2>
+      <p class="project-desc">ASEG Influence, agence spécialisée dans l'influence et les réseaux sociaux, avait besoin d'un site web qui reflète son positionnement premium. Nous avons conçu et développé un site élégant, rapide et optimisé, à l'image de la marque.</p>
+      <div class="project-deliverables">
+        <div class="project-deliverable">Conception de l'identité visuelle web en cohérence avec la charte graphique</div>
+        <div class="project-deliverable">Développement du site vitrine complet multi-pages</div>
+        <div class="project-deliverable">Optimisation SEO et performances techniques</div>
+        <div class="project-deliverable">Formulaire de contact et tunnel de conversion intégrés</div>
+        <div class="project-deliverable">Responsive design adapté mobile et tablette</div>
+      </div>
+      <div class="project-tags">
+        <span class="project-tag hi">Site web</span>
+        <span class="project-tag hi">Design</span>
+        <span class="project-tag">SEO</span>
+        <span class="project-tag">Agence influence</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+
+    <div>
+      <p class="contact-label">Nous contacter</p>
+      <h2 class="contact-title">Parlons de<br><em>votre projet</em></h2>
+      <p class="contact-sub">Un audit gratuit, sans engagement. Décrivez votre besoin — on vous répond sous 24h avec un plan d'action concret.</p>
+      <div class="contact-links">
+        <a href="tel:0782227986" class="contact-link">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          07 82 22 79 86
+        </a>
+        <a href="mailto:agence.marketflow@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          agence.marketflow@gmail.com
+        </a>
+      </div>
+    </div>
+
+    <form class="contact-form" id="mf-contact-form">
+      <input type="hidden" name="_subject" value="Nouveau contact — MarketFlow">
+      <input type="hidden" name="_captcha" value="false">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="mf-name">Prénom & Nom *</label>
+          <input type="text" id="mf-name" name="name" placeholder="Jean Dupont" required>
+        </div>
+        <div class="form-group">
+          <label for="mf-email">Email *</label>
+          <input type="email" id="mf-email" name="email" placeholder="jean@societe.fr" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="mf-phone">Téléphone (optionnel)</label>
+        <input type="tel" id="mf-phone" name="phone" placeholder="06 00 00 00 00">
+      </div>
+      <div class="form-group">
+        <label for="mf-message">Votre message *</label>
+        <textarea id="mf-message" name="message" placeholder="Décrivez votre projet ou posez vos questions..." required></textarea>
+      </div>
+      <button type="submit" class="form-submit" id="mf-form-submit">
+        <span id="mf-form-btn-label">Envoyer le message</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+      <div class="form-feedback success" id="mf-form-success">✅ Message envoyé ! Nous vous répondrons sous 24h.</div>
+      <div class="form-feedback error" id="mf-form-error">❌ Une erreur s'est produite. Appelez-nous au 07 82 22 79 86.</div>
+    </form>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  var form    = document.getElementById('mf-contact-form');
+  if (!form) return;
+  var btn     = document.getElementById('mf-form-submit');
+  var label   = document.getElementById('mf-form-btn-label');
+  var success = document.getElementById('mf-form-success');
+  var error   = document.getElementById('mf-form-error');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    btn.disabled = true;
+    label.textContent = 'Envoi en cours…';
+    success.style.display = 'none';
+    error.style.display   = 'none';
+
+    fetch('https://formsubmit.co/ajax/agence.marketflow@gmail.com', {
+      method:  'POST',
+      body:    new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (data.success === 'true' || data.success === true) {
+        form.reset();
+        success.style.display = 'block';
+      } else { error.style.display = 'block'; }
+    })
+    .catch(function () { error.style.display = 'block'; })
+    .finally(function () { btn.disabled = false; label.textContent = 'Envoyer le message'; });
+  });
+})();
+</script>
+
+<footer>
+  <div class="footer-logo"><div class="footer-logo-dot"></div>MarketFlow</div>
+  <div class="footer-links">
+    <a href="presentation.html">L'agence</a>
+    <a href="agents.html">Agents IA</a>
+    <a href="formation.html">Formation</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="mentions-legales.html">Mentions légales</a>
+    <a href="politique-confidentialite.html">Confidentialité</a>
+  </div>
+  <div class="footer-contact">
+    <a href="tel:0782227986">07 82 22 79 86</a><br>
+    <a href="mailto:agence.marketflow@gmail.com">agence.marketflow@gmail.com</a><br>
+    <span>© 2025 MarketFlow – Rouen, FR</span>
+  </div>
+</footer>
+
+
+<!-- MarketFlow Chat Widget -->
+<style>
+#mf-chat-btn { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: var(--grad); border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(99,102,241,0.35); display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
+#mf-chat-btn:hover { transform: scale(1.08); }
+#mf-chat-btn svg { width: 24px; height: 24px; fill: white; }
+#mf-chat-panel { position: fixed; bottom: 96px; right: 28px; z-index: 998; width: 360px; max-height: 520px; background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 20px 60px rgba(99,102,241,0.15); display: flex; flex-direction: column; overflow: hidden; opacity: 0; transform: translateY(16px) scale(0.97); transition: opacity 0.3s, transform 0.3s; pointer-events: none; }
+#mf-chat-panel.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+#mf-chat-header { background: var(--grad); padding: 18px 20px; display: flex; align-items: center; gap: 12px; }
+#mf-chat-header-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 6px #4ade80; flex-shrink: 0; }
+#mf-chat-header-info {}
+#mf-chat-header-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; color: #fff; }
+#mf-chat-header-sub { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+#mf-chat-messages { flex: 1; overflow-y: auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 12px; }
+.mf-msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 13px; line-height: 1.6; }
+.mf-msg.bot { background: #F5F3FF; color: #111827; align-self: flex-start; border-bottom-left-radius: 4px; }
+.mf-msg.user { background: var(--grad); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+.mf-msg.typing { background: #F5F3FF; align-self: flex-start; padding: 14px 18px; }
+.mf-typing-dots { display: flex; gap: 4px; }
+.mf-typing-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--indigo); opacity: 0.4; animation: mfDot 1.2s infinite; }
+.mf-typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.mf-typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes mfDot { 0%,80%,100% { opacity: 0.2; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1); } }
+#mf-chat-input-area { border-top: 1px solid var(--line); padding: 12px 14px; display: flex; gap: 8px; align-items: flex-end; background: #fff; }
+#mf-chat-input { flex: 1; border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: #111827; outline: none; resize: none; transition: border-color 0.2s; background: #fafafa; max-height: 100px; }
+#mf-chat-input:focus { border-color: var(--indigo); background: #fff; }
+#mf-chat-send { background: var(--grad); border: none; border-radius: 8px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: opacity 0.2s; }
+#mf-chat-send:hover { opacity: 0.85; }
+#mf-chat-send:disabled { opacity: 0.5; cursor: default; }
+#mf-chat-send svg { width: 16px; height: 16px; fill: white; }
+@media (max-width: 480px) { #mf-chat-panel { width: calc(100vw - 32px); right: 16px; bottom: 88px; } #mf-chat-btn { right: 16px; bottom: 20px; } }
+</style>
+
+<button id="mf-chat-btn" aria-label="Ouvrir le chat">
+  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+</button>
+
+<div id="mf-chat-panel">
+  <div id="mf-chat-header">
+    <div id="mf-chat-header-dot"></div>
+    <div id="mf-chat-header-info">
+      <div id="mf-chat-header-title">Assistant MarketFlow</div>
+      <div id="mf-chat-header-sub">Répond à toutes vos questions</div>
+    </div>
+  </div>
+  <div id="mf-chat-messages">
+    <div class="mf-msg bot">Bonjour ! Je suis l'assistant MarketFlow. Posez-moi vos questions sur nos agents IA, nos services ou nos tarifs.</div>
+  </div>
+  <div id="mf-chat-input-area">
+    <textarea id="mf-chat-input" rows="1" placeholder="Votre question..."></textarea>
+    <button id="mf-chat-send"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+  </div>
+</div>
+
+<script>
+(function() {
+  var KEY = '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';
+  var MODEL = 'llama-3.3-70b-versatile';
+  var SYSTEM = "Tu es l'assistant commercial de MarketFlow, une agence d’impémentation IA basée à Rouen, France. Tu réponds de manière concise, professionnelle et chaleureuse en français.\n\nInformations sur MarketFlow :\n- 8 agents IA disponibles : Agent Commercial (prospection LinkedIn 7j/7), Agent Social Media (contenu & publication automatique), Agent SEO (jusqu’à 300 articles/mois), Agent Comptable (finances & rapports), Agent Juridique (droit français, contrats, RGPD), Agent Recrutement (offres, tri CV), Agent Téléphonique (accueil 24h/24, 140 langues), Agent Personnalisé (sur mesure).\n- Technologie : agents Limanova.IA (start-up française), intégrés et adaptés par MarketFlow.\n- Pack Croissance : 129€/mois HT (4 agents : Commercial, Social Media, SEO, Comptable). Pack Pro : 189€/mois HT (7 agents + Téléphonique). Pack Élite : sur mesure.\n- Automatisations sur mesure : à partir de 400€.\n- Délai de mise en production : 14 jours.\n- Formation IA en entreprise disponible : Initiation IA, Utilisation des agents, Prompting avancé, Atelier stratégie IA.\n- Audit gratuit sans engagement.\n- Contact : 07 82 22 79 86 — agence.marketflow@gmail.com — Rouen, FR.\n\nPour tout projet ou devis, invite à demander l’audit gratuit ou à appeler le 07 82 22 79 86.";
+
+  var btn = document.getElementById('mf-chat-btn');
+  var panel = document.getElementById('mf-chat-panel');
+  var messages = document.getElementById('mf-chat-messages');
+  var input = document.getElementById('mf-chat-input');
+  var send = document.getElementById('mf-chat-send');
+  var history = [];
+
+  btn.addEventListener('click', function() { panel.classList.toggle('open'); if (panel.classList.contains('open')) input.focus(); });
+
+  function addMsg(text, role) {
+    var el = document.createElement('div');
+    el.className = 'mf-msg ' + (role === 'user' ? 'user' : 'bot');
+    el.textContent = text;
+    messages.appendChild(el);
+    messages.scrollTop = messages.scrollHeight;
+    return el;
+  }
+
+  function addTyping() {
+    var el = document.createElement('div');
+    el.className = 'mf-msg typing';
+    el.innerHTML = '<div class="mf-typing-dots"><span></span><span></span><span></span></div>';
+    messages.appendChild(el);
+    messages.scrollTop = messages.scrollHeight;
+    return el;
+  }
+
+  function sendMessage() {
+    var text = input.value.trim();
+    if (!text || send.disabled) return;
+    input.value = '';
+    input.style.height = 'auto';
+    addMsg(text, 'user');
+    history.push({ role: 'user', content: text });
+    send.disabled = true;
+    var typing = addTyping();
+    var msgs = [{ role: 'system', content: SYSTEM }].concat(history);
+    fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + KEY },
+      body: JSON.stringify({ model: MODEL, messages: msgs, max_tokens: 512, temperature: 0.7 })
+    }).then(function(r) { return r.json(); }).then(function(data) {
+      typing.remove();
+      var reply = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || "Désolé, une erreur s’est produite. Appelez-nous au 07 82 22 79 86.";
+      addMsg(reply, 'bot');
+      history.push({ role: 'assistant', content: reply });
+    }).catch(function() {
+      typing.remove();
+      addMsg("Désolé, je suis momentanément indisponible. Contactez-nous au 07 82 22 79 86.", 'bot');
+    }).finally(function() { send.disabled = false; });
+  }
+
+  send.addEventListener('click', sendMessage);
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+  input.addEventListener('input', function() { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 100) + 'px'; });
+})();
+</script>
+
+
+<!-- ── Bandeau Cookies ── -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#fff;border-top:1px solid rgba(99,102,241,0.15);box-shadow:0 -4px 24px rgba(99,102,241,0.10);padding:20px 40px;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+  <p style="font-size:13px;color:#6B7280;line-height:1.6;max-width:640px;margin:0;">🍪 Ce site utilise des cookies pour son bon fonctionnement (Google Fonts, formulaire de contact). En continuant, vous acceptez leur utilisation. <a href="politique-confidentialite.html" style="color:#6366F1;text-decoration:none;">En savoir plus</a></p>
+  <div style="display:flex;gap:10px;flex-shrink:0;">
+    <button id="cookie-refuse" style="padding:10px 20px;border:1px solid rgba(99,102,241,0.25);border-radius:7px;background:#fff;font-family:'DM Sans',sans-serif;font-size:13px;color:#6B7280;cursor:pointer;">Refuser</button>
+    <button id="cookie-accept" style="padding:10px 24px;border:none;border-radius:7px;background:linear-gradient(135deg,#6366F1,#8B5CF6);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:#fff;cursor:pointer;">Accepter</button>
+  </div>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('cookie-banner');
+  if(!b)return;
+  if(!localStorage.getItem('mf_cookie_consent')){b.style.display='flex';}
+  document.getElementById('cookie-accept').onclick=function(){localStorage.setItem('mf_cookie_consent','accepted');b.style.display='none';};
+  document.getElementById('cookie-refuse').onclick=function(){localStorage.setItem('mf_cookie_consent','refused');b.style.display='none';};
+})();
+</script>
+
+
+<script>
+(function(){
+  var burger = document.getElementById('nav-burger');
+  var links  = document.querySelector('.nav-links');
+  if (!burger || !links) return;
+  burger.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      links.classList.remove('open');
+      burger.classList.remove('open');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

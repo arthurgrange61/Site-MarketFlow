@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Politique de confidentialité — MarketFlow</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%236366F1'/><circle cx='16' cy='16' r='7' fill='none' stroke='white' stroke-width='2.5'/><circle cx='16' cy='16' r='3' fill='white'/></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #ffffff; --bg-soft: #F5F3FF;
+  --text: #111827; --text-muted: #6B7280; --text-light: #9CA3AF;
+  --indigo: #6366F1; --violet: #8B5CF6;
+  --grad: linear-gradient(135deg, #6366F1, #8B5CF6);
+  --line: rgba(99,102,241,0.12);
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 48px; border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(16px);
+}
+.nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--indigo); }
+
+.page-hero { padding: 140px 48px 80px; text-align: center; background: linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 100%); border-bottom: 1px solid var(--line); }
+.page-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--indigo); margin-bottom: 16px; }
+.page-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 6vw, 72px); line-height: 1; color: var(--text); margin-bottom: 16px; }
+.page-sub { font-size: 15px; color: var(--text-muted); max-width: 540px; margin: 0 auto; line-height: 1.75; }
+
+.legal-body { max-width: 760px; margin: 0 auto; padding: 80px 48px 120px; }
+.legal-section { margin-bottom: 56px; }
+.legal-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 1px; color: var(--text); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.legal-section h3 { font-size: 15px; font-weight: 600; color: var(--text); margin: 24px 0 8px; }
+.legal-section p { font-size: 14px; color: var(--text-muted); line-height: 1.85; margin-bottom: 12px; }
+.legal-section ul { margin: 8px 0 12px 20px; }
+.legal-section li { font-size: 14px; color: var(--text-muted); line-height: 1.85; margin-bottom: 6px; }
+.legal-section a { color: var(--indigo); text-decoration: none; }
+.legal-section a:hover { text-decoration: underline; }
+.table-wrap { overflow-x: auto; margin: 16px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: var(--bg-soft); color: var(--text); font-weight: 600; padding: 12px 16px; text-align: left; border: 1px solid var(--line); }
+td { padding: 11px 16px; border: 1px solid var(--line); color: var(--text-muted); vertical-align: top; line-height: 1.65; }
+tr:nth-child(even) td { background: #fafafa; }
+.rights-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 16px; }
+.right-card { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+.right-card-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.right-card-desc { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+footer { border-top: 1px solid var(--line); padding: 40px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; background: var(--bg-soft); }
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; display: flex; align-items: center; gap: 8px; color: var(--text); }
+.footer-logo-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--indigo); }
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a { font-size: 12px; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: var(--indigo); }
+.footer-contact { font-size: 12px; color: var(--text-muted); text-align: right; line-height: 1.9; }
+.footer-contact a { color: var(--text-muted); text-decoration: none; }
+.footer-contact a:hover { color: var(--indigo); }
+
+@media (max-width: 768px) { nav { padding: 16px 20px; } .page-hero { padding: 120px 20px 60px; } .legal-body { padding: 60px 20px 80px; } .rights-grid { grid-template-columns: 1fr; } footer { flex-direction: column; align-items: flex-start; padding: 28px 20px; } .footer-contact { text-align: left; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="home.html" class="nav-logo"><div class="nav-logo-dot"></div>MarketFlow</a>
+</nav>
+
+<div class="page-hero">
+  <p class="page-tag">Légal</p>
+  <h1 class="page-title">Politique de confidentialité</h1>
+  <p class="page-sub">Nous prenons la protection de vos données personnelles très au sérieux. Cette page explique quelles données nous collectons, pourquoi et comment.</p>
+</div>
+
+<div class="legal-body">
+
+  <div class="legal-section">
+    <h2>1. Responsable du traitement</h2>
+    <p>Le responsable du traitement des données collectées sur ce site est :</p>
+    <ul>
+      <li><strong>MarketFlow</strong> — représentée par Arthur Grange</li>
+      <li><strong>Email :</strong> <a href="mailto:agence.marketflow@gmail.com">agence.marketflow@gmail.com</a></li>
+      <li><strong>Téléphone :</strong> 07 82 22 79 86</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2>2. Données collectées</h2>
+    <p>Nous collectons uniquement les données que vous nous fournissez volontairement, dans les cas suivants :</p>
+
+    <h3>Formulaire de contact</h3>
+    <p>Lorsque vous remplissez notre formulaire de contact, nous collectons :</p>
+    <ul>
+      <li>Votre prénom et nom</li>
+      <li>Votre adresse email</li>
+      <li>Votre numéro de téléphone (optionnel)</li>
+      <li>Le contenu de votre message</li>
+    </ul>
+
+    <h3>Chat en ligne</h3>
+    <p>Lorsque vous utilisez notre assistant en ligne, les messages échangés sont transmis à une API IA tierce (Groq Cloud). Nous ne conservons pas l'historique de ces conversations au-delà de la session en cours.</p>
+
+    <h3>Données techniques</h3>
+    <p>Comme tout site web, nous pouvons collecter automatiquement certaines données techniques : adresse IP, type de navigateur, pages visitées. Ces données sont anonymisées et ne permettent pas de vous identifier.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>3. Finalités du traitement</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Données</th><th>Finalité</th><th>Base légale</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Nom, email, téléphone, message</td>
+            <td>Répondre à votre demande de contact ou d'audit</td>
+            <td>Intérêt légitime / exécution d'un contrat</td>
+          </tr>
+          <tr>
+            <td>Messages du chat</td>
+            <td>Générer une réponse IA à votre question</td>
+            <td>Consentement (via utilisation du service)</td>
+          </tr>
+          <tr>
+            <td>Données techniques</td>
+            <td>Sécurité et bon fonctionnement du site</td>
+            <td>Intérêt légitime</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="legal-section">
+    <h2>4. Cookies</h2>
+    <p>Ce site utilise des cookies. Voici les cookies susceptibles d'être déposés :</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Cookie</th><th>Émetteur</th><th>Finalité</th><th>Durée</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>mf_cookie_consent</td>
+            <td>MarketFlow</td>
+            <td>Mémoriser votre choix de consentement</td>
+            <td>13 mois</td>
+          </tr>
+          <tr>
+            <td>Cookies Google Fonts</td>
+            <td>Google LLC</td>
+            <td>Chargement des polices de caractères</td>
+            <td>Session</td>
+          </tr>
+          <tr>
+            <td>Cookies FormSubmit</td>
+            <td>FormSubmit.co</td>
+            <td>Protection anti-spam des formulaires</td>
+            <td>Session</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Vous pouvez modifier vos préférences à tout moment en cliquant sur "Gérer les cookies" dans le footer du site, ou en configurant votre navigateur pour bloquer les cookies.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>5. Destinataires des données</h2>
+    <p>Vos données sont transmises aux prestataires suivants, dans le cadre strict de leur fonction :</p>
+    <ul>
+      <li><strong>FormSubmit.co</strong> — acheminement des emails de contact (États-Unis)</li>
+      <li><strong>Groq Cloud</strong> — traitement des messages du chat IA (États-Unis)</li>
+    </ul>
+    <p>Ces prestataires sont soumis à des obligations de confidentialité et ne peuvent utiliser vos données à d'autres fins. Des garanties appropriées ont été mises en place pour les transferts hors UE (clauses contractuelles types).</p>
+    <p>Vos données ne sont en aucun cas vendues ou partagées à des fins commerciales.</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>6. Durée de conservation</h2>
+    <ul>
+      <li><strong>Données de contact :</strong> conservées 3 ans à compter du dernier contact, puis supprimées.</li>
+      <li><strong>Messages du chat :</strong> non conservés, traitement en temps réel uniquement.</li>
+      <li><strong>Données techniques :</strong> conservées 13 mois maximum.</li>
+    </ul>
+  </div>
+
+  <div class="legal-section">
+    <h2>7. Vos droits</h2>
+    <p>Conformément au RGPD (Règlement UE 2016/679) et à la loi Informatique et Libertés, vous disposez des droits suivants :</p>
+    <div class="rights-grid">
+      <div class="right-card">
+        <div class="right-card-title">Droit d'accès</div>
+        <div class="right-card-desc">Obtenir une copie des données vous concernant que nous détenons.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-card-title">Droit de rectification</div>
+        <div class="right-card-desc">Faire corriger des données inexactes ou incomplètes.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-card-title">Droit à l'effacement</div>
+        <div class="right-card-desc">Demander la suppression de vos données (droit à l'oubli).</div>
+      </div>
+      <div class="right-card">
+        <div class="right-card-title">Droit d'opposition</div>
+        <div class="right-card-desc">Vous opposer à un traitement basé sur notre intérêt légitime.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-card-title">Droit à la portabilité</div>
+        <div class="right-card-desc">Recevoir vos données dans un format structuré et lisible.</div>
+      </div>
+      <div class="right-card">
+        <div class="right-card-title">Droit de limitation</div>
+        <div class="right-card-desc">Demander la suspension du traitement de vos données.</div>
+      </div>
+    </div>
+    <p style="margin-top: 20px;">Pour exercer l'un de ces droits, contactez-nous à : <a href="mailto:agence.marketflow@gmail.com">agence.marketflow@gmail.com</a>. Nous répondrons dans un délai maximum de 30 jours.</p>
+    <p>Si vous estimez que vos droits ne sont pas respectés, vous pouvez introduire une réclamation auprès de la <strong>CNIL</strong> : <a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a></p>
+  </div>
+
+  <div class="legal-section">
+    <h2>8. Sécurité</h2>
+    <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, perte ou destruction. Les formulaires sont transmis via HTTPS (connexion chiffrée).</p>
+  </div>
+
+  <div class="legal-section">
+    <h2>9. Modifications</h2>
+    <p>Cette politique de confidentialité peut être mise à jour. En cas de modification substantielle, nous vous en informerons via une notice sur le site. La date de dernière mise à jour est indiquée ci-dessous.</p>
+    <p><strong>Dernière mise à jour :</strong> mai 2025</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo"><div class="footer-logo-dot"></div>MarketFlow</div>
+  <div class="footer-links">
+    <a href="home.html">Accueil</a>
+    <a href="presentation.html">L'agence</a>
+    <a href="agents.html">Agents IA</a>
+    <a href="formation.html">Formation</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="mentions-legales.html">Mentions légales</a>
+    <a href="politique-confidentialite.html">Confidentialité</a>
+  </div>
+  <div class="footer-contact">
+    <a href="tel:0782227986">07 82 22 79 86</a><br>
+    <a href="mailto:agence.marketflow@gmail.com">agence.marketflow@gmail.com</a><br>
+    <span>© 2025 MarketFlow – Rouen, FR</span>
+  </div>
+</footer>
+
+</body>
+</html>

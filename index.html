@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketFlow</title>
+<meta name="description" content="MarketFlow déploie des agents IA dans votre entreprise pour automatiser votre croissance, votre relation client et vos opérations. Audit gratuit, mise en production en 14 jours.">
+<meta name="author" content="MarketFlow">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MarketFlow – Agence d'implémentation IA à Rouen">
+<meta property="og:description" content="MarketFlow déploie des agents IA dans votre entreprise pour automatiser votre croissance, votre relation client et vos opérations. Audit gratuit, mise en production en 14 jours.">
+<meta property="og:url" content="https://agencemarketflow.fr/">
+<meta property="og:site_name" content="MarketFlow">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MarketFlow – Agence d'implémentation IA à Rouen">
+<meta name="twitter:description" content="MarketFlow déploie des agents IA dans votre entreprise pour automatiser votre croissance, votre relation client et vos opérations. Audit gratuit, mise en production en 14 jours.">
+<link rel="canonical" href="https://agencemarketflow.fr/">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  overflow: hidden;
+  width: 100%; height: 100%;
+  background: #F3F2FA;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ─── SCÈNE ─────────────────────────────── */
+#stage {
+  width: 100vw; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, #eceaf8 0%, #F8F7FF 55%, #e8e6f5 100%);
+}
+
+/* ─── MACBOOK ────────────────────────────── */
+#macbook-scene {
+  position: relative; z-index: 5;
+  will-change: transform;
+  filter: drop-shadow(0 40px 80px rgba(80,60,180,0.13)) drop-shadow(0 8px 24px rgba(0,0,0,0.18));
+}
+
+.laptop-wrap { display: flex; flex-direction: column; align-items: center; }
+
+.lid {
+  width: 660px; height: 412px;
+  background: linear-gradient(170deg, #3a3a3c 0%, #1e1e20 100%);
+  border-radius: 13px 13px 0 0;
+  padding: 10px;
+  position: relative;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.lid::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent 5%, rgba(255,255,255,0.15) 50%, transparent 95%);
+  border-radius: 13px 13px 0 0;
+}
+
+.cam {
+  position: absolute; top: 4.5px; left: 50%; transform: translateX(-50%);
+  width: 7px; height: 7px; border-radius: 50%;
+  background: radial-gradient(circle at 33% 33%, #3d3d3d, #080808);
+  z-index: 10;
+}
+.cam::after {
+  content: ''; position: absolute; top: 2px; left: 2px;
+  width: 2.5px; height: 2.5px; border-radius: 50%;
+  background: rgba(100,160,255,0.2);
+}
+
+.screen {
+  width: 100%; height: 100%;
+  background: #000;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.screen::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, transparent 40%);
+  z-index: 30; pointer-events: none; border-radius: 6px;
+}
+
+#screen-area {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  position: relative;
+  border-radius: 6px;
+}
+
+#site-frame {
+  border: none;
+  width: 1280px; height: 800px;
+  transform-origin: 0 0;
+  transform: scale(0.5);   /* 640/1280 = 0.5 */
+  pointer-events: none;
+  display: block;
+}
+
+.hinge { width: 660px; height: 3px; background: linear-gradient(180deg, #111, #2e2e30); }
+
+.base {
+  width: 680px; height: 14px;
+  background: linear-gradient(180deg, #3c3c3e 0%, #262628 100%);
+  border-radius: 0 0 5px 5px; position: relative;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.055), 0 6px 28px rgba(0,0,0,0.25);
+}
+.trackpad {
+  position: absolute; top: 2.5px; left: 50%; transform: translateX(-50%);
+  width: 110px; height: 9px; border-radius: 2.5px;
+  background: linear-gradient(180deg, #303032, #272729);
+}
+.foot { position: absolute; bottom: -2.5px; width: 38px; height: 2.5px; background: #101010; border-radius: 0 0 3px 3px; }
+.foot.l { left: 18px; } .foot.r { right: 18px; }
+.shadow { width: 500px; height: 16px; margin-top: 4px; background: radial-gradient(ellipse at center, rgba(80,60,180,0.12) 0%, transparent 70%); }
+
+/* ─── HINT ───────────────────────────────── */
+#scroll-hint {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
+  z-index: 10; pointer-events: none;
+}
+#scroll-hint span {
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(80,60,180,0.35);
+}
+.arr {
+  width: 16px; height: 16px;
+  border-right: 1.5px solid rgba(80,60,180,0.25);
+  border-bottom: 1.5px solid rgba(80,60,180,0.25);
+  transform: rotate(45deg);
+  animation: bou 1.8s ease-in-out infinite;
+}
+@keyframes bou {
+  0%,100% { transform: rotate(45deg) translateY(0);   opacity: .3; }
+  50%      { transform: rotate(45deg) translateY(5px); opacity: .7; }
+}
+
+/* ─── BARRE PROGRESSION ──────────────────── */
+#prog {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+  background: linear-gradient(90deg, #6366F1, #8B5CF6);
+  z-index: 999; pointer-events: none;
+}
+
+/* ─── VRAI SITE ──────────────────────────── */
+#real-content {
+  position: fixed; inset: 0; z-index: 200;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+#real-content.on { opacity: 1; pointer-events: all; }
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<div id="stage">
+  <div id="macbook-scene">
+    <div class="laptop-wrap">
+      <div class="lid">
+        <div class="cam"></div>
+        <div class="screen">
+          <div id="screen-area">
+            <iframe id="site-frame" src="home.html" scrolling="no" title="MarketFlow"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="hinge"></div>
+      <div class="base">
+        <div class="trackpad"></div>
+        <div class="foot l"></div>
+        <div class="foot r"></div>
+      </div>
+      <div class="shadow"></div>
+    </div>
+  </div>
+
+  <div id="scroll-hint">
+    <span>Défiler</span>
+    <div class="arr"></div>
+  </div>
+</div>
+
+<!-- Vrai site : fixed overlay, z-index > tout -->
+<div id="real-content">
+  <iframe
+    src="home.html"
+    style="width:100%;height:100vh;border:none;display:block;"
+    scrolling="yes"
+    title="MarketFlow Site"
+  ></iframe>
+</div>
+
+<script>
+/* ── Redirection mobile : pas d'animation MacBook ── */
+if (window.innerWidth < 768 || navigator.maxTouchPoints > 0) {
+  window.location.replace('home.html');
+}
+</script>
+<script>
+(function () {
+  const scene    = document.getElementById('macbook-scene');
+  const screenEl = document.getElementById('screen-area');
+  const hint     = document.getElementById('scroll-hint');
+  const real     = document.getElementById('real-content');
+  const prog     = document.getElementById('prog');
+
+  /* ── état ── */
+  let cur    = 0;   // valeur animée (0–1)
+  let tgt    = 0;   // cible
+  let rafId  = null;
+  let done   = false;
+
+  /* ── helpers ── */
+  function clamp(v, a, b) { return Math.min(Math.max(v, a), b); }
+  function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+  function calcOrigin() {
+    const sr = scene.getBoundingClientRect();
+    const er = screenEl.getBoundingClientRect();
+    const cx = er.left + er.width  / 2 - sr.left;
+    const cy = er.top  + er.height / 2 - sr.top;
+    return (cx / sr.width  * 100).toFixed(2) + '% ' +
+           (cy / sr.height * 100).toFixed(2) + '%';
+  }
+
+  function calcMax() {
+    const r = screenEl.getBoundingClientRect();
+    return Math.max(window.innerWidth / r.width, window.innerHeight / r.height) * 1.02;
+  }
+
+  /* Cache recalculé au resize */
+  let origin = calcOrigin();
+  let MAX    = calcMax();
+  window.addEventListener('resize', () => { origin = calcOrigin(); MAX = calcMax(); });
+
+  /* ── rendu ── */
+  function render(p) {
+    prog.style.width = (p * 100) + '%';
+    hint.style.opacity = clamp(1 - p * 5, 0, 1);
+
+    const scale = 1 + ease(p) * (MAX - 1);
+    scene.style.transformOrigin = origin;
+    scene.style.transform = 'scale(' + scale + ')';
+
+    /* Vrai site à partir de 90 % */
+    if (p >= 0.90) {
+      real.classList.add('on');
+      done = true;
+    } else {
+      real.classList.remove('on');
+    }
+  }
+
+  /* ── boucle spring ── */
+  function loop() {
+    const d = tgt - cur;
+    if (Math.abs(d) < 0.0003) {
+      cur = tgt;
+      render(cur);
+      rafId = null;
+      return;
+    }
+    cur += d * 0.10;   /* friction spring */
+    render(cur);
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function push(delta) {
+    if (done && delta > 0) return;
+    tgt = clamp(tgt + delta, 0, 1);
+    if (!rafId) rafId = requestAnimationFrame(loop);
+  }
+
+  /* ── ENTRÉES ── */
+
+  /* Molette / trackpad — intercepte dans TOUS les contextes (iframe compris) */
+  window.addEventListener('wheel', function (e) {
+    e.preventDefault();
+    push(e.deltaY / 550);
+  }, { passive: false });
+
+  /* Touch */
+  let ty0 = 0;
+  window.addEventListener('touchstart', function (e) {
+    ty0 = e.touches[0].clientY;
+  }, { passive: true });
+  window.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+    push((ty0 - e.touches[0].clientY) / 380);
+    ty0 = e.touches[0].clientY;
+  }, { passive: false });
+
+  /* Clavier */
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === ' ')  { e.preventDefault(); push(0.06); }
+    if (e.key === 'ArrowUp')                      { e.preventDefault(); push(-0.06); }
+  });
+
+  /* ── init ── */
+  render(0);
+})();
+</script>
+</body>
+</html>

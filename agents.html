@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MarketFlow – Nos Agents IA</title>
+<meta name="description" content="8 agents IA spécialisés : Commercial, Social Media, SEO, Comptable, Juridique, Recrutement, Téléphonique, Personnalisé. Packs à partir de 129€/mois HT. Audit gratuit.">
+<meta name="author" content="MarketFlow">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nos Agents IA – MarketFlow | Automatisation intelligente">
+<meta property="og:description" content="8 agents IA spécialisés : Commercial, Social Media, SEO, Comptable, Juridique, Recrutement, Téléphonique, Personnalisé. Packs à partir de 129€/mois HT. Audit gratuit.">
+<meta property="og:url" content="https://agencemarketflow.fr/agents.html">
+<meta property="og:site_name" content="MarketFlow">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Nos Agents IA – MarketFlow | Automatisation intelligente">
+<meta name="twitter:description" content="8 agents IA spécialisés : Commercial, Social Media, SEO, Comptable, Juridique, Recrutement, Téléphonique, Personnalisé. Packs à partir de 129€/mois HT. Audit gratuit.">
+<link rel="canonical" href="https://agencemarketflow.fr/agents.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2307101f'/><circle cx='16' cy='16' r='7' fill='none' stroke='%233B82F6' stroke-width='2.5'/><circle cx='16' cy='16' r='3' fill='%233B82F6'/></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #ffffff; --bg-soft: #F5F3FF;
+    --text: #111827; --text-muted: #6B7280; --text-light: #9CA3AF;
+    --indigo: #6366F1; --violet: #8B5CF6;
+    --grad: linear-gradient(135deg, #6366F1, #8B5CF6);
+    --line: rgba(99,102,241,0.12);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 22px 48px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--indigo); flex-shrink: 0; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
+  .nav-cta { background: var(--grad); color: #fff; padding: 10px 22px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; display: inline-block; transition: opacity 0.3s; border-radius: 6px; }
+  .nav-cta:hover { opacity: 0.85; }
+
+  .page-hero { min-height: 50vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 48px 72px; position: relative; overflow: hidden; margin-top: 71px; background: var(--bg-soft); }
+  .page-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 80%, rgba(99,102,241,0.1) 0%, transparent 55%); }
+  .page-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 72px 72px; mask-image: radial-gradient(ellipse at 30% 70%, black 20%, transparent 70%); }
+  .page-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--indigo); margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; position: relative; }
+  .page-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 9vw, 115px); line-height: 0.9; letter-spacing: -2px; color: var(--text); opacity: 0; animation: fadeUp 0.8s 0.4s forwards; position: relative; }
+  .page-title em { font-style: normal; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .page-sub { max-width: 540px; font-size: 15px; line-height: 1.75; color: var(--text-muted); margin-top: 28px; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; position: relative; }
+
+  .marquee-wrap { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; padding: 16px 0; background: var(--bg-soft); }
+  .marquee-track { display: flex; gap: 56px; animation: marquee 28s linear infinite; width: max-content; }
+  .marquee-item { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 4px; color: var(--text-light); white-space: nowrap; text-transform: uppercase; }
+  .marquee-item span { color: var(--indigo); opacity: 0.6; margin-right: 56px; }
+
+  .section { padding: 90px 48px; }
+  .section-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--indigo); margin-bottom: 52px; display: flex; align-items: center; gap: 16px; opacity: 0.8; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+  .agents-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .agent-card { background: #fff; padding: 48px 44px; position: relative; overflow: hidden; transition: background 0.4s; }
+  .agent-card:hover { background: var(--bg-soft); }
+  .agent-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--grad); transform: scaleX(0); transition: transform 0.5s; }
+  .agent-card:hover::before { transform: scaleX(1); }
+  .agent-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .agent-num { font-family: 'Bebas Neue', sans-serif; font-size: 11px; letter-spacing: 3px; color: var(--indigo); opacity: 0.5; }
+  .agent-name { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px; color: var(--text); margin-bottom: 6px; line-height: 1; }
+  .agent-role { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--indigo); opacity: 0.8; margin-bottom: 18px; }
+  .agent-desc { font-size: 14px; line-height: 1.8; color: var(--text-muted); margin-bottom: 26px; font-weight: 400; }
+  .agent-features { display: flex; flex-direction: column; gap: 8px; }
+  .agent-feature { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-muted); }
+  .agent-feature::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--indigo); opacity: 0.6; flex-shrink: 0; }
+
+  .agent-card.special { background: var(--bg-soft); border: 1px solid rgba(99,102,241,0.2); }
+  .agent-card.special:hover { background: #EDE9FE; }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .stat { background: var(--bg-soft); padding: 44px; text-align: center; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 68px; line-height: 1; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .stat-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-top: 8px; }
+
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .pricing-card { background: #fff; padding: 48px 40px; position: relative; transition: background 0.3s; display: flex; flex-direction: column; }
+  .pricing-card:hover { background: var(--bg-soft); }
+  .pricing-card.featured { background: var(--bg-soft); border-left: 3px solid var(--indigo); }
+  .pricing-card.featured:hover { background: #EDE9FE; }
+  .pricing-badge { display: inline-block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #fff; background: var(--grad); padding: 4px 12px; margin-bottom: 24px; border-radius: 20px; align-self: flex-start; }
+  .pricing-name { font-family: 'Bebas Neue', sans-serif; font-size: 38px; letter-spacing: 1px; line-height: 1; margin-bottom: 4px; color: var(--text); }
+  .pricing-price { display: flex; align-items: baseline; gap: 6px; margin-bottom: 16px; }
+  .pricing-amount { font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 1; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .pricing-amount.custom { font-size: 40px; margin-top: 16px; }
+  .pricing-period { font-size: 13px; color: var(--text-muted); letter-spacing: 1px; }
+  .pricing-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+  .agents-included { margin-bottom: 24px; }
+  .agents-included-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-light); margin-bottom: 12px; }
+  .agents-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .agent-tag { font-size: 11px; letter-spacing: 0.5px; padding: 5px 10px; border: 1px solid var(--line); color: var(--text-muted); border-radius: 4px; }
+  .agent-tag.hi { border-color: rgba(99,102,241,0.3); color: var(--indigo); }
+  .agent-tag.star { border-color: var(--indigo); color: var(--indigo); background: rgba(99,102,241,0.06); }
+  .pricing-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; flex-grow: 1; }
+  .pricing-feature { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+  .check { color: var(--indigo); font-size: 12px; margin-top: 1px; flex-shrink: 0; }
+  .pricing-cta { display: block; width: 100%; padding: 16px; background: transparent; color: var(--text); border: 1px solid var(--line); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; text-align: center; text-decoration: none; transition: border-color 0.3s, background 0.3s, color 0.3s; border-radius: 6px; margin-top: auto; }
+  .pricing-cta:hover { border-color: var(--indigo); color: var(--indigo); }
+  .pricing-cta.solid { background: var(--grad); color: #fff; border-color: transparent; }
+  .pricing-cta.solid:hover { opacity: 0.88; }
+  .pricing-cta.outline-blue { border-color: rgba(99,102,241,0.4); color: var(--indigo); }
+  .pricing-cta.outline-blue:hover { background: rgba(99,102,241,0.06); border-color: var(--indigo); }
+
+  /* ── Section Contact ── */
+  .contact-section { padding: 100px 48px; background: var(--bg); }
+  .contact-inner { max-width: 1020px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: flex-start; }
+  .contact-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--indigo); margin-bottom: 16px; }
+  .contact-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(38px, 5vw, 56px); line-height: 1; color: var(--text); margin-bottom: 20px; }
+  .contact-title em { font-style: normal; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .contact-sub { font-size: 15px; color: var(--text-muted); line-height: 1.75; margin-bottom: 36px; }
+  .contact-links { display: flex; flex-direction: column; gap: 14px; }
+  .contact-link { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .contact-link:hover { color: var(--indigo); }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 20px; padding: 40px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 12px; font-weight: 500; color: var(--text); }
+  .form-group input, .form-group textarea { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); background: #fff; outline: none; transition: border-color 0.2s; resize: none; }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--indigo); }
+  .form-group textarea { min-height: 110px; }
+  .form-submit { background: var(--grad); color: #fff; border: none; border-radius: 8px; padding: 14px 28px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: opacity 0.2s, transform 0.2s; box-shadow: 0 8px 24px rgba(99,102,241,0.22); }
+  .form-submit:hover { opacity: 0.88; transform: translateY(-2px); }
+  .form-submit:disabled { opacity: 0.6; cursor: default; transform: none; }
+  .form-feedback { padding: 12px 16px; border-radius: 8px; font-size: 13px; display: none; margin-top: 4px; }
+  .form-feedback.success { background: #f0fdf4; border: 1px solid #86efac; color: #166534; }
+  .form-feedback.error { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; }
+  @media (max-width: 820px) { .contact-inner { grid-template-columns: 1fr; gap: 40px; } .form-row { grid-template-columns: 1fr; } .contact-form { padding: 28px 20px; } }
+
+  footer { border-top: 1px solid var(--line); padding: 36px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; background: var(--bg-soft); }
+  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; display: flex; align-items: center; gap: 8px; color: var(--text); }
+  .footer-logo-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--indigo); }
+  .footer-copy { font-size: 12px; color: var(--text-muted); letter-spacing: 0.5px; }
+  .footer-contact { font-size: 12px; color: var(--text-muted); text-align: right; line-height: 1.8; }
+  .footer-contact a { color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+  .footer-contact a:hover { color: var(--indigo); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  @media (max-width: 1024px) {
+    .pricing-grid { grid-template-columns: 1fr 1fr; }
+    .pricing-grid .pricing-card:last-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 16px 18px; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .nav-cta { padding: 9px 14px; font-size: 11px; }
+    .page-hero { padding: 0 18px 56px; }
+    .section { padding: 60px 18px; }
+    .agents-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card { padding: 36px 22px; }
+    .cta-section { padding: 80px 18px; }
+    footer { flex-direction: column; align-items: flex-start; padding: 28px 18px; }
+    .footer-contact { text-align: left; }
+    .agent-card[style*="grid-column"] .agent-features { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 480px) {
+    .agent-card[style*="grid-column"] .agent-features { grid-template-columns: 1fr !important; }
+  }
+
+/* ── Menu mobile hamburger ── */
+.nav-burger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 110; }
+.nav-burger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (max-width: 768px) {
+  .nav-burger { display: flex; }
+  .nav-cta { display: none; }
+  .nav-links { display: none !important; position: fixed; top: 57px; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); padding: 8px 0; flex-direction: column; gap: 0; z-index: 99; box-shadow: 0 8px 24px rgba(99,102,241,0.08); }
+  .nav-links.open { display: flex !important; }
+  .nav-links li { border-bottom: 1px solid var(--line); }
+  .nav-links li:last-child { border-bottom: none; }
+  .nav-links a { display: block; padding: 16px 24px; font-size: 15px; color: var(--text) !important; letter-spacing: 0; text-transform: none !important; }
+  .nav-links a:hover, .nav-links a.active { color: var(--indigo) !important; background: var(--bg-soft); }
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><div class="nav-logo-dot"></div>MarketFlow</a>
+  <ul class="nav-links">
+    <li><a href="presentation.html">L'agence</a></li>
+    <li><a href="agents.html" class="active">Agents IA</a></li>
+    <li><a href="formation.html">Formation</a></li>
+    <li><a href="realisations.html">Réalisations</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Audit gratuit</a>
+  <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <p class="page-tag">Intelligence artificielle — 8 agents spécialisés</p>
+  <h1 class="page-title">Vos agents.<br><em>Votre équipe.</em></h1>
+  <p class="page-sub">Chaque agent est un expert IA dédié à un domaine précis de votre business. Ensemble, ils automatisent, optimisent et font croître votre entreprise — 24h/24, sans effort manuel.</p>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Agent Commercial <span></span></span>
+    <span class="marquee-item">Agent Social Media <span></span></span>
+    <span class="marquee-item">Agent SEO <span></span></span>
+    <span class="marquee-item">Agent Comptable <span></span></span>
+    <span class="marquee-item">Agent Juridique <span></span></span>
+    <span class="marquee-item">Agent Recrutement <span></span></span>
+    <span class="marquee-item">Agent Téléphonique <span></span></span>
+    <span class="marquee-item">Agent Personnalisé <span></span></span>
+    <span class="marquee-item">Agent Commercial <span></span></span>
+    <span class="marquee-item">Agent Social Media <span></span></span>
+    <span class="marquee-item">Agent SEO <span></span></span>
+    <span class="marquee-item">Agent Comptable <span></span></span>
+    <span class="marquee-item">Agent Juridique <span></span></span>
+    <span class="marquee-item">Agent Recrutement <span></span></span>
+    <span class="marquee-item">Agent Téléphonique <span></span></span>
+    <span class="marquee-item">Agent Personnalisé <span></span></span>
+  </div>
+</div>
+
+<section class="section" id="agents">
+  <p class="section-label">Les 8 agents</p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 72px; padding: 48px 56px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 16px;">
+    <div>
+      <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--indigo); margin-bottom: 16px;">Technologie prête à l'emploi</p>
+      <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px, 3.5vw, 44px); line-height: 1.05; color: var(--text); margin-bottom: 20px;">Des agents déjà configurés,<br>opérationnels en 14 jours</h2>
+      <p style="font-size: 15px; line-height: 1.8; color: var(--text-muted); margin-bottom: 16px;">Nos agents ne sont pas des outils génériques. Chacun est entraîné, paramétré et testé pour répondre à un domaine précis de votre activité. Dès leur installation dans votre entreprise, ils sont immédiatement efficaces — sans phase d'apprentissage longue, sans configuration technique de votre côté.</p>
+      <p style="font-size: 15px; line-height: 1.8; color: var(--text-muted);">Nous utilisons la technologie <strong style="color: var(--text); font-weight: 500;">Limanova.IA</strong>, la start-up française spécialisée dans les agents IA métier. Chaque agent est ensuite intégré et adapté à votre environnement par notre équipe.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px; background: #fff; border: 1px solid var(--line); border-radius: 10px;">
+        <div style="width: 36px; height: 36px; border-radius: 8px; background: var(--grad); flex-shrink: 0;"></div>
+        <div><div style="font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px;">Pré-configurés et éprouvés</div><div style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Chaque agent a été affiné sur des milliers de cas réels avant d'être déployé chez vous.</div></div>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px; background: #fff; border: 1px solid var(--line); border-radius: 10px;">
+        <div style="width: 36px; height: 36px; border-radius: 8px; background: var(--grad); flex-shrink: 0;"></div>
+        <div><div style="font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px;">Intégrés à vos outils</div><div style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">CRM, messagerie, agenda, réseaux sociaux, site web — l'agent s'adapte à votre stack.</div></div>
+      </div>
+      <div style="display: flex; align-items: flex-start; gap: 16px; padding: 20px 24px; background: #fff; border: 1px solid var(--line); border-radius: 10px;">
+        <div style="width: 36px; height: 36px; border-radius: 8px; background: var(--grad); flex-shrink: 0;"></div>
+        <div><div style="font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px;">Accompagnement inclus</div><div style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">Notre équipe prend en charge l'installation, la formation et le suivi des performances.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="agents-grid">
+
+    <div class="agent-card">
+      <div class="agent-header"><div class="agent-num">01</div></div>
+      <div class="agent-name">Agent Commercial</div>
+      <div class="agent-role">Prospection LinkedIn & Développement réseau</div>
+      <p class="agent-desc">Un commercial IA qui travaille sans relâche, 7j/7. Cet agent identifie vos cibles sur LinkedIn, envoie des messages personnalisés et relance les prospects inactifs — pour remplir votre pipeline sans que vous ayez à décrocher le téléphone.</p>
+      <div class="agent-features">
+        <div class="agent-feature">Identification de vos prospects idéaux</div>
+        <div class="agent-feature">Envoi de messages LinkedIn personnalisés</div>
+        <div class="agent-feature">Développement de réseau automatisé</div>
+        <div class="agent-feature">Suivi et relances automatiques</div>
+        <div class="agent-feature">50+ connexions ciblées par jour</div>
+        <div class="agent-feature">Qualification des prospects dès le premier contact</div>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><div class="agent-num">02</div></div>
+      <div class="agent-name">Agent Social Media</div>
+      <div class="agent-role">Contenu, visuels & publication automatisée</div>
+      <p class="agent-desc">Vos réseaux sociaux gérés de A à Z, sans effort. Cet agent conçoit vos visuels, rédige vos publications et les programme sur l'ensemble de vos plateformes. Une présence en ligne constante et professionnelle, même quand vous êtes débordé.</p>
+      <div class="agent-features">
+        <div class="agent-feature">Création de visuels ultra-qualitatifs</div>
+        <div class="agent-feature">Génération automatique de posts et légendes</div>
+        <div class="agent-feature">Gestion d'un calendrier éditorial complet</div>
+        <div class="agent-feature">Publication sur tous vos réseaux sociaux</div>
+        <div class="agent-feature">Suppression d'arrière-plan en un clic</div>
+        <div class="agent-feature">Création de carrousels et miniatures vidéo</div>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><div class="agent-num">03</div></div>
+      <div class="agent-name">Agent SEO</div>
+      <div class="agent-role">Référencement naturel & Contenu web</div>
+      <p class="agent-desc">Améliorez votre visibilité sur Google sans rédiger une seule ligne. Cet agent produit des articles optimisés pour le référencement et les publie directement sur votre site — à un rythme qu'aucune équipe humaine ne pourrait tenir.</p>
+      <div class="agent-features">
+        <div class="agent-feature">Production jusqu'à 300 articles SEO/mois</div>
+        <div class="agent-feature">Publication automatique sur votre site</div>
+        <div class="agent-feature">Audit SEO instantané de votre site</div>
+        <div class="agent-feature">Génération de mots-clés stratégiques</div>
+        <div class="agent-feature">Compatible WordPress, Wix, PrestaShop</div>
+        <div class="agent-feature">Planification éditoriale intelligente</div>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><div class="agent-num">04</div></div>
+      <div class="agent-name">Agent Comptable</div>
+      <div class="agent-role">Finances, budgets & prévisions</div>
+      <p class="agent-desc">La gestion financière de votre entreprise, sans les allers-retours avec votre comptable. Cet agent analyse vos chiffres, génère vos rapports et vous conseille sur votre trésorerie — à la demande, dans le format de votre choix.</p>
+      <div class="agent-features">
+        <div class="agent-feature">Gestion et suivi des budgets</div>
+        <div class="agent-feature">Prévisions financières sur 3 à 12 mois</div>
+        <div class="agent-feature">Génération de rapports financiers</div>
+        <div class="agent-feature">Analyse de performance de l'entreprise</div>
+        <div class="agent-feature">Conseils d'optimisation de trésorerie</div>
+        <div class="agent-feature">Relances clients en impayé automatisées</div>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><div class="agent-num">05</div></div>
+      <div class="agent-name">Agent Juridique</div>
+      <div class="agent-role">Droit français, contrats & conformité</div>
+      <p class="agent-desc">Des réponses juridiques fiables, sans attendre et sans facturer à l'heure. Entraîné sur l'intégralité du droit français, cet agent rédige vos contrats, vérifie votre conformité et sécurise vos documents légaux — en langage clair, accessible à tous.</p>
+      <div class="agent-features">
+        <div class="agent-feature">Réponses basées sur le droit français</div>
+        <div class="agent-feature">Rédaction de contrats, statuts, CGV</div>
+        <div class="agent-feature">Vérification de conformité RGPD</div>
+        <div class="agent-feature">Génération de procès-verbaux d'AG</div>
+        <div class="agent-feature">Veille légale et conformité continue</div>
+        <div class="agent-feature">Disponible 24h/24, sans frais d'avocat</div>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <div class="agent-header"><div class="agent-num">06</div></div>
+      <div class="agent-name">Agent Recrutement</div>
+      <div class="agent-role">RH, offres d'emploi & tri de candidatures</div>
+      <p class="agent-desc">Recrutez plus vite, avec moins d'effort. Cet agent rédige vos offres, les publie sur LinkedIn, collecte les candidatures et trie les CV selon vos critères — pour que vous ne passiez du temps qu'avec les profils qui en valent la peine.</p>
+      <div class="agent-features">
+        <div class="agent-feature">Rédaction et publication d'offres d'emploi</div>
+        <div class="agent-feature">Collecte automatique des candidatures</div>
+        <div class="agent-feature">Tri et analyse des CV selon vos critères</div>
+        <div class="agent-feature">Sélection des meilleurs profils</div>
+        <div class="agent-feature">Recrutements sur mesure et personnalisés</div>
+        <div class="agent-feature">Gain de temps considérable sur vos RH</div>
+      </div>
+    </div>
+
+    <!-- 07 Téléphonique — pleine largeur -->
+    <div class="agent-card" style="grid-column: 1 / -1;">
+      <div class="agent-header"><div class="agent-num">07</div></div>
+      <div class="agent-name">Agent Téléphonique</div>
+      <div class="agent-role">Relation client & Accueil automatisé — Inclus dans le Pack Pro</div>
+      <p class="agent-desc" style="max-width: 700px;">Ne laissez plus un seul appel sans réponse. Cet agent gère vos appels entrants en temps réel : il accueille, comprend la demande, oriente le client et prend des rendez-vous — sans jamais déranger votre équipe. Elle n'intervient que lorsque c'est vraiment nécessaire.</p>
+      <div class="agent-features" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 32px;">
+        <div class="agent-feature">Réception d'appels 24h/24, 7j/7</div>
+        <div class="agent-feature">Qualification intelligente des demandes</div>
+        <div class="agent-feature">Prise de rendez-vous par téléphone</div>
+        <div class="agent-feature">Transfert automatique vers un humain</div>
+        <div class="agent-feature">Compte-rendu instantané après chaque appel</div>
+        <div class="agent-feature">Disponible en 140 langues</div>
+      </div>
+    </div>
+
+    <!-- 08 Agent Personnalisé — pleine largeur, card spéciale -->
+    <div class="agent-card special" style="grid-column: 1 / -1;">
+      <div class="agent-header"><div class="agent-num">08</div></div>
+      <div class="agent-name">Agent Personnalisé</div>
+      <div class="agent-role">Conçu sur mesure selon vos besoins — Disponible dans le Pack Élite</div>
+      <p class="agent-desc" style="max-width: 700px;">Votre métier a des particularités qu'aucun agent standard ne peut couvrir ? On conçoit pour vous un agent IA entièrement sur mesure : formé sur vos données, intégré à vos outils, et taillé pour vos objectifs spécifiques. Aucune limite de périmètre — l'agent fait exactement ce que vous décidez.</p>
+      <div class="agent-features" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 32px;">
+        <div class="agent-feature">Conception 100 % basée sur vos besoins</div>
+        <div class="agent-feature">Entraînement sur vos données et processus internes</div>
+        <div class="agent-feature">Intégration à vos outils existants</div>
+        <div class="agent-feature">Scénarios d'utilisation définis avec vous</div>
+        <div class="agent-feature">Tests et validation avant mise en production</div>
+        <div class="agent-feature">Évolutions et ajustements inclus</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">8</div><div class="stat-label">Agents spécialisés</div></div>
+  <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Disponibilité totale</div></div>
+  <div class="stat"><div class="stat-num">14j</div><div class="stat-label">Délai de mise en place</div></div>
+</div>
+
+<!-- OFFRES -->
+<section class="section" id="offres">
+  <p class="section-label">Nos offres</p>
+  <div class="pricing-grid">
+
+    <div class="pricing-card">
+      <div class="pricing-name">Pack Croissance</div>
+      <div class="pricing-price">
+        <div class="pricing-amount">129€</div>
+        <div class="pricing-period">/ mois HT</div>
+      </div>
+      <p class="pricing-desc">Pour les entreprises qui veulent automatiser leur croissance rapidement. 4 agents IA déployés, configurés et opérationnels en moins de 14 jours — sans effort de votre côté.</p>
+      <div class="agents-included">
+        <div class="agents-included-label">Agents inclus</div>
+        <div class="agents-tags">
+          <div class="agent-tag hi">Agent Commercial</div>
+          <div class="agent-tag hi">Agent Social Media</div>
+          <div class="agent-tag hi">Agent SEO</div>
+          <div class="agent-tag hi">Agent Comptable</div>
+        </div>
+      </div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><span class="check"></span><span>Audit gratuit de votre business avant démarrage</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Mise en place 100 % prise en charge par notre équipe</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Formation complète à l'utilisation des agents</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Intégration à vos outils existants (CRM, réseaux, site web…)</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Suivi mensuel des performances et optimisations</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Rapport d'activité mensuel personnalisé</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Support réactif 5j/7</span></div>
+      </div>
+      <a href="#contact" class="pricing-cta">Démarrer avec ce pack</a>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Le plus complet</div>
+      <div class="pricing-name">Pack Pro</div>
+      <div class="pricing-price">
+        <div class="pricing-amount">189€</div>
+        <div class="pricing-period">/ mois HT</div>
+      </div>
+      <p class="pricing-desc">La solution pour tout automatiser — y compris votre relation client téléphonique. 7 agents déployés, zéro tâche manuelle, une croissance pilotée par l'IA de bout en bout.</p>
+      <div class="agents-included">
+        <div class="agents-included-label">Agents inclus</div>
+        <div class="agents-tags">
+          <div class="agent-tag hi">Agent Commercial</div>
+          <div class="agent-tag hi">Agent Social Media</div>
+          <div class="agent-tag hi">Agent SEO</div>
+          <div class="agent-tag hi">Agent Comptable</div>
+          <div class="agent-tag hi">Agent Juridique</div>
+          <div class="agent-tag hi">Agent Recrutement</div>
+          <div class="agent-tag star">Agent Téléphonique</div>
+        </div>
+      </div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><span class="check"></span><span>Tout ce qui est inclus dans le Pack Croissance</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Agent Téléphonique 24h/24 — 140 langues, 10 000 appels simultanés</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Agents Juridique et Recrutement inclus</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Intégrations avancées : HubSpot, Slack, Notion, Google Agenda…</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Accompagnement stratégique mensuel en 1:1</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Support prioritaire 7j/7</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Accès aux nouvelles fonctionnalités en avant-première</span></div>
+      </div>
+      <a href="#contact" class="pricing-cta solid">Démarrer avec ce pack</a>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-name">Pack Élite</div>
+      <div class="pricing-price">
+        <div class="pricing-amount custom">Sur mesure</div>
+      </div>
+      <p class="pricing-desc">Des besoins spécifiques, une équipe plus grande ou un agent personnalisé à créer de zéro ? On conçoit une solution 100 % sur mesure, adaptée à votre secteur, vos outils et vos objectifs.</p>
+      <div class="agents-included">
+        <div class="agents-included-label">Agents inclus</div>
+        <div class="agents-tags">
+          <div class="agent-tag hi">Tous les agents Pro</div>
+          <div class="agent-tag star">Agent Personnalisé</div>
+        </div>
+      </div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><span class="check"></span><span>Tout ce qui est inclus dans le Pack Pro</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Création d'un agent IA 100 % personnalisé selon votre métier</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Stratégie IA définie lors d'un workshop dédié</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Intégrations spécifiques à votre stack technologique</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Account manager dédié, disponible à tout moment</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>Tableaux de bord et reporting personnalisés</span></div>
+        <div class="pricing-feature"><span class="check"></span><span>SLA garanti et support prioritaire 7j/7</span></div>
+      </div>
+      <a href="#contact" class="pricing-cta outline-blue">Nous contacter</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+
+    <div>
+      <p class="contact-label">Nous contacter</p>
+      <h2 class="contact-title">Parlons de<br><em>votre projet</em></h2>
+      <p class="contact-sub">Un audit gratuit, sans engagement. Décrivez votre besoin — on vous répond sous 24h avec un plan d'action concret.</p>
+      <div class="contact-links">
+        <a href="tel:0782227986" class="contact-link">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          07 82 22 79 86
+        </a>
+        <a href="mailto:agence.marketflow@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          agence.marketflow@gmail.com
+        </a>
+      </div>
+    </div>
+
+    <form class="contact-form" id="mf-contact-form">
+      <input type="hidden" name="_subject" value="Nouveau contact — MarketFlow">
+      <input type="hidden" name="_captcha" value="false">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="mf-name">Prénom & Nom *</label>
+          <input type="text" id="mf-name" name="name" placeholder="Jean Dupont" required>
+        </div>
+        <div class="form-group">
+          <label for="mf-email">Email *</label>
+          <input type="email" id="mf-email" name="email" placeholder="jean@societe.fr" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="mf-phone">Téléphone (optionnel)</label>
+        <input type="tel" id="mf-phone" name="phone" placeholder="06 00 00 00 00">
+      </div>
+      <div class="form-group">
+        <label for="mf-message">Votre message *</label>
+        <textarea id="mf-message" name="message" placeholder="Décrivez votre projet ou posez vos questions..." required></textarea>
+      </div>
+      <button type="submit" class="form-submit" id="mf-form-submit">
+        <span id="mf-form-btn-label">Envoyer le message</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+      <div class="form-feedback success" id="mf-form-success">✅ Message envoyé ! Nous vous répondrons sous 24h.</div>
+      <div class="form-feedback error" id="mf-form-error">❌ Une erreur s'est produite. Appelez-nous au 07 82 22 79 86.</div>
+    </form>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  var form    = document.getElementById('mf-contact-form');
+  if (!form) return;
+  var btn     = document.getElementById('mf-form-submit');
+  var label   = document.getElementById('mf-form-btn-label');
+  var success = document.getElementById('mf-form-success');
+  var error   = document.getElementById('mf-form-error');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    btn.disabled = true;
+    label.textContent = 'Envoi en cours…';
+    success.style.display = 'none';
+    error.style.display   = 'none';
+
+    fetch('https://formsubmit.co/ajax/agence.marketflow@gmail.com', {
+      method:  'POST',
+      body:    new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (data.success === 'true' || data.success === true) {
+        form.reset();
+        success.style.display = 'block';
+      } else { error.style.display = 'block'; }
+    })
+    .catch(function () { error.style.display = 'block'; })
+    .finally(function () { btn.disabled = false; label.textContent = 'Envoyer le message'; });
+  });
+})();
+</script>
+
+<footer>
+  <div class="footer-logo"><div class="footer-logo-dot"></div>MarketFlow</div>
+  <div class="footer-copy">© 2025 MarketFlow – Rouen, FR</div>
+  <div style="display:flex;gap:20px;flex-wrap:wrap;">
+    <a href="mentions-legales.html" style="font-size:12px;color:var(--text-muted);text-decoration:none;">Mentions légales</a>
+    <a href="politique-confidentialite.html" style="font-size:12px;color:var(--text-muted);text-decoration:none;">Confidentialité</a>
+  </div>
+  <div class="footer-contact">
+    <a href="tel:0782227986">07 82 22 79 86</a><br>
+    <a href="mailto:agence.marketflow@gmail.com">agence.marketflow@gmail.com</a>
+  </div>
+</footer>
+
+
+<!-- MarketFlow Chat Widget -->
+<style>
+#mf-chat-btn { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 56px; height: 56px; border-radius: 50%; background: var(--grad); border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(99,102,241,0.35); display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
+#mf-chat-btn:hover { transform: scale(1.08); }
+#mf-chat-btn svg { width: 24px; height: 24px; fill: white; }
+#mf-chat-panel { position: fixed; bottom: 96px; right: 28px; z-index: 998; width: 360px; max-height: 520px; background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 20px 60px rgba(99,102,241,0.15); display: flex; flex-direction: column; overflow: hidden; opacity: 0; transform: translateY(16px) scale(0.97); transition: opacity 0.3s, transform 0.3s; pointer-events: none; }
+#mf-chat-panel.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+#mf-chat-header { background: var(--grad); padding: 18px 20px; display: flex; align-items: center; gap: 12px; }
+#mf-chat-header-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 6px #4ade80; flex-shrink: 0; }
+#mf-chat-header-info {}
+#mf-chat-header-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; letter-spacing: 2px; color: #fff; }
+#mf-chat-header-sub { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+#mf-chat-messages { flex: 1; overflow-y: auto; padding: 20px 16px; display: flex; flex-direction: column; gap: 12px; }
+.mf-msg { max-width: 85%; padding: 10px 14px; border-radius: 14px; font-size: 13px; line-height: 1.6; }
+.mf-msg.bot { background: #F5F3FF; color: #111827; align-self: flex-start; border-bottom-left-radius: 4px; }
+.mf-msg.user { background: var(--grad); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+.mf-msg.typing { background: #F5F3FF; align-self: flex-start; padding: 14px 18px; }
+.mf-typing-dots { display: flex; gap: 4px; }
+.mf-typing-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--indigo); opacity: 0.4; animation: mfDot 1.2s infinite; }
+.mf-typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.mf-typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes mfDot { 0%,80%,100% { opacity: 0.2; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1); } }
+#mf-chat-input-area { border-top: 1px solid var(--line); padding: 12px 14px; display: flex; gap: 8px; align-items: flex-end; background: #fff; }
+#mf-chat-input { flex: 1; border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: #111827; outline: none; resize: none; transition: border-color 0.2s; background: #fafafa; max-height: 100px; }
+#mf-chat-input:focus { border-color: var(--indigo); background: #fff; }
+#mf-chat-send { background: var(--grad); border: none; border-radius: 8px; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: opacity 0.2s; }
+#mf-chat-send:hover { opacity: 0.85; }
+#mf-chat-send:disabled { opacity: 0.5; cursor: default; }
+#mf-chat-send svg { width: 16px; height: 16px; fill: white; }
+@media (max-width: 480px) { #mf-chat-panel { width: calc(100vw - 32px); right: 16px; bottom: 88px; } #mf-chat-btn { right: 16px; bottom: 20px; } }
+</style>
+
+<button id="mf-chat-btn" aria-label="Ouvrir le chat">
+  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+</button>
+
+<div id="mf-chat-panel">
+  <div id="mf-chat-header">
+    <div id="mf-chat-header-dot"></div>
+    <div id="mf-chat-header-info">
+      <div id="mf-chat-header-title">Assistant MarketFlow</div>
+      <div id="mf-chat-header-sub">Répond à toutes vos questions</div>
+    </div>
+  </div>
+  <div id="mf-chat-messages">
+    <div class="mf-msg bot">Bonjour ! Je suis l'assistant MarketFlow. Posez-moi vos questions sur nos agents IA, nos services ou nos tarifs.</div>
+  </div>
+  <div id="mf-chat-input-area">
+    <textarea id="mf-chat-input" rows="1" placeholder="Votre question..."></textarea>
+    <button id="mf-chat-send"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+  </div>
+</div>
+
+<script>
+(function() {
+  var KEY = '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';
+  var MODEL = 'llama-3.3-70b-versatile';
+  var SYSTEM = "Tu es l'assistant commercial de MarketFlow, une agence d’impémentation IA basée à Rouen, France. Tu réponds de manière concise, professionnelle et chaleureuse en français.\n\nInformations sur MarketFlow :\n- 8 agents IA disponibles : Agent Commercial (prospection LinkedIn 7j/7), Agent Social Media (contenu & publication automatique), Agent SEO (jusqu’à 300 articles/mois), Agent Comptable (finances & rapports), Agent Juridique (droit français, contrats, RGPD), Agent Recrutement (offres, tri CV), Agent Téléphonique (accueil 24h/24, 140 langues), Agent Personnalisé (sur mesure).\n- Technologie : agents Limanova.IA (start-up française), intégrés et adaptés par MarketFlow.\n- Pack Croissance : 129€/mois HT (4 agents : Commercial, Social Media, SEO, Comptable). Pack Pro : 189€/mois HT (7 agents + Téléphonique). Pack Élite : sur mesure.\n- Automatisations sur mesure : à partir de 400€.\n- Délai de mise en production : 14 jours.\n- Formation IA en entreprise disponible : Initiation IA, Utilisation des agents, Prompting avancé, Atelier stratégie IA.\n- Audit gratuit sans engagement.\n- Contact : 07 82 22 79 86 — agence.marketflow@gmail.com — Rouen, FR.\n\nPour tout projet ou devis, invite à demander l’audit gratuit ou à appeler le 07 82 22 79 86.";
+
+  var btn = document.getElementById('mf-chat-btn');
+  var panel = document.getElementById('mf-chat-panel');
+  var messages = document.getElementById('mf-chat-messages');
+  var input = document.getElementById('mf-chat-input');
+  var send = document.getElementById('mf-chat-send');
+  var history = [];
+
+  btn.addEventListener('click', function() { panel.classList.toggle('open'); if (panel.classList.contains('open')) input.focus(); });
+
+  function addMsg(text, role) {
+    var el = document.createElement('div');
+    el.className = 'mf-msg ' + (role === 'user' ? 'user' : 'bot');
+    el.textContent = text;
+    messages.appendChild(el);
+    messages.scrollTop = messages.scrollHeight;
+    return el;
+  }
+
+  function addTyping() {
+    var el = document.createElement('div');
+    el.className = 'mf-msg typing';
+    el.innerHTML = '<div class="mf-typing-dots"><span></span><span></span><span></span></div>';
+    messages.appendChild(el);
+    messages.scrollTop = messages.scrollHeight;
+    return el;
+  }
+
+  function sendMessage() {
+    var text = input.value.trim();
+    if (!text || send.disabled) return;
+    input.value = '';
+    input.style.height = 'auto';
+    addMsg(text, 'user');
+    history.push({ role: 'user', content: text });
+    send.disabled = true;
+    var typing = addTyping();
+    var msgs = [{ role: 'system', content: SYSTEM }].concat(history);
+    fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + KEY },
+      body: JSON.stringify({ model: MODEL, messages: msgs, max_tokens: 512, temperature: 0.7 })
+    }).then(function(r) { return r.json(); }).then(function(data) {
+      typing.remove();
+      var reply = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || "Désolé, une erreur s’est produite. Appelez-nous au 07 82 22 79 86.";
+      addMsg(reply, 'bot');
+      history.push({ role: 'assistant', content: reply });
+    }).catch(function() {
+      typing.remove();
+      addMsg("Désolé, je suis momentanément indisponible. Contactez-nous au 07 82 22 79 86.", 'bot');
+    }).finally(function() { send.disabled = false; });
+  }
+
+  send.addEventListener('click', sendMessage);
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+  input.addEventListener('input', function() { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 100) + 'px'; });
+})();
+</script>
+
+
+<!-- ── Bandeau Cookies ── -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#fff;border-top:1px solid rgba(99,102,241,0.15);box-shadow:0 -4px 24px rgba(99,102,241,0.10);padding:20px 40px;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+  <p style="font-size:13px;color:#6B7280;line-height:1.6;max-width:640px;margin:0;">🍪 Ce site utilise des cookies pour son bon fonctionnement (Google Fonts, formulaire de contact). En continuant, vous acceptez leur utilisation. <a href="politique-confidentialite.html" style="color:#6366F1;text-decoration:none;">En savoir plus</a></p>
+  <div style="display:flex;gap:10px;flex-shrink:0;">
+    <button id="cookie-refuse" style="padding:10px 20px;border:1px solid rgba(99,102,241,0.25);border-radius:7px;background:#fff;font-family:'DM Sans',sans-serif;font-size:13px;color:#6B7280;cursor:pointer;">Refuser</button>
+    <button id="cookie-accept" style="padding:10px 24px;border:none;border-radius:7px;background:linear-gradient(135deg,#6366F1,#8B5CF6);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:#fff;cursor:pointer;">Accepter</button>
+  </div>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('cookie-banner');
+  if(!b)return;
+  if(!localStorage.getItem('mf_cookie_consent')){b.style.display='flex';}
+  document.getElementById('cookie-accept').onclick=function(){localStorage.setItem('mf_cookie_consent','accepted');b.style.display='none';};
+  document.getElementById('cookie-refuse').onclick=function(){localStorage.setItem('mf_cookie_consent','refused');b.style.display='none';};
+})();
+</script>
+
+
+<script>
+(function(){
+  var burger = document.getElementById('nav-burger');
+  var links  = document.querySelector('.nav-links');
+  if (!burger || !links) return;
+  burger.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      links.classList.remove('open');
+      burger.classList.remove('open');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
