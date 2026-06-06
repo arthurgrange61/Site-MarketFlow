@@ -195,19 +195,14 @@ nav{
 
 /* ─── SECTIONS ─── */
 .section{padding:120px 48px;max-width:1240px;margin:0 auto;}
-.s-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--g400);margin-bottom:14px;}
+.s-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--g400);margin-bottom:14px;text-align:center;}
 .s-title{font-size:clamp(32px,4vw,54px);font-weight:800;letter-spacing:-1.5px;line-height:1.08;margin-bottom:64px;}
 .s-title .dim{color:var(--g300);}
 
 /* ─── SERVICES ─── */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;}
-.svc-card{
-  padding:0;
-  
-  cursor:default;
-}
-
-
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.svc-card{padding:52px 48px 52px 0;cursor:default;border-right:1px solid var(--g200);}
+.svc-card:not(:first-child){padding-left:48px;}
 .svc-card:last-child{border-right:none;}
 .svc-n{font-size:72px;font-weight:800;color:var(--g200);line-height:1;margin-bottom:32px;letter-spacing:-4px;}
 .svc-name{font-size:22px;font-weight:700;letter-spacing:-.4px;margin-bottom:14px;color:var(--black);}

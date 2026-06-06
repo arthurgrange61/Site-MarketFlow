@@ -42,8 +42,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 
 /* SECTIONS */
 .section{padding:100px 48px;max-width:1240px;margin:0 auto;}
-.s-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--g400);margin-bottom:14px;}
-.s-title{font-size:clamp(30px,3.5vw,50px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:60px;}
+.s-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--g400);margin-bottom:14px;text-align:center;}
+.s-title{font-size:clamp(30px,3.5vw,50px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:60px;text-align:center;}
 
 /* MANIFESTE */
 .manifesto{
@@ -59,8 +59,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .manifesto-p strong{color:var(--black);font-weight:600;}
 
 /* VALEURS */
-.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:0;}
-.value-card{background:transparent;padding:0;}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:0;}
+.value-card{background:transparent;padding:48px 36px 48px 0;border-right:1px solid var(--g200);}
+.value-card:not(:first-child){padding-left:36px;}
+.value-card:last-child{border-right:none;}
 
 .value-card:last-child{border-right:none;}
 .value-n{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g400);margin-bottom:16px;}
@@ -72,8 +74,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .dark-inner-full{max-width:1240px;margin:0 auto;}
 .dark-inner-full .s-tag{color:rgba(255,255,255,.3);margin-bottom:14px;}
 .dark-inner-full .s-title{color:var(--white);margin-bottom:48px;max-width:600px;}
-.dark-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;}
-.dark-item{background:transparent;padding:0;}
+.dark-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.dark-item{background:transparent;padding:48px 32px 48px 0;border-right:1px solid rgba(255,255,255,.08);}
+.dark-item:not(:first-child){padding-left:32px;}
+.dark-item:last-child{border-right:none;}
 
 .dark-item:last-child{border-right:none;}
 .dark-item-n{font-size:44px;font-weight:800;letter-spacing:-2px;margin-bottom:8px;}
