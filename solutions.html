@@ -53,17 +53,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 /* AGENTS */
 .agent-card{
   display:grid;grid-template-columns:1fr 1fr;gap:0;
-  border:1px solid var(--g200);margin-bottom:1px;
+  border-radius:16px;margin-bottom:20px;
   overflow:hidden;
 }
 .agent-card:nth-child(even){direction:rtl;}
 .agent-card:nth-child(even)>*{direction:ltr;}
 .agent-left{
   padding:64px 56px;
-  background:var(--white);
+  background:var(--g100);
   transition:background .3s;
 }
-.agent-card:hover .agent-left{background:var(--g100);}
+.agent-card:hover .agent-left{background:var(--g200);}
 .agent-num{font-size:60px;font-weight:800;color:var(--g200);line-height:1;margin-bottom:24px;letter-spacing:-3px;}
 .agent-name{font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:16px;}
 .agent-desc{font-size:14px;color:var(--g600);line-height:1.85;margin-bottom:28px;}
