@@ -49,7 +49,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .manifesto{
   display:grid;grid-template-columns:1fr 2fr;gap:80px;
   padding:100px 48px;max-width:1240px;margin:0 auto;
-  border-top:1px solid var(--g200);
+  
 }
 .manifesto-left{}
 .manifesto-left .s-tag{margin-bottom:20px;}
@@ -59,9 +59,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .manifesto-p strong{color:var(--black);font-weight:600;}
 
 /* VALEURS */
-.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--g200);margin-top:0;}
-.value-card{background:transparent;padding:48px 36px 48px 0;border-right:1px solid var(--g200);}
-.value-card:not(:first-child){padding-left:36px;}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:0;}
+.value-card{background:transparent;padding:0;}
+
 .value-card:last-child{border-right:none;}
 .value-n{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--g400);margin-bottom:16px;}
 .value-name{font-size:20px;font-weight:700;letter-spacing:-.3px;margin-bottom:10px;}
@@ -72,9 +72,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .dark-inner-full{max-width:1240px;margin:0 auto;}
 .dark-inner-full .s-tag{color:rgba(255,255,255,.3);margin-bottom:14px;}
 .dark-inner-full .s-title{color:var(--white);margin-bottom:48px;max-width:600px;}
-.dark-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(255,255,255,.08);}
-.dark-item{background:transparent;padding:48px 32px 48px 0;border-right:1px solid rgba(255,255,255,.08);}
-.dark-item:not(:first-child){padding-left:32px;}
+.dark-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;}
+.dark-item{background:transparent;padding:0;}
+
 .dark-item:last-child{border-right:none;}
 .dark-item-n{font-size:44px;font-weight:800;letter-spacing:-2px;margin-bottom:8px;}
 .dark-item-l{font-size:13px;color:rgba(255,255,255,.4);line-height:1.5;}
@@ -119,7 +119,7 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
 .rv-scale.in{opacity:1;transform:scale(1);}
 
 @media(max-width:1024px){.ft-top{grid-template-columns:1fr 1fr;}.dark-grid{grid-template-columns:1fr 1fr;}.values-grid{grid-template-columns:1fr 1fr;}.manifesto{grid-template-columns:1fr;gap:32px;}}
-@media(max-width:768px){nav{padding:0 20px;}.nav-burger{display:flex;}.nav-links-wrap{display:none!important;position:fixed;top:64px;left:0;right:0;background:var(--white);padding:24px 20px 32px;flex-direction:column;gap:24px;border-bottom:1px solid var(--g200);z-index:499;}.nav-links-wrap.open{display:flex!important;}.nav-links{flex-direction:column;align-items:flex-start;gap:20px;}.nav-cta{align-self:flex-start;}.page-hero{padding:100px 20px 60px;min-height:60vh;}.page-hero-inner{grid-template-columns:1fr;}.section{padding:72px 20px;}.manifesto{padding:72px 20px;}.dark-band{padding:72px 20px;}.dark-grid{grid-template-columns:1fr;}.values-grid{grid-template-columns:1fr;}#contact{padding:72px 20px;}.c-row{grid-template-columns:1fr;}footer{padding:48px 20px 24px;}.ft-top{grid-template-columns:1fr 1fr;gap:32px;}.ft-bottom{flex-direction:column;align-items:flex-start;}}
+@media(max-width:768px){nav{padding:0 20px;}.nav-burger{display:flex;}.nav-links-wrap{display:none!important;position:fixed;top:64px;left:0;right:0;background:var(--white);padding:24px 20px 32px;flex-direction:column;gap:24px;z-index:499;}.nav-links-wrap.open{display:flex!important;}.nav-links{flex-direction:column;align-items:flex-start;gap:20px;}.nav-cta{align-self:flex-start;}.page-hero{padding:100px 20px 60px;min-height:60vh;}.page-hero-inner{grid-template-columns:1fr;}.section{padding:72px 20px;}.manifesto{padding:72px 20px;}.dark-band{padding:72px 20px;}.dark-grid{grid-template-columns:1fr;}.values-grid{grid-template-columns:1fr;}#contact{padding:72px 20px;}.c-row{grid-template-columns:1fr;}footer{padding:48px 20px 24px;}.ft-top{grid-template-columns:1fr 1fr;gap:32px;}.ft-bottom{flex-direction:column;align-items:flex-start;}}
 </style>
 </head>
 <body>

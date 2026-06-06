@@ -181,7 +181,7 @@ nav{
 
 /* ─── MARQUEE ─── */
 .marquee-wrap{
-  border-top:1px solid var(--g200);border-bottom:1px solid var(--g200);
+  
   padding:0;overflow:hidden;background:var(--g100);
 }
 .marquee-label{text-align:center;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--g400);padding:20px 0 16px;}
@@ -200,14 +200,14 @@ nav{
 .s-title .dim{color:var(--g300);}
 
 /* ─── SERVICES ─── */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--g200);}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;}
 .svc-card{
-  padding:52px 40px 52px 0;
-  border-right:1px solid var(--g200);
+  padding:0;
+  
   cursor:default;
 }
-.svc-card:first-child{padding-left:0;}
-.svc-card:not(:first-child){padding-left:40px;}
+
+
 .svc-card:last-child{border-right:none;}
 .svc-n{font-size:72px;font-weight:800;color:var(--g200);line-height:1;margin-bottom:32px;letter-spacing:-4px;}
 .svc-name{font-size:22px;font-weight:700;letter-spacing:-.4px;margin-bottom:14px;color:var(--black);}
@@ -232,7 +232,7 @@ nav{
 .process-list{display:flex;flex-direction:column;margin-top:64px;}
 .p-step{
   display:grid;grid-template-columns:72px 1fr auto;gap:40px;
-  padding:36px 0;border-bottom:1px solid var(--g200);align-items:start;
+  padding:36px 0;align-items:start;
   transition:background .25s;
 }
 .p-step:last-child{border-bottom:none;}
@@ -315,7 +315,7 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
     top:64px;left:0;right:0;
     background:var(--white);padding:24px 20px 32px;
     flex-direction:column;gap:24px;
-    border-bottom:1px solid var(--g200);z-index:499;
+    z-index:499;
   }
   .nav-links-wrap.open{display:flex!important;}
   .nav-links{flex-direction:column;align-items:flex-start;gap:20px;}
@@ -325,7 +325,7 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
   .hero-ctas{flex-direction:column;align-items:center;}
   .section{padding:80px 20px;}
   .svc-grid{grid-template-columns:1fr;}
-  .svc-card{border-right:none;border-bottom:1px solid var(--g200);}
+  .svc-card{border-right:none;}
   .svc-card:last-child{border-bottom:none;}
   .dark-band{padding:80px 20px;}
   .dark-inner{grid-template-columns:1fr;}
@@ -554,7 +554,7 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
 </footer>
 
 <!-- Cookie Banner -->
-<div id="ck" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#fff;border-top:1px solid var(--g200);box-shadow:0 -4px 24px rgba(0,0,0,.06);padding:20px 48px;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+<div id="ck" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#fff;box-shadow:0 -4px 24px rgba(0,0,0,.06);padding:20px 48px;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
   <p style="font-size:13px;color:var(--g600);line-height:1.6;max-width:640px;margin:0;">Ce site utilise des cookies pour son bon fonctionnement. <a href="politique-confidentialite.html" style="color:var(--black);text-decoration:underline;">En savoir plus</a></p>
   <div style="display:flex;gap:10px;flex-shrink:0;">
     <button id="ck-no" style="padding:9px 20px;border:1px solid var(--g200);border-radius:100px;background:#fff;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--g600);cursor:pointer;">Refuser</button>
@@ -583,7 +583,7 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
 .mf-dots span:nth-child(2){animation-delay:.15s;}
 .mf-dots span:nth-child(3){animation-delay:.3s;}
 @keyframes dot{0%,80%,100%{transform:scale(.7);opacity:.4;}40%{transform:scale(1);opacity:1;}}
-#mf-input-area{border-top:1px solid var(--g200);padding:12px 14px;display:flex;gap:8px;align-items:flex-end;background:#fff;}
+#mf-input-area{padding:12px 14px;display:flex;gap:8px;align-items:flex-end;background:#fff;}
 #mf-input{flex:1;border:1px solid var(--g200);border-radius:8px;padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--black);outline:none;resize:none;transition:border-color .2s;background:#fafafa;max-height:100px;}
 #mf-input:focus{border-color:var(--black);}
 #mf-send{background:var(--black);border:none;border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:opacity .2s;}
