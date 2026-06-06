@@ -23,6 +23,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
 .nav-links a{font-size:14px;color:var(--g600);text-decoration:none;transition:color .2s;}
 .nav-links a:hover,.nav-links a.active{color:var(--black);}
+
+/* DROPDOWN */
+.nav-item{position:relative;}
+.nav-item>a{display:flex;align-items:center;gap:5px;}
+.nav-item>a svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .2s;}
+.nav-item:hover>a svg{transform:rotate(180deg);}
+.dropdown{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(-8px);background:var(--white);border:1px solid var(--g200);border-radius:14px;padding:8px;min-width:240px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 16px 48px rgba(0,0,0,.1);}
+.nav-item:hover .dropdown{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0);}
+.dropdown a{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;text-decoration:none;color:var(--g800);font-size:13.5px;font-weight:400;transition:background .15s;}
+.dropdown a:hover{background:var(--g100);color:var(--black);}
+.dropdown-dot{width:7px;height:7px;border-radius:50%;background:var(--g200);flex-shrink:0;}
+.dropdown a:hover .dropdown-dot{background:var(--black);}
+.dropdown-label{font-weight:600;font-size:13px;}
+.dropdown-sub{font-size:11px;color:var(--g400);margin-top:1px;}
 .nav-cta{background:var(--black);color:var(--white);padding:9px 22px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:opacity .2s;}
 .nav-cta:hover{opacity:.75;}
 .nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;}
@@ -144,7 +158,14 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
   <div class="nav-links-wrap" id="nav-menu">
     <ul class="nav-links">
       <li><a href="home.html">Accueil</a></li>
-      <li><a href="solutions.html" class="active">Solutions IA</a></li>
+      <li class="nav-item">
+        <a href="solutions.html">Solutions IA <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="dropdown">
+          <a href="agent-contenu.html"><div class="dropdown-dot"></div><div><div class="dropdown-label">Agent Création de Contenu</div><div class="dropdown-sub">Publication auto 7j/7</div></div></a>
+          <a href="agent-commercial.html"><div class="dropdown-dot"></div><div><div class="dropdown-label">Agent Commercial</div><div class="dropdown-sub">Prospection & emails personnalisés</div></div></a>
+          <a href="agent-seo.html"><div class="dropdown-dot"></div><div><div class="dropdown-label">Agent SEO & Gestion de Site</div><div class="dropdown-sub">Visibilité & e-réputation</div></div></a>
+        </div>
+      </li>
       <li><a href="formation.html">Formation</a></li>
       <li><a href="presentation.html">À propos</a></li>
     </ul>
