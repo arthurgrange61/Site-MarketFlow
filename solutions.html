@@ -80,6 +80,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .agent-features{display:flex;flex-direction:column;gap:10px;}
 .feat{display:flex;align-items:flex-start;gap:12px;font-size:13.5px;color:var(--g800);}
 .feat-dot{width:6px;height:6px;border-radius:50%;background:var(--black);margin-top:6px;flex-shrink:0;}
+.agent-link{display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:14px;font-weight:600;color:var(--black);text-decoration:none;border-bottom:1.5px solid var(--black);padding-bottom:2px;transition:opacity .2s,gap .2s;}
+.agent-link:hover{opacity:.6;gap:12px;}
 .agent-right{
   background:var(--black);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -186,34 +188,10 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
 
 <!-- AGENTS -->
 <div class="section">
-  <!-- Agent 1 : Commercial -->
+  <!-- Agent 1 : Contenu -->
   <div class="agent-card rv">
     <div class="agent-left">
       <div class="agent-num">01</div>
-      <div class="agent-name">Agent Commercial</div>
-      <div class="agent-desc">Votre agent commercial travaille 24h/24. Il identifie des prospects, personnalise chaque prise de contact et déclenche automatiquement des emails après chaque visite de votre site.</div>
-      <div class="agent-features">
-        <div class="feat"><div class="feat-dot"></div><span>Emails ultra-personnalisés selon le profil du prospect</span></div>
-        <div class="feat"><div class="feat-dot"></div><span>Déclenchement automatique après visite de votre site</span></div>
-        <div class="feat"><div class="feat-dot"></div><span>Recherche autonome de prospects qualifiés</span></div>
-        <div class="feat"><div class="feat-dot"></div><span>Suivi des relances et du pipeline en temps réel</span></div>
-      </div>
-    </div>
-    <div class="agent-right">
-      <div class="agent-icon">
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      </div>
-      <div class="agent-stat">
-        <div class="agent-stat-n">3×</div>
-        <div class="agent-stat-l">plus de leads<br>qualifiés par mois</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Agent 2 : Contenu -->
-  <div class="agent-card rv">
-    <div class="agent-left">
-      <div class="agent-num">02</div>
       <div class="agent-name">Agent Création de Contenu</div>
       <div class="agent-desc">Création et publication automatique de contenu sur tous vos réseaux sociaux. Votre agence reste active 7j/7 sans effort humain — posts, visuels, captions, horaires optimisés.</div>
       <div class="agent-features">
@@ -222,6 +200,10 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
         <div class="feat"><div class="feat-dot"></div><span>Instagram, LinkedIn, TikTok, Facebook, X</span></div>
         <div class="feat"><div class="feat-dot"></div><span>Cohérence de marque maintenue automatiquement</span></div>
       </div>
+      <a href="agent-contenu.html" class="agent-link">
+        Découvrir l'agent
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
     <div class="agent-right">
       <div class="agent-icon">
@@ -230,6 +212,34 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
       <div class="agent-stat">
         <div class="agent-stat-n">7j/7</div>
         <div class="agent-stat-l">publication continue<br>sans intervention</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Agent 2 : Commercial -->
+  <div class="agent-card rv">
+    <div class="agent-left">
+      <div class="agent-num">02</div>
+      <div class="agent-name">Agent Commercial</div>
+      <div class="agent-desc">Votre agent commercial travaille 24h/24. Il identifie des prospects, personnalise chaque prise de contact et déclenche automatiquement des emails après chaque visite de votre site.</div>
+      <div class="agent-features">
+        <div class="feat"><div class="feat-dot"></div><span>Emails ultra-personnalisés selon le profil du prospect</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Déclenchement automatique après visite de votre site</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Recherche autonome de prospects qualifiés</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Suivi des relances et du pipeline en temps réel</span></div>
+      </div>
+      <a href="agent-commercial.html" class="agent-link">
+        Découvrir l'agent
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="agent-right">
+      <div class="agent-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="agent-stat">
+        <div class="agent-stat-n">3×</div>
+        <div class="agent-stat-l">plus de leads<br>qualifiés par mois</div>
       </div>
     </div>
   </div>
@@ -246,6 +256,10 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
         <div class="feat"><div class="feat-dot"></div><span>Reporting SEO hebdomadaire automatisé</span></div>
         <div class="feat"><div class="feat-dot"></div><span>Gestion de votre e-réputation en temps réel</span></div>
       </div>
+      <a href="agent-seo.html" class="agent-link">
+        Découvrir l'agent
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
     <div class="agent-right">
       <div class="agent-icon">
