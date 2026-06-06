@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solutions IA — MarketFlow</title>
+<meta name="description" content="Agents IA spécialisés pour agences marketing : Agent Commercial, Création de contenu, SEO & gestion de site. Opérationnel en 14 jours.">
+<link rel="canonical" href="https://agencemarketflow.fr/solutions.html">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,800;9..40,900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--black:#0A0A0A;--white:#FFFFFF;--g100:#F7F7F7;--g200:#E8E8E8;--g300:#CCCCCC;--g400:#A0A0A0;--g600:#555555;--g800:#222222;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;}
+
+/* NAV */
+.nav-grad{position:fixed;top:0;left:0;right:0;height:130px;background:linear-gradient(to bottom,rgba(255,255,255,1) 0%,rgba(255,255,255,.7) 55%,rgba(255,255,255,0) 100%);z-index:499;pointer-events:none;transition:opacity .3s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:transparent;border-bottom:none;transition:background .3s,border-color .3s,backdrop-filter .3s;}
+.nav-logo{font-weight:800;font-size:17px;letter-spacing:-.3px;color:var(--black);text-decoration:none;display:flex;align-items:center;gap:9px;}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:var(--black);}
+.nav-links-wrap{display:flex;align-items:center;gap:32px;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{font-size:14px;color:var(--g600);text-decoration:none;transition:color .2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--black);}
+.nav-cta{background:var(--black);color:var(--white);padding:9px 22px;border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:opacity .2s;}
+.nav-cta:hover{opacity:.75;}
+.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--black);border-radius:2px;transition:.3s;}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-burger.open span:nth-child(2){opacity:0;}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* HERO */
+.page-hero{
+  min-height:70vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:120px 48px 80px;
+  position:relative;overflow:hidden;background:var(--white);
+}
+#pCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;}
+.page-hero-inner{position:relative;z-index:2;max-width:780px;}
+.page-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--g400);margin-bottom:20px;display:block;}
+.page-hero h1{font-size:clamp(42px,6vw,80px);font-weight:800;letter-spacing:-2.5px;line-height:1.05;margin-bottom:24px;}
+.page-hero p{font-size:17px;font-weight:300;color:var(--g600);line-height:1.75;max-width:500px;margin:0 auto;}
+
+/* SECTIONS */
+.section{padding:100px 48px;max-width:1240px;margin:0 auto;}
+.s-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--g400);margin-bottom:14px;}
+.s-title{font-size:clamp(30px,3.5vw,50px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:60px;}
+.s-title .dim{color:var(--g300);}
+
+/* AGENTS */
+.agent-card{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border:1px solid var(--g200);margin-bottom:1px;
+  overflow:hidden;
+}
+.agent-card:nth-child(even){direction:rtl;}
+.agent-card:nth-child(even)>*{direction:ltr;}
+.agent-left{
+  padding:64px 56px;
+  background:var(--white);
+  transition:background .3s;
+}
+.agent-card:hover .agent-left{background:var(--g100);}
+.agent-num{font-size:60px;font-weight:800;color:var(--g200);line-height:1;margin-bottom:24px;letter-spacing:-3px;}
+.agent-name{font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:16px;}
+.agent-desc{font-size:14px;color:var(--g600);line-height:1.85;margin-bottom:28px;}
+.agent-features{display:flex;flex-direction:column;gap:10px;}
+.feat{display:flex;align-items:flex-start;gap:12px;font-size:13.5px;color:var(--g800);}
+.feat-dot{width:6px;height:6px;border-radius:50%;background:var(--black);margin-top:6px;flex-shrink:0;}
+.agent-right{
+  background:var(--black);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:64px 48px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.agent-right::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.agent-icon{
+  width:80px;height:80px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 24px;position:relative;z-index:1;
+}
+.agent-icon svg{width:36px;height:36px;stroke:rgba(255,255,255,.7);fill:none;stroke-width:1.5;}
+.agent-stat{color:rgba(255,255,255,.9);position:relative;z-index:1;}
+.agent-stat-n{font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1;}
+.agent-stat-l{font-size:13px;color:rgba(255,255,255,.4);margin-top:6px;line-height:1.5;}
+
+/* CTA BAND */
+.cta-band{
+  background:var(--black);color:var(--white);
+  padding:100px 48px;text-align:center;
+}
+.cta-band h2{font-size:clamp(32px,4vw,56px);font-weight:800;letter-spacing:-1.5px;margin-bottom:16px;}
+.cta-band p{font-size:15px;color:rgba(255,255,255,.5);margin-bottom:40px;}
+.btn-white{background:var(--white);color:var(--black);padding:14px 32px;border-radius:100px;font-size:14px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:opacity .2s,transform .2s;}
+.btn-white:hover{opacity:.88;transform:translateY(-2px);}
+
+/* FOOTER */
+footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
+.ft-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.08);}
+.ft-logo{font-weight:800;font-size:18px;display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.ft-logo-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;}
+.ft-desc{font-size:13px;color:rgba(255,255,255,.3);line-height:1.75;}
+.ft-col-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:16px;}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.ft-links a{font-size:13.5px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s;}
+.ft-links a:hover{color:var(--white);}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;flex-wrap:wrap;gap:16px;}
+.ft-copy{font-size:12px;color:rgba(255,255,255,.2);}
+.ft-legal{display:flex;gap:20px;}
+.ft-legal a{font-size:12px;color:rgba(255,255,255,.2);text-decoration:none;transition:color .2s;}
+.ft-legal a:hover{color:rgba(255,255,255,.6);}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+.rv.in{opacity:1;transform:translateY(0);}
+.rv-left{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease;}
+.rv-left.in{opacity:1;transform:translateX(0);}
+.rv-right{opacity:0;transform:translateX(40px);transition:opacity .7s ease,transform .7s ease;}
+.rv-right.in{opacity:1;transform:translateX(0);}
+
+/* MOBILE */
+@media(max-width:1024px){.ft-top{grid-template-columns:1fr 1fr;}.agent-card{grid-template-columns:1fr;}.agent-card:nth-child(even){direction:ltr;}.agent-right{min-height:260px;}}
+@media(max-width:768px){
+  nav{padding:0 20px;}.nav-burger{display:flex;}
+  .nav-links-wrap{display:none!important;position:fixed;top:64px;left:0;right:0;background:var(--white);padding:24px 20px 32px;flex-direction:column;gap:24px;border-bottom:1px solid var(--g200);z-index:499;}
+  .nav-links-wrap.open{display:flex!important;}.nav-links{flex-direction:column;align-items:flex-start;gap:20px;}.nav-cta{align-self:flex-start;}
+  .page-hero{padding:100px 20px 60px;min-height:55vh;}
+  .section{padding:72px 20px;}
+  .agent-left{padding:40px 28px;}
+  .cta-band{padding:72px 20px;}
+  footer{padding:48px 20px 24px;}.ft-top{grid-template-columns:1fr 1fr;gap:32px;}.ft-bottom{flex-direction:column;align-items:flex-start;}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
+</style>
+</head>
+<body>
+<div class="nav-grad" id="navGrad"></div>
+<nav id="navbar">
+  <a href="home.html" class="nav-logo"><div class="nav-dot"></div>MarketFlow</a>
+  <div class="nav-links-wrap" id="nav-menu">
+    <ul class="nav-links">
+      <li><a href="home.html">Accueil</a></li>
+      <li><a href="solutions.html" class="active">Solutions IA</a></li>
+      <li><a href="formation.html">Formation</a></li>
+      <li><a href="presentation.html">À propos</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Audit gratuit</a>
+  </div>
+  <button class="nav-burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <canvas id="pCanvas"></canvas>
+  <div class="page-hero-inner">
+    <span class="page-tag rv">Nos solutions</span>
+    <h1 class="rv">Des agents IA<br>taillés pour<br>votre agence</h1>
+    <p class="rv">Chaque agent est conçu pour une mission précise. Opérationnel en 14 jours, intégré à vos outils existants.</p>
+  </div>
+</div>
+
+<!-- AGENTS -->
+<div class="section">
+  <!-- Agent 1 : Commercial -->
+  <div class="agent-card rv">
+    <div class="agent-left">
+      <div class="agent-num">01</div>
+      <div class="agent-name">Agent Commercial</div>
+      <div class="agent-desc">Votre agent commercial travaille 24h/24. Il identifie des prospects, personnalise chaque prise de contact et déclenche automatiquement des emails après chaque visite de votre site.</div>
+      <div class="agent-features">
+        <div class="feat"><div class="feat-dot"></div><span>Emails ultra-personnalisés selon le profil du prospect</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Déclenchement automatique après visite de votre site</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Recherche autonome de prospects qualifiés</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Suivi des relances et du pipeline en temps réel</span></div>
+      </div>
+    </div>
+    <div class="agent-right">
+      <div class="agent-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="agent-stat">
+        <div class="agent-stat-n">3×</div>
+        <div class="agent-stat-l">plus de leads<br>qualifiés par mois</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Agent 2 : Contenu -->
+  <div class="agent-card rv">
+    <div class="agent-left">
+      <div class="agent-num">02</div>
+      <div class="agent-name">Agent Création de Contenu</div>
+      <div class="agent-desc">Création et publication automatique de contenu sur tous vos réseaux sociaux. Votre agence reste active 7j/7 sans effort humain — posts, visuels, captions, horaires optimisés.</div>
+      <div class="agent-features">
+        <div class="feat"><div class="feat-dot"></div><span>Génération de contenu adapté à chaque réseau</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Publication automatique aux meilleurs horaires</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Instagram, LinkedIn, TikTok, Facebook, X</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Cohérence de marque maintenue automatiquement</span></div>
+      </div>
+    </div>
+    <div class="agent-right">
+      <div class="agent-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <div class="agent-stat">
+        <div class="agent-stat-n">7j/7</div>
+        <div class="agent-stat-l">publication continue<br>sans intervention</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Agent 3 : SEO -->
+  <div class="agent-card rv">
+    <div class="agent-left">
+      <div class="agent-num">03</div>
+      <div class="agent-name">Agent SEO & Gestion de Site</div>
+      <div class="agent-desc">Votre site ne dort jamais. L'agent répond aux commentaires, optimise vos pages, génère du contenu SEO et gère votre présence en ligne — tout en temps réel.</div>
+      <div class="agent-features">
+        <div class="feat"><div class="feat-dot"></div><span>Réponse automatique aux commentaires & avis</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Optimisation continue des pages (balises, contenu)</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Reporting SEO hebdomadaire automatisé</span></div>
+        <div class="feat"><div class="feat-dot"></div><span>Gestion de votre e-réputation en temps réel</span></div>
+      </div>
+    </div>
+    <div class="agent-right">
+      <div class="agent-icon">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>
+      </div>
+      <div class="agent-stat">
+        <div class="agent-stat-n">+40%</div>
+        <div class="agent-stat-l">de trafic organique<br>en 3 mois</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-band" id="contact">
+  <h2 class="rv">Prêt à automatiser<br>votre agence ?</h2>
+  <p class="rv">Audit gratuit · Réponse sous 24h · Sans engagement</p>
+  <a href="home.html#contact" class="btn-white rv">
+    Demander un audit gratuit
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</div>
+
+<footer>
+  <div class="ft-top">
+    <div><div class="ft-logo"><div class="ft-logo-dot"></div>MarketFlow</div><p class="ft-desc">L'agence IA spécialisée pour les agences marketing. Basée à Rouen, Normandie.</p></div>
+    <div><p class="ft-col-title">Navigation</p><ul class="ft-links"><li><a href="home.html">Accueil</a></li><li><a href="solutions.html">Solutions IA</a></li><li><a href="formation.html">Formation</a></li><li><a href="presentation.html">À propos</a></li></ul></div>
+    <div><p class="ft-col-title">Contact</p><ul class="ft-links"><li><a href="tel:0782227986">07 82 22 79 86</a></li><li><a href="mailto:agence.marketflow@gmail.com">agence.marketflow@gmail.com</a></li></ul></div>
+    <div><p class="ft-col-title">Légal</p><ul class="ft-links"><li><a href="mentions-legales.html">Mentions légales</a></li><li><a href="politique-confidentialite.html">Confidentialité</a></li></ul></div>
+  </div>
+  <div class="ft-bottom"><span class="ft-copy">© 2025 MarketFlow — Tous droits réservés</span><div class="ft-legal"><a href="mentions-legales.html">Mentions légales</a><a href="politique-confidentialite.html">Confidentialité</a></div></div>
+</footer>
+
+<script>
+// Particles
+(function(){
+  var c=document.getElementById('pCanvas'),ctx=c.getContext('2d'),pts=[],mx=0,my=0;
+  var COUNT=window.innerWidth<768?30:60,LINK=120;
+  function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight;}
+  function Pt(){this.x=Math.random()*c.width;this.y=Math.random()*c.height;this.vx=(Math.random()-.5)*.4;this.vy=(Math.random()-.5)*.4;this.r=Math.random()*1.5+.5;this.op=Math.random()*.35+.1;}
+  Pt.prototype.update=function(){
+    var dx=mx-this.x,dy=my-this.y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<250&&d>0){var f=d<80?-.12:(.22*(1-d/250));this.vx+=dx/d*f;this.vy+=dy/d*f;}
+    this.vx*=.92;this.vy*=.92;var sp=Math.sqrt(this.vx*this.vx+this.vy*this.vy);if(sp>3){this.vx*=3/sp;this.vy*=3/sp;}
+    this.x+=this.vx;this.y+=this.vy;
+    if(this.x<0)this.x=c.width;if(this.x>c.width)this.x=0;if(this.y<0)this.y=c.height;if(this.y>c.height)this.y=0;
+  };
+  Pt.prototype.draw=function(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle='rgba(10,10,10,'+this.op+')';ctx.fill();};
+  function init(){resize();pts=[];for(var i=0;i<COUNT;i++)pts.push(new Pt());}
+  function frame(){
+    ctx.clearRect(0,0,c.width,c.height);
+    for(var i=0;i<pts.length;i++){pts[i].update();pts[i].draw();for(var j=i+1;j<pts.length;j++){var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<LINK){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle='rgba(10,10,10,'+(1-d/LINK)*.08+')';ctx.lineWidth=.7;ctx.stroke();}}}
+    requestAnimationFrame(frame);
+  }
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;});
+  window.addEventListener('resize',init);
+  init();frame();
+})();
+
+// Nav
+(function(){
+  var nav=document.getElementById('navbar'),grad=document.getElementById('navGrad');
+  window.addEventListener('scroll',function(){
+    var p=window.scrollY>80;
+    nav.style.background=p?'rgba(255,255,255,0.92)':'transparent';
+    nav.style.backdropFilter=p?'blur(20px)':'none';
+    nav.style.borderBottom=p?'1px solid #E8E8E8':'none';
+    grad.style.opacity=p?'0':'1';
+  });
+})();
+
+// Burger
+(function(){var b=document.getElementById('burger'),m=document.getElementById('nav-menu');b.addEventListener('click',function(){m.classList.toggle('open');b.classList.toggle('open');});})();
+
+// Reveal
+(function(){
+  var els=document.querySelectorAll('.rv,.rv-left,.rv-right');
+  var ob=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ob.unobserve(e.target);}});},{threshold:.1});
+  els.forEach(function(el){ob.observe(el);});
+})();
+</script>
+</body>
+</html>
