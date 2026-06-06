@@ -69,6 +69,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .prog-dur{font-size:12px;font-weight:500;color:var(--g400);letter-spacing:.5px;}
 .prog-tag{display:inline-block;border:1px solid var(--g200);border-radius:100px;padding:4px 12px;font-size:11px;color:var(--g600);margin-top:16px;}
 
+/* COURS */
+.cours-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.cours-card{background:var(--g100);border-radius:16px;padding:36px;}
+.cours-header{margin-bottom:20px;}
+.cours-num{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--g400);font-weight:500;}
+.cours-title{font-size:20px;font-weight:700;letter-spacing:-.3px;margin-top:8px;color:var(--black);}
+.cours-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.cours-list li{font-size:13.5px;color:var(--g600);line-height:1.6;padding-left:18px;position:relative;}
+.cours-list li::before{content:'—';position:absolute;left:0;color:var(--g300);font-weight:600;}
+
 /* FORMAT */
 .format-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:48px;margin-top:64px;}
 .format-item{background:transparent;padding:0;}
@@ -135,7 +145,7 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
 .rv-scale.in{opacity:1;transform:scale(1);}
 
 @media(max-width:1024px){.ft-top{grid-template-columns:1fr 1fr;}.prog-grid{grid-template-columns:1fr;}.prog-card{border-right:none;}.dark-inner{grid-template-columns:1fr;}.format-grid{grid-template-columns:1fr;}}
-@media(max-width:768px){nav{padding:0 20px;}.nav-burger{display:flex;}.nav-links-wrap{display:none!important;position:fixed;top:64px;left:0;right:0;background:var(--white);padding:24px 20px 32px;flex-direction:column;gap:24px;z-index:499;}.nav-links-wrap.open{display:flex!important;}.nav-links{flex-direction:column;align-items:flex-start;gap:20px;}.nav-cta{align-self:flex-start;}.page-hero{padding:100px 20px 60px;}.section{padding:72px 20px;}.dark-band{padding:72px 20px;}#contact{padding:72px 20px;}.c-row{grid-template-columns:1fr;}footer{padding:48px 20px 24px;}.ft-top{grid-template-columns:1fr 1fr;gap:32px;}.ft-bottom{flex-direction:column;align-items:flex-start;}}
+@media(max-width:768px){.cours-grid{grid-template-columns:1fr;}nav{padding:0 20px;}.nav-burger{display:flex;}.nav-links-wrap{display:none!important;position:fixed;top:64px;left:0;right:0;background:var(--white);padding:24px 20px 32px;flex-direction:column;gap:24px;z-index:499;}.nav-links-wrap.open{display:flex!important;}.nav-links{flex-direction:column;align-items:flex-start;gap:20px;}.nav-cta{align-self:flex-start;}.page-hero{padding:100px 20px 60px;}.section{padding:72px 20px;}.dark-band{padding:72px 20px;}#contact{padding:72px 20px;}.c-row{grid-template-columns:1fr;}footer{padding:48px 20px 24px;}.ft-top{grid-template-columns:1fr 1fr;gap:32px;}.ft-bottom{flex-direction:column;align-items:flex-start;}}
 </style>
 </head>
 <body>
@@ -194,6 +204,67 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
       <div class="prog-desc">Construire une stratégie IA complète pour votre agence. Prompting avancé, architecture d'automatisations, pilotage par la data.</div>
       <div class="prog-dur">Durée : 3 journées</div>
       <div class="prog-tag">Avancé</div>
+    </div>
+  </div>
+
+  <!-- 4 PARTIES DU COURS -->
+  <div style="margin-top:80px;">
+    <p class="s-tag rv">Le contenu</p>
+    <h2 class="s-title rv">4 parties pour maîtriser<br>l'IA marketing</h2>
+    <div class="cours-grid">
+
+      <div class="cours-card rv">
+        <div class="cours-header">
+          <span class="cours-num">Partie 1</span>
+          <h3 class="cours-title">Comprendre l'IA</h3>
+        </div>
+        <ul class="cours-list">
+          <li>Les bases de l'intelligence artificielle expliquées simplement</li>
+          <li>Différence entre IA générative, agents et automatisations</li>
+          <li>Les outils IA incontournables pour le marketing en 2025</li>
+          <li>Ce que l'IA peut faire — et ce qu'elle ne remplacera pas</li>
+        </ul>
+      </div>
+
+      <div class="cours-card rv" style="transition-delay:.1s">
+        <div class="cours-header">
+          <span class="cours-num">Partie 2</span>
+          <h3 class="cours-title">Prendre en main les agents</h3>
+        </div>
+        <ul class="cours-list">
+          <li>Configurer et paramétrer un agent IA pour votre agence</li>
+          <li>Connecter l'agent à vos outils existants (CRM, réseaux, agenda)</li>
+          <li>Automatiser vos premiers workflows en moins d'une heure</li>
+          <li>Superviser, corriger et améliorer les productions de l'agent</li>
+        </ul>
+      </div>
+
+      <div class="cours-card rv" style="transition-delay:.2s">
+        <div class="cours-header">
+          <span class="cours-num">Partie 3</span>
+          <h3 class="cours-title">Maîtriser le prompting</h3>
+        </div>
+        <ul class="cours-list">
+          <li>Structure d'un prompt efficace : rôle, contexte, format, contrainte</li>
+          <li>Techniques avancées : few-shot, chain-of-thought, itération</li>
+          <li>Prompts pour la création de contenu, la prospection et le SEO</li>
+          <li>Construire une bibliothèque de prompts pour toute votre équipe</li>
+        </ul>
+      </div>
+
+      <div class="cours-card rv" style="transition-delay:.3s">
+        <div class="cours-header">
+          <span class="cours-num">Partie 4</span>
+          <h3 class="cours-title">Bâtir votre stratégie IA</h3>
+        </div>
+        <ul class="cours-list">
+          <li>Cartographier les tâches automatisables de votre agence</li>
+          <li>Calculer le ROI et définir vos KPIs IA</li>
+          <li>Embarquer vos équipes sans résistance au changement</li>
+          <li>Plan de déploiement IA sur 90 jours, étape par étape</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 
