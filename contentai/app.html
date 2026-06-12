@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ContentAI — App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { background: #ffffff; color: #111111; }
+
+    input, textarea, select {
+      background: #f9f9f9;
+      border: 1px solid #e0e0e0;
+      color: #111111;
+      border-radius: 8px;
+      padding: 10px 14px;
+      width: 100%;
+      outline: none;
+      font-size: 14px;
+      transition: border-color 0.15s;
+    }
+    input:focus, textarea:focus, select:focus { border-color: #999; }
+    input::placeholder, textarea::placeholder { color: #bbb; }
+    select option { background: #fff; color: #111; }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px;
+    }
+    .btn-primary {
+      background: #111111;
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border: none;
+    }
+    .btn-primary:hover { background: #333; }
+    .btn-secondary {
+      background: transparent;
+      color: #888;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .btn-secondary:hover { border-color: #999; color: #111; }
+
+    .toggle {
+      width: 36px; height: 20px;
+      background: #e0e0e0;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .toggle.on { background: #111111; }
+    .toggle::after {
+      content: '';
+      width: 14px; height: 14px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 3px; left: 3px;
+      transition: all 0.2s;
+    }
+    .toggle.on::after { left: 19px; background: #fff; }
+
+    .platform-chip {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid #e0e0e0;
+      font-size: 13px;
+      color: #999;
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .platform-chip.on {
+      border-color: #111;
+      color: #111;
+      background: #f5f5f5;
+    }
+
+    .drop-zone {
+      border: 1.5px dashed #e0e0e0;
+      border-radius: 10px;
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+    .drop-zone:hover, .drop-zone.over {
+      border-color: #999;
+      background: #f9f9f9;
+    }
+
+    .ai-box {
+      background: #f9f9f9;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+      min-height: 80px;
+      position: relative;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #aaa;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .page { display: none; }
+    .page.active { display: block; }
+
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .cursor { display: inline-block; width: 1px; height: 13px; background: #999; margin-left: 2px; animation: blink 1s infinite; vertical-align: middle; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin { animation: spin 1s linear infinite; }
+
+    .divider { height: 1px; background: #ebebeb; margin: 0 -24px; }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 3px; }
+  </style>
+</head>
+<body class="min-h-screen">
+<!-- ── APP ────────────────────────────────────────── -->
+<div id="page-app" class="page active min-h-screen">
+
+  <!-- Top bar -->
+  <div class="border-b border-[#ebebeb] px-6 sticky top-0 z-10" style="background:#fff">
+    <div class="flex items-center justify-between py-4">
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+        <span class="font-semibold text-sm text-gray-900">ContentAI</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="text-xs text-gray-400">Marie Dupont</span>
+        <a href="index.html" class="text-xs text-gray-400 cursor-pointer hover:text-gray-900 transition-colors">Déconnexion</a>
+      </div>
+    </div>
+    <!-- Nav tabs -->
+    <div class="flex gap-6">
+      <button id="nav-creer" onclick="switchView('creer')"
+        class="nav-tab text-sm font-medium pb-3 border-b-2 border-gray-900 text-gray-900 cursor-pointer transition-all">
+        Créer
+      </button>
+      <button id="nav-historique" onclick="switchView('historique')"
+        class="nav-tab text-sm font-medium pb-3 border-b-2 border-transparent text-gray-400 cursor-pointer hover:text-gray-600 transition-all">
+        Historique
+      </button>
+      <button id="nav-calendrier" onclick="switchView('calendrier')"
+        class="nav-tab text-sm font-medium pb-3 border-b-2 border-transparent text-gray-400 cursor-pointer hover:text-gray-600 transition-all">
+        Calendrier
+      </button>
+    </div>
+  </div>
+
+  <!-- Bouton paramètres (bas gauche fixe) -->
+  <button onclick="openSettings()"
+    class="fixed bottom-6 left-6 z-40 w-10 h-10 rounded-full border border-gray-200 bg-white flex items-center justify-center shadow-sm hover:border-gray-400 hover:shadow-md transition-all cursor-pointer">
+    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+        d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+    </svg>
+  </button>
+
+  <!-- Panel paramètres -->
+  <div id="settings-overlay" class="hidden fixed inset-0 z-50" onclick="if(event.target===this) closeSettings()">
+    <div id="settings-panel"
+      class="fixed left-0 top-0 h-full w-96 bg-white border-r border-gray-100 shadow-xl flex flex-col"
+      style="transform: translateX(-100%); transition: transform 0.25s ease;">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          <span class="font-semibold text-sm text-gray-900">Paramètres</span>
+        </div>
+        <button onclick="closeSettings()" class="text-gray-400 hover:text-gray-700 cursor-pointer transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex border-b border-gray-100 px-6">
+        <button onclick="setTab('connexion')" id="tab-connexion"
+          class="settings-tab text-xs font-medium py-3 mr-5 border-b-2 border-gray-900 text-gray-900 cursor-pointer transition-all">
+          Connexion
+        </button>
+        <button onclick="setTab('api')" id="tab-api"
+          class="settings-tab text-xs font-medium py-3 mr-5 border-b-2 border-transparent text-gray-400 cursor-pointer hover:text-gray-600 transition-all">
+          Clés API
+        </button>
+        <button onclick="setTab('tuto')" id="tab-tuto"
+          class="settings-tab text-xs font-medium py-3 border-b-2 border-transparent text-gray-400 cursor-pointer hover:text-gray-600 transition-all">
+          Tutoriel Make
+        </button>
+      </div>
+
+      <!-- Contenu scrollable -->
+      <div class="flex-1 overflow-y-auto px-6 py-5 space-y-5">
+
+        <!-- TAB: Connexion -->
+        <div id="content-connexion">
+          <p class="section-label">Webhook Make.com</p>
+          <p class="text-xs text-gray-400 mb-3">Collez l'URL webhook de votre scénario Make.com. ContentAI l'appellera automatiquement à chaque publication.</p>
+          <input type="url" placeholder="https://hook.eu1.make.com/xxxxxxxxxxxx" class="mb-2"/>
+          <button class="btn-primary w-full py-2 text-sm">Enregistrer & Tester</button>
+
+          <div class="mt-5">
+            <p class="section-label">Statut des connexions</p>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between py-2.5 px-3 rounded-lg bg-gray-50">
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-green-400"></div>
+                  <span class="text-sm text-gray-700">TikTok</span>
+                </div>
+                <span class="text-xs text-gray-400">Via Make.com</span>
+              </div>
+              <div class="flex items-center justify-between py-2.5 px-3 rounded-lg bg-gray-50">
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-green-400"></div>
+                  <span class="text-sm text-gray-700">Instagram</span>
+                </div>
+                <span class="text-xs text-gray-400">Via Make.com</span>
+              </div>
+              <div class="flex items-center justify-between py-2.5 px-3 rounded-lg bg-gray-50">
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-green-400"></div>
+                  <span class="text-sm text-gray-700">Facebook</span>
+                </div>
+                <span class="text-xs text-gray-400">Via Make.com</span>
+              </div>
+              <div class="flex items-center justify-between py-2.5 px-3 rounded-lg bg-gray-50">
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+                  <span class="text-sm text-gray-400">Telegram</span>
+                </div>
+                <span class="text-xs text-gray-400">Non configuré</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <p class="section-label">Notification Telegram</p>
+            <input type="text" placeholder="Votre Chat ID Telegram" class="mb-2"/>
+            <button class="btn-secondary w-full py-2 text-sm">Enregistrer</button>
+          </div>
+        </div>
+
+        <!-- TAB: API -->
+        <div id="content-api" class="hidden">
+          <p class="section-label">Gemini API</p>
+          <p class="text-xs text-gray-400 mb-3">Clé API Google Gemini pour la génération vidéo. Disponible sur <span class="text-gray-600 underline cursor-pointer">aistudio.google.com</span></p>
+          <input type="password" placeholder="AIzaSy••••••••••••••••••••••" class="mb-2"/>
+          <button class="btn-primary w-full py-2 text-sm mb-5">Enregistrer</button>
+
+          <p class="section-label">Dropbox</p>
+          <p class="text-xs text-gray-400 mb-3">Token Dropbox pour le transfert des vidéos vers Make.com.</p>
+          <input type="password" placeholder="sl.••••••••••••••••••••••" class="mb-2"/>
+          <button class="btn-primary w-full py-2 text-sm mb-5">Enregistrer</button>
+
+          <p class="section-label">Groq API (texte)</p>
+          <p class="text-xs text-gray-400 mb-3">Pour la génération des captions et hashtags. Gratuit sur <span class="text-gray-600 underline cursor-pointer">console.groq.com</span></p>
+          <input type="password" placeholder="gsk_••••••••••••••••••••••" class="mb-2"/>
+          <button class="btn-primary w-full py-2 text-sm">Enregistrer</button>
+        </div>
+
+        <!-- TAB: Tutoriel Make -->
+        <div id="content-tuto" class="hidden">
+          <p class="section-label">Comment connecter Make.com</p>
+
+          <!-- Étape 1 -->
+          <div class="mb-5">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-6 h-6 rounded-full bg-gray-900 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">1</div>
+              <p class="text-sm font-medium text-gray-800">Créer un compte Make.com</p>
+            </div>
+            <div class="ml-9">
+              <p class="text-xs text-gray-500 mb-2">Rendez-vous sur <span class="font-medium text-gray-700">make.com</span> et créez un compte gratuit.</p>
+              <div class="bg-gray-50 rounded-lg px-3 py-2 text-xs text-gray-500">
+                Le plan gratuit suffit pour commencer (1 000 opérations/mois).
+              </div>
+            </div>
+          </div>
+
+          <!-- Étape 2 -->
+          <div class="mb-5">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-6 h-6 rounded-full bg-gray-900 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">2</div>
+              <p class="text-sm font-medium text-gray-800">Importer le scénario</p>
+            </div>
+            <div class="ml-9">
+              <p class="text-xs text-gray-500 mb-2">Téléchargez notre template et importez-le dans Make.com.</p>
+              <button class="w-full border border-gray-200 rounded-lg py-2 text-xs text-gray-600 hover:border-gray-400 hover:text-gray-900 transition-all cursor-pointer flex items-center justify-center gap-2">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                Télécharger le template Make.com
+              </button>
+              <p class="text-xs text-gray-400 mt-2">Dans Make → <span class="font-medium text-gray-600">Scenarios → Import Blueprint</span></p>
+            </div>
+          </div>
+
+          <!-- Étape 3 -->
+          <div class="mb-5">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-6 h-6 rounded-full bg-gray-900 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">3</div>
+              <p class="text-sm font-medium text-gray-800">Connecter vos réseaux sociaux</p>
+            </div>
+            <div class="ml-9">
+              <p class="text-xs text-gray-500 mb-2">Dans le scénario importé, cliquez sur chaque module réseau social et connectez votre compte.</p>
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2 text-xs text-gray-500">
+                  <div class="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
+                  Module <span class="font-medium text-gray-700">Instagram</span> → Add connection
+                </div>
+                <div class="flex items-center gap-2 text-xs text-gray-500">
+                  <div class="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
+                  Module <span class="font-medium text-gray-700">TikTok (Late)</span> → Add connection
+                </div>
+                <div class="flex items-center gap-2 text-xs text-gray-500">
+                  <div class="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
+                  Module <span class="font-medium text-gray-700">Facebook</span> → Add connection
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Étape 4 -->
+          <div class="mb-5">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-6 h-6 rounded-full bg-gray-900 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">4</div>
+              <p class="text-sm font-medium text-gray-800">Récupérer l'URL Webhook</p>
+            </div>
+            <div class="ml-9">
+              <p class="text-xs text-gray-500 mb-2">Cliquez sur le premier module du scénario (Webhook) → copiez l'URL générée.</p>
+              <div class="bg-gray-50 rounded-lg px-3 py-2 font-mono text-xs text-gray-500 break-all">
+                https://hook.eu1.make.com/xxxxxxxx...
+              </div>
+              <p class="text-xs text-gray-400 mt-2">Collez cette URL dans l'onglet <span class="font-medium text-gray-600">Connexion</span> ci-dessus.</p>
+            </div>
+          </div>
+
+          <!-- Étape 5 -->
+          <div class="mb-2">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-6 h-6 rounded-full bg-gray-900 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">5</div>
+              <p class="text-sm font-medium text-gray-800">Activer le scénario</p>
+            </div>
+            <div class="ml-9">
+              <p class="text-xs text-gray-500">Dans Make.com, activez le scénario avec le bouton <span class="font-medium text-gray-700">ON</span> en bas à gauche. C'est tout — ContentAI s'occupe du reste.</p>
+            </div>
+          </div>
+
+          <div class="mt-5 bg-gray-50 rounded-xl p-4">
+            <p class="text-xs font-medium text-gray-700 mb-1">Besoin d'aide ?</p>
+            <p class="text-xs text-gray-400">Contactez le support à <span class="text-gray-600 underline cursor-pointer">support@contentai.fr</span></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- VUE CRÉER -->
+  <div id="view-creer" class="max-w-2xl mx-auto px-6 py-10">
+
+    <!-- Header -->
+    <div class="mb-8">
+      <div class="flex items-center gap-2 mb-1">
+        <h1 class="text-xl font-semibold text-gray-900">Nouvelle campagne</h1>
+        <span class="text-xs font-medium bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">Automatique</span>
+      </div>
+      <p class="text-sm text-gray-400">Configurez votre produit, votre message et votre rythme de publication — l'IA s'occupe du reste.</p>
+    </div>
+
+    <!-- ① Bibliothèque produits -->
+    <div class="card p-6 mb-4">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <p class="section-label" style="margin-bottom:2px">① Produits</p>
+          <p class="text-xs text-gray-400">L'IA alternera entre vos produits à chaque publication</p>
+        </div>
+        <button onclick="addProduct()" class="flex items-center gap-1.5 text-xs font-medium text-gray-600 border border-gray-200 rounded-lg px-3 py-1.5 hover:border-gray-400 hover:text-gray-900 transition-all cursor-pointer">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Ajouter un produit
+        </button>
+      </div>
+
+      <!-- Liste des produits -->
+      <div id="product-list" class="space-y-3"></div>
+
+      <!-- Ordre de rotation -->
+      <div id="rotation-options" class="hidden mt-4 pt-4 border-t border-gray-100">
+        <p class="text-xs text-gray-400 mb-2 font-medium">Ordre de rotation</p>
+        <div class="flex gap-2">
+          <button class="rot-btn flex-1 py-2 rounded-lg border text-xs font-medium cursor-pointer transition-all border-gray-900 text-gray-900 bg-gray-50" onclick="selectRotation(this)">Aléatoire</button>
+          <button class="rot-btn flex-1 py-2 rounded-lg border text-xs font-medium cursor-pointer transition-all border-gray-200 text-gray-400" onclick="selectRotation(this)">Séquentiel</button>
+          <button class="rot-btn flex-1 py-2 rounded-lg border text-xs font-medium cursor-pointer transition-all border-gray-200 text-gray-400" onclick="selectRotation(this)">Équilibré</button>
+        </div>
+        <p class="text-xs text-gray-300 mt-2">
+          <span id="rotation-desc">Chaque produit est choisi aléatoirement à chaque publication.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- ② Description -->
+    <div class="card p-6 mb-4">
+      <p class="section-label">② Description du contenu</p>
+      <textarea id="user-prompt" rows="3"
+        placeholder="Ex: Vidéo élégante pour ce collier doré, style luxe accessible, cible femmes 18-35 ans, ambiance été…"
+        oninput="generateAiPrompt()"></textarea>
+      <p class="text-xs text-gray-300 mt-2 mb-4">Décrivez librement — l'IA structure et optimise votre demande</p>
+
+      <!-- Variation automatique du script -->
+      <div class="flex items-center justify-between mb-4 py-3 px-4 rounded-xl bg-gray-50 border border-gray-100">
+        <div>
+          <p class="text-sm font-medium text-gray-700">Variation automatique du script</p>
+          <p class="text-xs text-gray-400 mt-0.5">L'IA change la mise en scène à chaque vidéo selon le produit et le contexte</p>
+        </div>
+        <div class="toggle" id="toggle-script" onclick="toggleScriptAuto()"></div>
+      </div>
+
+      <!-- Format vidéo -->
+      <p class="text-xs text-gray-400 mb-2 font-medium">Format vidéo</p>
+      <div class="grid grid-cols-2 gap-3">
+
+        <button id="fmt-vertical" onclick="selectFormat('vertical')"
+          class="fmt-btn flex items-center gap-3 px-4 py-3 rounded-xl border transition-all cursor-pointer border-gray-900 bg-gray-50">
+          <div class="flex-shrink-0 w-8 flex justify-center">
+            <div class="w-5 h-8 rounded border-2 border-current flex items-end justify-center pb-0.5">
+              <div class="w-2 h-1 rounded-sm bg-current opacity-40"></div>
+            </div>
+          </div>
+          <div class="text-left">
+            <p class="text-sm font-medium text-gray-900">Vertical</p>
+            <p class="text-xs text-gray-400">9:16 — TikTok, Reels</p>
+          </div>
+        </button>
+
+        <button id="fmt-horizontal" onclick="selectFormat('horizontal')"
+          class="fmt-btn flex items-center gap-3 px-4 py-3 rounded-xl border transition-all cursor-pointer border-gray-200 bg-transparent">
+          <div class="flex-shrink-0 w-8 flex justify-center">
+            <div class="w-8 h-5 rounded border-2 border-current flex items-end justify-center pb-0.5">
+              <div class="w-3 h-1 rounded-sm bg-current opacity-40"></div>
+            </div>
+          </div>
+          <div class="text-left">
+            <p class="text-sm font-medium text-gray-400">Horizontal</p>
+            <p class="text-xs text-gray-300">16:9 — YouTube, Facebook</p>
+          </div>
+        </button>
+
+      </div>
+
+      <!-- Durée de la vidéo -->
+      <div class="mt-4">
+        <div class="flex items-center justify-between mb-2">
+          <p class="text-xs text-gray-400 font-medium">Durée de la vidéo</p>
+          <span id="duration-label" class="text-sm font-semibold text-gray-900">15s</span>
+        </div>
+        <input type="range" id="duration-slider" min="4" max="20" value="15" step="1"
+          oninput="updateDuration(this.value)"
+          style="width:100%; accent-color:#111827; cursor:pointer"/>
+        <div class="flex justify-between mt-1">
+          <span class="text-xs text-gray-300">4s</span>
+          <span class="text-xs text-gray-300">12s</span>
+          <span class="text-xs text-gray-300">20s</span>
+        </div>
+      </div>
+
+      <!-- Packshot -->
+      <div class="mt-4 pt-4 border-t border-gray-100">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-gray-700">Packshot final</p>
+            <p class="text-xs text-gray-400 mt-0.5">Ajouter une image produit en fin de vidéo</p>
+          </div>
+          <div class="toggle" id="toggle-packshot" onclick="togglePackshot()"></div>
+        </div>
+
+        <!-- Champs packshot (masqués par défaut) -->
+        <div id="packshot-fields" class="hidden mt-4 space-y-4">
+
+          <!-- Upload packshot -->
+          <div>
+            <p class="text-xs text-gray-400 mb-2 font-medium">Image packshot</p>
+            <div id="packshot-zone" class="drop-zone p-6 text-center"
+              onclick="document.getElementById('packshot-input').click()"
+              ondragover="event.preventDefault();this.classList.add('over')"
+              ondragleave="this.classList.remove('over')"
+              ondrop="handlePackshotDrop(event)">
+              <input type="file" id="packshot-input" accept="image/*" class="hidden"
+                onchange="handlePackshotFile(this.files[0])"/>
+              <div id="packshot-default">
+                <svg class="w-6 h-6 text-gray-300 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                <p class="text-sm text-gray-400">Importer le packshot</p>
+                <p class="text-xs text-gray-300 mt-0.5">Fond blanc recommandé</p>
+              </div>
+              <div id="packshot-preview" class="hidden flex items-center justify-center gap-3">
+                <img id="packshot-img" class="h-16 w-16 object-contain rounded-lg border border-gray-100"/>
+                <p class="text-xs text-gray-400 underline cursor-pointer">Changer</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Durée packshot -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <p class="text-xs text-gray-400 font-medium">Durée du packshot</p>
+              <span id="packshot-duration-label" class="text-sm font-semibold text-gray-900">2s</span>
+            </div>
+            <input type="range" id="packshot-duration-slider" min="1" max="5" value="2" step="1"
+              oninput="document.getElementById('packshot-duration-label').textContent = this.value + 's'"
+              style="width:100%; accent-color:#111827; cursor:pointer"/>
+            <div class="flex justify-between mt-1">
+              <span class="text-xs text-gray-300">1s</span>
+              <span class="text-xs text-gray-300">3s</span>
+              <span class="text-xs text-gray-300">5s</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ③ Prompt Gemini -->
+    <div class="card p-6 mb-4">
+      <div class="flex items-center justify-between mb-3">
+        <div>
+          <p class="section-label" style="margin-bottom:2px">③ Prompt Gemini généré</p>
+          <p class="text-xs text-gray-300">Raffiné automatiquement pour maximiser la qualité vidéo</p>
+        </div>
+        <button onclick="editAiPrompt()" id="btn-edit-ai" class="text-xs text-gray-400 border border-gray-200 rounded-lg px-3 py-1.5 hover:border-gray-400 hover:text-gray-700 transition-all cursor-pointer">Modifier</button>
+      </div>
+      <div id="ai-prompt-display" class="ai-box">
+        <p id="ai-prompt-text" class="italic text-gray-300">Le prompt apparaîtra automatiquement dès que vous décrivez votre contenu…</p>
+      </div>
+      <textarea id="ai-prompt-edit" rows="5" class="hidden mt-2" placeholder="Prompt Gemini personnalisé…"></textarea>
+    </div>
+
+    <!-- ④ Publication -->
+    <div class="card p-6 mb-4">
+      <p class="section-label">④ Publication</p>
+
+      <!-- Plateformes -->
+      <div class="mb-5">
+        <p class="text-xs text-gray-400 mb-2 font-medium">Plateformes</p>
+        <div class="flex gap-2 flex-wrap">
+          <span class="platform-chip on" onclick="this.classList.toggle('on')">TikTok</span>
+          <span class="platform-chip on" onclick="this.classList.toggle('on')">Instagram</span>
+          <span class="platform-chip on" onclick="this.classList.toggle('on')">Facebook</span>
+          <span class="platform-chip" onclick="this.classList.toggle('on')">YouTube Shorts</span>
+        </div>
+      </div>
+
+      <div class="divider mb-5"></div>
+
+      <!-- Mode de publication -->
+      <div class="mb-5">
+        <p class="text-xs text-gray-400 mb-3 font-medium">Mode de publication</p>
+        <div class="grid grid-cols-3 gap-2">
+          <button id="btn-now" onclick="setSchedule('now')"
+            class="py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all border-gray-900 text-gray-900 bg-gray-50">
+            Une fois
+          </button>
+          <button id="btn-later" onclick="setSchedule('later')"
+            class="py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all border-gray-200 text-gray-400 bg-transparent">
+            Planifié
+          </button>
+          <button id="btn-recur" onclick="setSchedule('recur')"
+            class="py-2.5 rounded-lg border text-sm font-medium cursor-pointer transition-all border-gray-200 text-gray-400 bg-transparent">
+            Récurrent
+          </button>
+        </div>
+      </div>
+
+      <!-- Champs date/heure (planifié) -->
+      <div id="schedule-fields" class="hidden mb-5">
+        <p class="text-xs text-gray-400 mb-2 font-medium">Date et heure</p>
+        <div class="grid grid-cols-2 gap-3">
+          <input type="date" />
+          <input type="time" value="12:30" />
+        </div>
+      </div>
+
+      <!-- Récurrence -->
+      <div id="recur-fields" class="hidden mb-5">
+        <p class="text-xs text-gray-400 mb-3 font-medium">Fréquence de publication</p>
+
+        <div class="mb-4">
+          <p class="text-xs text-gray-400 mb-2">Nombre de posts par jour</p>
+          <div class="flex gap-2">
+            <button class="recur-count on w-10 h-10 rounded-lg border text-sm font-semibold cursor-pointer transition-all border-gray-900 text-gray-900 bg-gray-50" onclick="selectCount(this)">1</button>
+            <button class="recur-count w-10 h-10 rounded-lg border text-sm font-semibold cursor-pointer transition-all border-gray-200 text-gray-400" onclick="selectCount(this)">2</button>
+            <button class="recur-count w-10 h-10 rounded-lg border text-sm font-semibold cursor-pointer transition-all border-gray-200 text-gray-400" onclick="selectCount(this)">3</button>
+          </div>
+        </div>
+
+        <div class="mb-4" id="time-slots">
+          <p class="text-xs text-gray-400 mb-2">Horaires de publication</p>
+          <div class="space-y-2" id="time-inputs">
+            <div class="flex items-center gap-2">
+              <input type="time" value="09:00" class="flex-1" />
+              <span class="text-xs text-gray-300">± 10 min</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <p class="text-xs text-gray-400 mb-2">Jours de publication</p>
+          <div class="flex gap-1.5 flex-wrap">
+            <span class="day-chip on px-3 py-1.5 rounded-lg border text-xs font-medium cursor-pointer transition-all border-gray-900 text-gray-900 bg-gray-50" onclick="this.classList.toggle('on'); toggleDayChip(this)">Lun</span>
+            <span class="day-chip on px-3 py-1.5 rounded-lg border text-xs font-medium cursor-pointer transition-all border-gray-900 text-gray-900 bg-gray-50" onclick="this.classList.toggle('on'); toggleDayChip(this)">Mar</span>
+            <span class="day-chip on px-3 py-1.5 rounded-lg border text-xs font-medium cursor-pointer transition-all border-gray-900 text-gray-900 bg-gray-50" onclick="this.classList.toggle('on'); toggleDayChip(this)">Mer</span>
+            <span class="day-chip on px-3 py-1.5 rounded-lg border text-xs font-medium cursor-pointer transition-all border-gray-900 text-gray-900 bg-gray-50" onclick="this.classList.toggle('on'); toggleDayChip(this)">Jeu</span>
+            <span class="day-chip on px-3 py-1.5 rounded-lg border text-xs font-medium cursor-pointer transition-all border-gray-900 text-gray-900 bg-gray-50" onclick="this.classList.toggle('on'); toggleDayChip(this)">Ven</span>
+            <span class="day-chip px-3 py-1.5 rounded-lg border text-xs font-medium cursor-pointer transition-all border-gray-200 text-gray-400" onclick="this.classList.toggle('on'); toggleDayChip(this)">Sam</span>
+            <span class="day-chip px-3 py-1.5 rounded-lg border text-xs font-medium cursor-pointer transition-all border-gray-200 text-gray-400" onclick="this.classList.toggle('on'); toggleDayChip(this)">Dim</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs text-gray-400 mb-2">Durée de la campagne</p>
+          <div class="flex gap-2">
+            <select class="flex-1">
+              <option>1 semaine</option>
+              <option selected>2 semaines</option>
+              <option>1 mois</option>
+              <option>3 mois</option>
+              <option>Sans limite</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider mb-5"></div>
+
+      <!-- Options -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-700">Génération automatique du contenu</p>
+            <p class="text-xs text-gray-400 mt-0.5">L'IA crée une nouvelle vidéo à chaque publication</p>
+          </div>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-700">Musique automatique</p>
+            <p class="text-xs text-gray-400 mt-0.5">Sélection IA du meilleur morceau</p>
+          </div>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-700">Validation avant publication</p>
+            <p class="text-xs text-gray-400 mt-0.5">Recevoir la vidéo pour approbation manuelle</p>
+          </div>
+          <div class="toggle" onclick="this.classList.toggle('on')"></div>
+        </div>
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-700">Notification Telegram</p>
+            <p class="text-xs text-gray-400 mt-0.5">Alerte à chaque publication</p>
+          </div>
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Résumé campagne (visible si récurrent) -->
+    <div id="campaign-summary" class="hidden card p-5 mb-4 bg-gray-50">
+      <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Résumé de la campagne</p>
+      <div class="space-y-1.5">
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-400">Fréquence</span>
+          <span id="sum-freq" class="text-gray-800 font-medium">1 post / jour</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-400">Horaires</span>
+          <span id="sum-times" class="text-gray-800 font-medium">09:00</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-400">Jours actifs</span>
+          <span id="sum-days" class="text-gray-800 font-medium">Lun → Ven</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-400">Durée</span>
+          <span class="text-gray-800 font-medium">2 semaines</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-400">Vidéos générées</span>
+          <span id="sum-total" class="text-gray-800 font-medium">~10 vidéos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <button onclick="generate()" class="btn-primary w-full py-3.5 text-sm font-semibold flex items-center justify-center gap-2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+      </svg>
+      <span id="btn-label">Lancer la génération</span>
+    </button>
+    <p class="text-center text-xs text-gray-300 mt-3" id="credit-info">3 crédits seront utilisés</p>
+
+  </div>
+
+  <!-- VUE HISTORIQUE -->
+  <div id="view-historique" class="hidden max-w-3xl mx-auto px-6 py-10">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="text-lg font-semibold text-gray-900">Historique des contenus</h2>
+        <p class="text-sm text-gray-400 mt-0.5">Tous vos contenus générés et leur statut de publication</p>
+      </div>
+      <div class="flex gap-2">
+        <select style="width:auto;padding:6px 12px;font-size:13px">
+          <option>Tous les statuts</option>
+          <option>Publié</option>
+          <option>Planifié</option>
+          <option>En cours</option>
+          <option>Erreur</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Liste contenus -->
+    <div class="space-y-3">
+
+      <div class="card p-4 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center flex-shrink-0 overflow-hidden">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-900">Collier infinity doré — Unboxing</p>
+          <div class="flex items-center gap-3 mt-1">
+            <span class="text-xs text-gray-400">TikTok · Instagram · Facebook</span>
+            <span class="text-xs text-gray-300">·</span>
+            <span class="text-xs text-gray-400">Vertical 9:16</span>
+          </div>
+        </div>
+        <div class="text-right flex-shrink-0">
+          <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-green-50 text-green-600">Publié</span>
+          <p class="text-xs text-gray-300 mt-1.5">Aujourd'hui 09:12</p>
+        </div>
+      </div>
+
+      <div class="card p-4 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-900">Bracelet perles — Golden hour</p>
+          <div class="flex items-center gap-3 mt-1">
+            <span class="text-xs text-gray-400">TikTok · Instagram</span>
+            <span class="text-xs text-gray-300">·</span>
+            <span class="text-xs text-gray-400">Vertical 9:16</span>
+          </div>
+        </div>
+        <div class="text-right flex-shrink-0">
+          <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-amber-50 text-amber-600">Planifié</span>
+          <p class="text-xs text-gray-300 mt-1.5">Demain 12:30</p>
+        </div>
+      </div>
+
+      <div class="card p-4 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-900">Bague solitaire — Flat lay</p>
+          <div class="flex items-center gap-3 mt-1">
+            <span class="text-xs text-gray-400">TikTok · Instagram · Facebook</span>
+            <span class="text-xs text-gray-300">·</span>
+            <span class="text-xs text-gray-400">Vertical 9:16</span>
+          </div>
+        </div>
+        <div class="text-right flex-shrink-0">
+          <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-blue-50 text-blue-600">En cours</span>
+          <p class="text-xs text-gray-300 mt-1.5">Il y a 5 min</p>
+        </div>
+      </div>
+
+      <div class="card p-4 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-900">Pendentif étoile — Nature</p>
+          <div class="flex items-center gap-3 mt-1">
+            <span class="text-xs text-gray-400">Instagram · Facebook</span>
+            <span class="text-xs text-gray-300">·</span>
+            <span class="text-xs text-gray-400">Vertical 9:16</span>
+          </div>
+        </div>
+        <div class="text-right flex-shrink-0">
+          <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-green-50 text-green-600">Publié</span>
+          <p class="text-xs text-gray-300 mt-1.5">Hier 19:05</p>
+        </div>
+      </div>
+
+      <div class="card p-4 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center flex-shrink-0">
+          <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 002 2z"/></svg>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-gray-900">Bracelet manchette — Reflet</p>
+          <div class="flex items-center gap-3 mt-1">
+            <span class="text-xs text-gray-400">TikTok</span>
+            <span class="text-xs text-gray-300">·</span>
+            <span class="text-xs text-gray-400">Vertical 9:16</span>
+          </div>
+        </div>
+        <div class="text-right flex-shrink-0">
+          <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-red-50 text-red-500">Erreur</span>
+          <p class="text-xs text-gray-300 mt-1.5">Hier 12:30</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- VUE CALENDRIER -->
+  <div id="view-calendrier" class="hidden max-w-3xl mx-auto px-6 py-10">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h2 class="text-lg font-semibold text-gray-900">Calendrier</h2>
+        <p class="text-sm text-gray-400 mt-0.5">Vue mensuelle de vos publications planifiées</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="prevMonth()" class="w-8 h-8 border border-gray-200 rounded-lg flex items-center justify-center cursor-pointer hover:border-gray-400 transition-all">
+          <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <span id="cal-title" class="text-sm font-medium text-gray-900 w-32 text-center"></span>
+        <button onclick="nextMonth()" class="w-8 h-8 border border-gray-200 rounded-lg flex items-center justify-center cursor-pointer hover:border-gray-400 transition-all">
+          <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Jours de la semaine -->
+    <div class="grid grid-cols-7 mb-2">
+      <div class="text-xs text-gray-400 font-medium text-center py-2">Lun</div>
+      <div class="text-xs text-gray-400 font-medium text-center py-2">Mar</div>
+      <div class="text-xs text-gray-400 font-medium text-center py-2">Mer</div>
+      <div class="text-xs text-gray-400 font-medium text-center py-2">Jeu</div>
+      <div class="text-xs text-gray-400 font-medium text-center py-2">Ven</div>
+      <div class="text-xs text-gray-400 font-medium text-center py-2">Sam</div>
+      <div class="text-xs text-gray-400 font-medium text-center py-2">Dim</div>
+    </div>
+
+    <!-- Grille calendrier -->
+    <div id="cal-grid" class="grid grid-cols-7 gap-1"></div>
+
+    <!-- Légende -->
+    <div class="flex items-center gap-5 mt-5">
+      <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-green-400"></div><span class="text-xs text-gray-400">Publié</span></div>
+      <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div><span class="text-xs text-gray-400">Planifié</span></div>
+      <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-blue-400"></div><span class="text-xs text-gray-400">En cours</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Generation overlay -->
+<div id="gen-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center" style="background:rgba(255,255,255,0.85)">
+  <div class="card p-10 text-center w-full max-w-xs mx-4">
+    <div class="w-12 h-12 border-2 border-gray-200 border-t-gray-800 rounded-full spin mx-auto mb-6"></div>
+    <p class="text-gray-900 font-medium mb-2">Génération en cours</p>
+    <p id="gen-msg" class="text-sm text-gray-400">Analyse du produit…</p>
+    <div class="h-px bg-[#ebebeb] my-5"></div>
+    <div class="space-y-2 text-left" id="gen-steps">
+      <div class="flex items-center gap-3 text-xs text-gray-400" id="gs-1">
+        <div class="w-3 h-3 rounded-full border border-gray-300 flex-shrink-0"></div>
+        Analyse Gemini Vision
+      </div>
+      <div class="flex items-center gap-3 text-xs text-gray-400" id="gs-2">
+        <div class="w-3 h-3 rounded-full border border-gray-300 flex-shrink-0"></div>
+        Génération du script
+      </div>
+      <div class="flex items-center gap-3 text-xs text-gray-400" id="gs-3">
+        <div class="w-3 h-3 rounded-full border border-gray-300 flex-shrink-0"></div>
+        Composition vidéo
+      </div>
+      <div class="flex items-center gap-3 text-xs text-gray-400" id="gs-4">
+        <div class="w-3 h-3 rounded-full border border-gray-300 flex-shrink-0"></div>
+        Publication
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    window.scrollTo(0,0);
+  }
+
+  // ── OAuth connexion ──────────────────────────────
+  const connected = { tiktok: false, instagram: false, youtube: false };
+
+  function connectTikTok()   { document.getElementById('modal-tiktok').classList.remove('hidden'); }
+  function connectInstagram(){ document.getElementById('modal-instagram').classList.remove('hidden'); }
+  function connectYoutube()  { document.getElementById('modal-youtube').classList.remove('hidden'); }
+
+  function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+  function confirmConnect(platform) {
+    connected[platform] = true;
+    closeModal('modal-' + platform);
+
+    // Mettre à jour l'icône du bouton → check vert
+    const statusEl = document.getElementById(platform + '-status');
+    statusEl.innerHTML = `<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
+
+    // Activer le bouton Continuer si au moins une plateforme connectée
+    const anyConnected = Object.values(connected).some(v => v);
+    const btn = document.getElementById('btn-continue');
+    if (anyConnected) {
+      btn.disabled = false;
+      btn.style.background = '#111827';
+      btn.style.color = '#fff';
+      btn.style.cursor = 'pointer';
+    }
+  }
+
+  function enterApp() {
+    showPage('app');
+    // Mettre à jour les chips plateforme selon les connexions
+    if (!connected.tiktok)   document.querySelectorAll('.platform-chip').forEach(c => { if(c.textContent.trim()==='TikTok') c.classList.remove('on'); });
+    if (!connected.instagram) document.querySelectorAll('.platform-chip').forEach(c => { if(c.textContent.trim()==='Instagram') c.classList.remove('on'); });
+    if (!connected.youtube)  document.querySelectorAll('.platform-chip').forEach(c => { if(c.textContent.trim()==='YouTube Shorts') c.classList.remove('on'); });
+  }
+
+  // ── Bibliothèque produits ────────────────────────
+  let products = [];
+  let productIdCounter = 0;
+
+  // Init au chargement
+  window.addEventListener('DOMContentLoaded', () => { renderProducts(); });
+
+  function addProduct() {
+    const id = ++productIdCounter;
+    products.push({ id, name: '', files: [] });
+    renderProducts();
+    setTimeout(() => document.getElementById(`file-p${id}`)?.click(), 100);
+  }
+
+  function removeProduct(id) {
+    products = products.filter(p => p.id !== id);
+    renderProducts();
+  }
+
+  function renderProducts() {
+    const list = document.getElementById('product-list');
+    if (products.length === 0) {
+      list.innerHTML = `
+        <div onclick="addProduct()" class="drop-zone p-8 text-center cursor-pointer">
+          <svg class="w-6 h-6 text-gray-300 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <p class="text-sm text-gray-400">Cliquez pour ajouter votre premier produit</p>
+          <p class="text-xs text-gray-300 mt-1">JPG, PNG, WEBP</p>
+        </div>`;
+      document.getElementById('rotation-options').classList.add('hidden');
+      return;
+    }
+    list.innerHTML = products.map(p => `
+      <div class="border border-gray-100 rounded-xl p-4" id="product-card-${p.id}">
+        <div class="flex items-start gap-3">
+          <div class="flex-shrink-0">
+            <input type="file" id="file-p${p.id}" multiple accept="image/*" class="hidden"
+              onchange="handleProductFiles(${p.id}, this.files)"/>
+            <div onclick="document.getElementById('file-p${p.id}').click()"
+              class="w-16 h-16 rounded-xl border-2 border-dashed border-gray-200 flex items-center justify-center cursor-pointer hover:border-gray-400 transition-all overflow-hidden"
+              id="thumb-${p.id}">
+              ${p.files.length > 0
+                ? `<img src="${p.files[0]}" class="w-full h-full object-cover"/>`
+                : `<svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/></svg>`}
+            </div>
+            ${p.files.length > 1 ? `<p class="text-xs text-gray-400 text-center mt-1">+${p.files.length-1} photo${p.files.length>2?'s':''}</p>` : ''}
+          </div>
+          <div class="flex-1 min-w-0">
+            <input type="text" value="${p.name}" placeholder="Nom du produit (ex: Collier infinity doré)"
+              class="text-sm mb-2" onchange="updateProductName(${p.id}, this.value)" style="padding:7px 10px"/>
+            <div class="flex items-center gap-3">
+              <span class="text-xs text-gray-400">${p.files.length} photo${p.files.length!==1?'s':''}</span>
+              <button onclick="document.getElementById('file-p${p.id}').click()"
+                class="text-xs text-gray-500 underline cursor-pointer hover:text-gray-800 transition-colors">
+                ${p.files.length ? 'Ajouter des photos' : 'Importer des photos'}
+              </button>
+            </div>
+          </div>
+          <button onclick="removeProduct(${p.id})" class="text-gray-300 hover:text-red-400 transition-colors cursor-pointer flex-shrink-0">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        ${p.files.length > 1 ? `
+        <div class="mt-3 flex gap-1.5 overflow-x-auto pb-1">
+          ${p.files.slice(0,8).map(f => `
+            <div class="w-9 h-9 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
+              <img src="${f}" class="w-full h-full object-cover"/>
+            </div>`).join('')}
+          ${p.files.length > 8 ? `<div class="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0 text-xs text-gray-400 font-medium">+${p.files.length-8}</div>` : ''}
+        </div>` : ''}
+      </div>`).join('');
+
+    document.getElementById('rotation-options').classList.toggle('hidden', products.length < 2);
+    updateSummary();
+  }
+
+  function handleProductFiles(id, files) {
+    const p = products.find(x => x.id === id);
+    if (!p || !files.length) return;
+    Promise.all(Array.from(files).slice(0,10).map(f => new Promise(res => {
+      const r = new FileReader();
+      r.onload = e => res(e.target.result);
+      r.readAsDataURL(f);
+    }))).then(results => { p.files = [...p.files, ...results]; renderProducts(); });
+  }
+
+  function updateProductName(id, name) {
+    const p = products.find(x => x.id === id);
+    if (p) p.name = name;
+  }
+
+  function selectRotation(el) {
+    document.querySelectorAll('.rot-btn').forEach(b => {
+      b.style.borderColor = '#e5e7eb'; b.style.color = '#9ca3af'; b.style.background = 'transparent';
+    });
+    el.style.borderColor = '#111827'; el.style.color = '#111827'; el.style.background = '#f9fafb';
+    const descs = {
+      'Aléatoire': 'Chaque produit est choisi aléatoirement à chaque publication.',
+      'Séquentiel': 'Les produits s\'alternent dans l\'ordre dans lequel vous les avez ajoutés.',
+      'Équilibré': 'Chaque produit est utilisé un nombre égal de fois sur la durée de la campagne.'
+    };
+    document.getElementById('rotation-desc').textContent = descs[el.textContent.trim()] || '';
+  }
+
+  // Compat
+  function handleFiles() {}
+  function handleDrop(e) { e.preventDefault(); }
+
+  // AI prompt generation
+  // Structure fixe du prompt : partie technique conservée, partie créative adaptée
+  const PROMPT_TECHNIQUE = "Style publicitaire premium, ultra réaliste, 4K, photoréaliste, mouvement de caméra lent et fluide. Le produit présenté doit être exactement celui fourni en pièce jointe, avec des proportions et couleurs fidèles à l'original.";
+
+  const STYLE_SCENES = {
+    ecrin: [
+      "Gros plan cinématographique d'une main élégante soulevant délicatement {PRODUIT} depuis un emballage premium ouvert. Éclairage d'ambiance tamisé et chaleureux, arrière-plan flou en bokeh. La caméra effectue un lent zoom avant révélant chaque détail du produit.",
+      "Plan serré sur {PRODUIT} posé dans un coffret ouvert sur une surface en marbre. Lumière rasante qui révèle progressivement les détails et textures. Travelling lent de gauche à droite.",
+    ],
+    main: [
+      "Gros plan cinématographique de {PRODUIT} tenu dans une main élégante. La caméra effectue un léger travelling révélant le produit sous différents angles. Lumière naturelle douce, fond épuré et flou.",
+      "Plan rapproché montrant {PRODUIT} utilisé naturellement. Bokeh doux en arrière-plan, lumière chaude latérale qui met en valeur les formes et matières. Mouvement de caméra lent et fluide.",
+    ],
+    flatlat: [
+      "Vue de dessus en travelling lent sur {PRODUIT} posé sur une surface épurée. Composition minimaliste et soignée avec quelques éléments décoratifs cohérents avec le produit. Lumière studio douce et diffuse, ombres légères.",
+      "Plan top-down sur {PRODUIT} disposé élégamment. La caméra effectue une légère rotation lente. Éclairage studio professionnel révélant chaque détail, texture et couleur du produit.",
+    ],
+    nature: [
+      "Plan cinématographique de {PRODUIT} intégré dans un cadre naturel harmonieux. Lumière naturelle dorée, végétation floue en arrière-plan créant un bokeh organique. Travelling lent révélant le produit dans son environnement.",
+      "Gros plan de {PRODUIT} sur une surface naturelle texturée (bois, pierre, lin). Lumière de golden hour réchauffe la scène. La caméra glisse lentement autour du produit.",
+    ],
+    miroir: [
+      "Travelling lent autour de {PRODUIT} posé sur une surface réfléchissante. Le reflet symétrique crée une composition visuelle élégante et équilibrée. Éclairage latéral doux qui joue sur les reflets et la profondeur.",
+      "Plan cinématographique de {PRODUIT} sur une surface en verre ou miroir poli. La caméra glisse doucement, capturant simultanément le produit et son reflet. Lumière chaude et tamisée, fond épuré.",
+    ],
+    goldenhour: [
+      "Gros plan de {PRODUIT} baigné dans la lumière chaude et dorée du coucher de soleil. Bokeh de lumières naturelles en arrière-plan. La lumière rasante révèle les détails et textures avec un éclat exceptionnel.",
+      "Plan cinématographique de {PRODUIT} mis en scène face à une lumière de golden hour intense. Atmosphère chaleureuse et premium. La caméra effectue un lent mouvement circulaire autour du produit.",
+    ],
+  };
+
+  let scriptAutoEnabled = false;
+  let aiTimer = null;
+  let promptIdx = 0;
+  const ALL_SCENES = Object.values(STYLE_SCENES).flat();
+
+  function toggleScriptAuto() {
+    scriptAutoEnabled = !scriptAutoEnabled;
+    const toggle = document.getElementById('toggle-script');
+    toggle.classList.toggle('on', scriptAutoEnabled);
+    promptIdx = 0;
+    generateAiPrompt();
+  }
+
+  function buildPrompt(userDesc) {
+    const produit = extractProduct(userDesc);
+    let scene;
+    if (scriptAutoEnabled) {
+      // Pioche aléatoirement parmi tous les styles disponibles
+      scene = ALL_SCENES[promptIdx % ALL_SCENES.length].replace('{PRODUIT}', produit);
+      promptIdx++;
+    } else {
+      // Script standard neutre
+      scene = `Gros plan cinématographique de {PRODUIT} mis en valeur dans un cadre élégant et épuré. Éclairage professionnel doux, bokeh en arrière-plan. La caméra effectue un léger travelling révélant chaque détail du produit.`.replace('{PRODUIT}', produit);
+    }
+    return `${scene} ${PROMPT_TECHNIQUE}`;
+  }
+
+  function extractProduct(desc) {
+    // Détecte le type de produit dans la description du client
+    const lower = desc.toLowerCase();
+    const categories = [
+      { keys: ['collier','bracelet','bague','pendentif','boucle','anneau','chaîne','jonc','manchette'], label: 'le bijou' },
+      { keys: ['crème','sérum','soin','parfum','cosmétique','maquillage','rouge','mascara','fond de teint'], label: 'le produit cosmétique' },
+      { keys: ['vêtement','robe','veste','chemise','pull','pantalon','jean','sac','chaussure','sneaker'], label: 'le produit mode' },
+      { keys: ['bougie','décoration','vase','cadre','coussin','lampe','objet déco'], label: "l'objet de décoration" },
+      { keys: ['café','thé','chocolat','bouteille','boisson','food','aliment','gâteau'], label: 'le produit' },
+      { keys: ['téléphone','montre','gadget','accessoire tech','casque','écouteur'], label: 'le produit' },
+    ];
+    for (const cat of categories) {
+      if (cat.keys.some(k => lower.includes(k))) return `${cat.label} fourni en pièce jointe`;
+    }
+    return 'le produit fourni en pièce jointe';
+  }
+
+  function generateAiPrompt() {
+    const val = document.getElementById('user-prompt').value.trim();
+    clearTimeout(aiTimer);
+    if (!val) {
+      const el = document.getElementById('ai-prompt-text');
+      el.textContent = 'Le prompt apparaîtra automatiquement dès que vous décrivez votre contenu…';
+      el.className = 'italic text-gray-400';
+      return;
+    }
+    aiTimer = setTimeout(() => {
+      const p = buildPrompt(val);
+      typeText('ai-prompt-text', p);
+    }, 800);
+  }
+
+  function typeText(id, text) {
+    const el = document.getElementById(id);
+    el.className = 'text-gray-700';
+    el.textContent = '';
+    let i = 0;
+    const interval = setInterval(() => {
+      el.textContent += text[i];
+      i++;
+      if (i >= text.length) clearInterval(interval);
+    }, 12);
+  }
+
+  function editAiPrompt() {
+    const display = document.getElementById('ai-prompt-display');
+    const edit = document.getElementById('ai-prompt-edit');
+    const btn = document.getElementById('btn-edit-ai');
+    if (edit.classList.contains('hidden')) {
+      edit.value = document.getElementById('ai-prompt-text').textContent;
+      edit.classList.remove('hidden');
+      display.classList.add('hidden');
+      btn.textContent = 'Valider';
+    } else {
+      document.getElementById('ai-prompt-text').textContent = edit.value;
+      document.getElementById('ai-prompt-text').classList.remove('italic', 'text-gray-600');
+      document.getElementById('ai-prompt-text').classList.add('text-gray-300');
+      edit.classList.add('hidden');
+      display.classList.remove('hidden');
+      btn.textContent = 'Modifier';
+    }
+  }
+
+  // Schedule
+  function setSchedule(mode) {
+    ['btn-now','btn-later','btn-recur'].forEach(id => {
+      const b = document.getElementById(id);
+      b.style.background = 'transparent';
+      b.style.borderColor = '#e5e7eb';
+      b.style.color = '#9ca3af';
+    });
+    const active = document.getElementById('btn-' + (mode === 'now' ? 'now' : mode === 'later' ? 'later' : 'recur'));
+    active.style.background = '#f9fafb';
+    active.style.borderColor = '#111827';
+    active.style.color = '#111827';
+
+    document.getElementById('schedule-fields').classList.add('hidden');
+    document.getElementById('recur-fields').classList.add('hidden');
+    document.getElementById('campaign-summary').classList.add('hidden');
+
+    if (mode === 'later') {
+      document.getElementById('schedule-fields').classList.remove('hidden');
+      document.getElementById('btn-label').textContent = 'Planifier la génération';
+      document.getElementById('credit-info').textContent = '3 crédits seront utilisés';
+    } else if (mode === 'recur') {
+      document.getElementById('recur-fields').classList.remove('hidden');
+      document.getElementById('campaign-summary').classList.remove('hidden');
+      document.getElementById('btn-label').textContent = 'Lancer la campagne automatique';
+      updateSummary();
+    } else {
+      document.getElementById('btn-label').textContent = 'Lancer la génération';
+      document.getElementById('credit-info').textContent = '3 crédits seront utilisés';
+    }
+  }
+
+  function selectCount(el) {
+    document.querySelectorAll('.recur-count').forEach(b => {
+      b.style.borderColor = '#e5e7eb'; b.style.color = '#9ca3af'; b.style.background = 'transparent';
+      b.classList.remove('on');
+    });
+    el.style.borderColor = '#111827'; el.style.color = '#111827'; el.style.background = '#f9fafb';
+    el.classList.add('on');
+    const n = parseInt(el.textContent);
+    const container = document.getElementById('time-inputs');
+    container.innerHTML = '';
+    for (let i = 0; i < n; i++) {
+      const defaults = ['09:00','12:30','19:00'];
+      container.innerHTML += `<div class="flex items-center gap-2">
+        <input type="time" value="${defaults[i]}" class="flex-1" onchange="updateSummary()"/>
+        <span class="text-xs text-gray-300">± 10 min</span>
+      </div>`;
+    }
+    updateSummary();
+  }
+
+  function toggleDayChip(el) {
+    if (el.classList.contains('on')) {
+      el.style.borderColor = '#111827'; el.style.color = '#111827'; el.style.background = '#f9fafb';
+    } else {
+      el.style.borderColor = '#e5e7eb'; el.style.color = '#9ca3af'; el.style.background = 'transparent';
+    }
+    updateSummary();
+  }
+
+  function updateSummary() {
+    const count = document.querySelectorAll('.recur-count.on')[0]?.textContent || '1';
+    const times = Array.from(document.querySelectorAll('#time-inputs input')).map(i => i.value).join(', ');
+    const days = Array.from(document.querySelectorAll('.day-chip.on')).map(d => d.textContent);
+    document.getElementById('sum-freq').textContent = `${count} post / jour`;
+    document.getElementById('sum-times').textContent = times || '09:00';
+    document.getElementById('sum-days').textContent = days.length ? days.join(', ') : '—';
+    const total = parseInt(count) * days.length * 2;
+    document.getElementById('sum-total').textContent = `~${total} vidéos`;
+    document.getElementById('credit-info').textContent = `~${total * 3} crédits sur 2 semaines`;
+  }
+
+  // Generation
+  const steps = [
+    { id:'gs-1', msg:'Analyse du produit avec Gemini Vision…' },
+    { id:'gs-2', msg:'Génération du script et des textes…' },
+    { id:'gs-3', msg:'Composition et export de la vidéo…' },
+    { id:'gs-4', msg:'Publication sur les plateformes…' },
+  ];
+
+  function generate() {
+    const overlay = document.getElementById('gen-overlay');
+    overlay.classList.remove('hidden');
+    let step = 0;
+    steps.forEach(s => {
+      const el = document.getElementById(s.id);
+      el.querySelector('div').style.background = '';
+      el.querySelector('div').style.borderColor = '#374151';
+      el.style.color = '#4b5563';
+    });
+    const interval = setInterval(() => {
+      if (step < steps.length) {
+        const s = steps[step];
+        const el = document.getElementById(s.id);
+        el.querySelector('div').style.background = '#111';
+        el.querySelector('div').style.borderColor = '#111';
+        el.style.color = '#111';
+        document.getElementById('gen-msg').textContent = s.msg;
+        step++;
+      } else {
+        clearInterval(interval);
+        setTimeout(() => {
+          overlay.classList.add('hidden');
+          showSuccessToast();
+        }, 600);
+      }
+    }, 1200);
+  }
+
+  function showSuccessToast() {
+    const toast = document.createElement('div');
+    toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-5 py-3 rounded-xl text-sm font-medium text-white';
+    toast.style.background = '#111';
+    toast.style.border = '1px solid #333';
+    toast.innerHTML = `
+      <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+      </svg>
+      Vidéo générée et publiée avec succès
+    `;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 4000);
+  }
+
+  // ── Durée vidéo ─────────────────────────────────
+  function updateDuration(val) {
+    document.getElementById('duration-label').textContent = val + 's';
+  }
+
+  // ── Packshot ─────────────────────────────────────
+  function togglePackshot() {
+    const toggle = document.getElementById('toggle-packshot');
+    const fields = document.getElementById('packshot-fields');
+    const on = toggle.classList.toggle('on');
+    fields.classList.toggle('hidden', !on);
+  }
+
+  function handlePackshotFile(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      document.getElementById('packshot-img').src = e.target.result;
+      document.getElementById('packshot-default').classList.add('hidden');
+      document.getElementById('packshot-preview').classList.remove('hidden');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function handlePackshotDrop(e) {
+    e.preventDefault();
+    document.getElementById('packshot-zone').classList.remove('over');
+    handlePackshotFile(e.dataTransfer.files[0]);
+  }
+
+  // ── Format vidéo ────────────────────────────────
+  function selectFormat(fmt) {
+    const vertical = document.getElementById('fmt-vertical');
+    const horizontal = document.getElementById('fmt-horizontal');
+    if (fmt === 'vertical') {
+      vertical.style.borderColor = '#111827'; vertical.style.background = '#f9fafb';
+      vertical.querySelectorAll('p')[0].style.color = '#111827';
+      horizontal.style.borderColor = '#e5e7eb'; horizontal.style.background = 'transparent';
+      horizontal.querySelectorAll('p')[0].style.color = '#9ca3af';
+    } else {
+      horizontal.style.borderColor = '#111827'; horizontal.style.background = '#f9fafb';
+      horizontal.querySelectorAll('p')[0].style.color = '#111827';
+      vertical.style.borderColor = '#e5e7eb'; vertical.style.background = 'transparent';
+      vertical.querySelectorAll('p')[0].style.color = '#9ca3af';
+    }
+  }
+
+  // ── Navigation vues ─────────────────────────────
+  function switchView(view) {
+    ['creer','historique','calendrier'].forEach(v => {
+      document.getElementById('view-' + v).classList.add('hidden');
+      const btn = document.getElementById('nav-' + v);
+      btn.style.borderBottomColor = 'transparent';
+      btn.style.color = '#9ca3af';
+    });
+    document.getElementById('view-' + view).classList.remove('hidden');
+    const active = document.getElementById('nav-' + view);
+    active.style.borderBottomColor = '#111827';
+    active.style.color = '#111827';
+    if (view === 'calendrier') renderCalendar();
+  }
+
+  // ── Calendrier ───────────────────────────────────
+  let calDate = new Date();
+
+  // Faux posts planifiés pour la démo
+  const FAKE_POSTS = {
+    2: [{color:'green', label:'09:00'}],
+    5: [{color:'green', label:'12:30'}, {color:'green', label:'19:00'}],
+    8: [{color:'amber', label:'09:00'}],
+    9: [{color:'amber', label:'19:00'}],
+    12: [{color:'blue', label:'12:30'}],
+    15: [{color:'amber', label:'09:00'}, {color:'amber', label:'19:00'}],
+    16: [{color:'amber', label:'12:30'}],
+    19: [{color:'amber', label:'09:00'}],
+    22: [{color:'amber', label:'12:30'}, {color:'amber', label:'19:00'}],
+    23: [{color:'amber', label:'09:00'}],
+  };
+
+  function renderCalendar() {
+    const months = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+    document.getElementById('cal-title').textContent = `${months[calDate.getMonth()]} ${calDate.getFullYear()}`;
+
+    const firstDay = new Date(calDate.getFullYear(), calDate.getMonth(), 1);
+    const lastDay = new Date(calDate.getFullYear(), calDate.getMonth() + 1, 0);
+    const startOffset = (firstDay.getDay() + 6) % 7; // Lundi = 0
+    const today = new Date();
+
+    const grid = document.getElementById('cal-grid');
+    grid.innerHTML = '';
+
+    // Cases vides avant le 1er
+    for (let i = 0; i < startOffset; i++) {
+      grid.innerHTML += `<div class="h-20 rounded-xl"></div>`;
+    }
+
+    for (let d = 1; d <= lastDay.getDate(); d++) {
+      const isToday = today.getDate() === d && today.getMonth() === calDate.getMonth() && today.getFullYear() === calDate.getFullYear();
+      const posts = FAKE_POSTS[d] || [];
+      const pastDay = new Date(calDate.getFullYear(), calDate.getMonth(), d) < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+      grid.innerHTML += `
+        <div class="h-20 rounded-xl border ${isToday ? 'border-gray-900 bg-gray-50' : 'border-gray-100'} p-2 cursor-pointer hover:border-gray-300 transition-all ${pastDay && !isToday ? 'opacity-50' : ''}">
+          <p class="text-xs font-medium ${isToday ? 'text-gray-900' : 'text-gray-400'} mb-1">${d}</p>
+          <div class="space-y-0.5">
+            ${posts.slice(0,3).map(p => `
+              <div class="flex items-center gap-1">
+                <div class="w-1.5 h-1.5 rounded-full bg-${p.color}-400 flex-shrink-0"></div>
+                <span class="text-xs text-gray-400 truncate">${p.label}</span>
+              </div>`).join('')}
+            ${posts.length > 3 ? `<p class="text-xs text-gray-300">+${posts.length-3}</p>` : ''}
+          </div>
+        </div>`;
+    }
+  }
+
+  function prevMonth() {
+    calDate.setMonth(calDate.getMonth() - 1);
+    renderCalendar();
+  }
+  function nextMonth() {
+    calDate.setMonth(calDate.getMonth() + 1);
+    renderCalendar();
+  }
+
+  // ── Settings panel ──────────────────────────────
+  function openSettings() {
+    const overlay = document.getElementById('settings-overlay');
+    const panel = document.getElementById('settings-panel');
+    overlay.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      panel.style.transform = 'translateX(0)';
+    });
+  }
+
+  function closeSettings() {
+    const panel = document.getElementById('settings-panel');
+    panel.style.transform = 'translateX(-100%)';
+    setTimeout(() => {
+      document.getElementById('settings-overlay').classList.add('hidden');
+    }, 250);
+  }
+
+  function setTab(tab) {
+    ['connexion','api','tuto'].forEach(t => {
+      document.getElementById('content-' + t).classList.add('hidden');
+      const btn = document.getElementById('tab-' + t);
+      btn.style.borderBottomColor = 'transparent';
+      btn.style.color = '#9ca3af';
+    });
+    document.getElementById('content-' + tab).classList.remove('hidden');
+    const active = document.getElementById('tab-' + tab);
+    active.style.borderBottomColor = '#111827';
+    active.style.color = '#111827';
+  }
+</script>
+</body>
+</html>
