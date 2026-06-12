@@ -216,10 +216,6 @@
           class="settings-tab text-xs font-medium py-3 mr-5 border-b-2 border-transparent text-gray-400 cursor-pointer hover:text-gray-600 transition-all">
           Clés API
         </button>
-        <button onclick="setTab('tuto')" id="tab-tuto"
-          class="settings-tab text-xs font-medium py-3 border-b-2 border-transparent text-gray-400 cursor-pointer hover:text-gray-600 transition-all">
-          Tutoriel Make
-        </button>
       </div>
 
       <!-- Contenu scrollable -->
@@ -227,50 +223,15 @@
 
         <!-- TAB: Connexion -->
         <div id="content-connexion">
-          <p class="section-label">Webhook Make.com</p>
-          <p class="text-xs text-gray-400 mb-3">Collez l'URL webhook de votre scénario Make.com. ContentAI l'appellera automatiquement à chaque publication.</p>
-          <input type="url" placeholder="https://hook.eu1.make.com/xxxxxxxxxxxx" class="mb-2"/>
-          <button class="btn-primary w-full py-2 text-sm">Enregistrer & Tester</button>
+          <p class="section-label">Comptes connectés</p>
 
-          <div class="mt-5">
-            <p class="section-label">Statut des connexions</p>
-            <div class="space-y-2">
-              <div class="flex items-center justify-between py-2.5 px-3 rounded-lg bg-gray-50">
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 rounded-full bg-green-400"></div>
-                  <span class="text-sm text-gray-700">TikTok</span>
-                </div>
-                <span class="text-xs text-gray-400">Via Make.com</span>
-              </div>
-              <div class="flex items-center justify-between py-2.5 px-3 rounded-lg bg-gray-50">
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 rounded-full bg-green-400"></div>
-                  <span class="text-sm text-gray-700">Instagram</span>
-                </div>
-                <span class="text-xs text-gray-400">Via Make.com</span>
-              </div>
-              <div class="flex items-center justify-between py-2.5 px-3 rounded-lg bg-gray-50">
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 rounded-full bg-green-400"></div>
-                  <span class="text-sm text-gray-700">Facebook</span>
-                </div>
-                <span class="text-xs text-gray-400">Via Make.com</span>
-              </div>
-              <div class="flex items-center justify-between py-2.5 px-3 rounded-lg bg-gray-50">
-                <div class="flex items-center gap-2">
-                  <div class="w-2 h-2 rounded-full bg-gray-300"></div>
-                  <span class="text-sm text-gray-400">Telegram</span>
-                </div>
-                <span class="text-xs text-gray-400">Non configuré</span>
-              </div>
-            </div>
-          </div>
+          <div id="connected-platforms" class="space-y-2 mb-5"></div>
 
-          <div class="mt-5">
-            <p class="section-label">Notification Telegram</p>
-            <input type="text" placeholder="Votre Chat ID Telegram" class="mb-2"/>
-            <button class="btn-secondary w-full py-2 text-sm">Enregistrer</button>
-          </div>
+          <a href="index.html"
+            class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-600 hover:border-gray-900 hover:text-gray-900 transition-all cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Connecter une plateforme
+          </a>
         </div>
 
         <!-- TAB: API -->
@@ -290,23 +251,7 @@
           <input type="password" placeholder="gsk_••••••••••••••••••••••" class="mb-2"/>
           <button class="btn-primary w-full py-2 text-sm">Enregistrer</button>
         </div>
-
-        <!-- TAB: Tutoriel Make -->
-        <div id="content-tuto" class="hidden">
-          <p class="section-label">Comment connecter Make.com</p>
-
-          <!-- Étape 1 -->
-          <div class="mb-5">
-            <div class="flex items-center gap-3 mb-2">
-              <div class="w-6 h-6 rounded-full bg-gray-900 text-white text-xs font-bold flex items-center justify-center flex-shrink-0">1</div>
-              <p class="text-sm font-medium text-gray-800">Créer un compte Make.com</p>
-            </div>
-            <div class="ml-9">
-              <p class="text-xs text-gray-500 mb-2">Rendez-vous sur <span class="font-medium text-gray-700">make.com</span> et créez un compte gratuit.</p>
-              <div class="bg-gray-50 rounded-lg px-3 py-2 text-xs text-gray-500">
-                Le plan gratuit suffit pour commencer (1 000 opérations/mois).
-              </div>
-            </div>
+        </div>
           </div>
 
           <!-- Étape 2 -->
@@ -1442,7 +1387,30 @@
   }
 
   // ── Settings panel ──────────────────────────────
+  function renderConnectedPlatforms() {
+    const stored = sessionStorage.getItem('connected');
+    const connected = stored ? JSON.parse(stored) : {};
+    const platforms = [
+      { key: 'tiktok',    label: 'TikTok',    color: 'bg-black' },
+      { key: 'instagram', label: 'Instagram', color: 'bg-pink-500' },
+      { key: 'youtube',   label: 'YouTube',   color: 'bg-red-500' },
+    ];
+    const container = document.getElementById('connected-platforms');
+    if (!container) return;
+    container.innerHTML = platforms.map(p => `
+      <div class="flex items-center justify-between py-2.5 px-3 rounded-lg bg-gray-50">
+        <div class="flex items-center gap-2">
+          <div class="w-2 h-2 rounded-full ${connected[p.key] ? 'bg-green-400' : 'bg-gray-300'}"></div>
+          <span class="text-sm ${connected[p.key] ? 'text-gray-700' : 'text-gray-400'}">${p.label}</span>
+        </div>
+        <span class="text-xs ${connected[p.key] ? 'text-green-500 font-medium' : 'text-gray-400'}">
+          ${connected[p.key] ? 'Connecté' : 'Non connecté'}
+        </span>
+      </div>`).join('');
+  }
+
   function openSettings() {
+    renderConnectedPlatforms();
     const overlay = document.getElementById('settings-overlay');
     const panel = document.getElementById('settings-panel');
     overlay.classList.remove('hidden');
