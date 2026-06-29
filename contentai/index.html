@@ -3,176 +3,130 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ContentAI — Connexion</title>
+  <title>ContentAI — Créez et publiez vos carrousels TikTok automatiquement</title>
+  <meta name="description" content="ContentAI génère automatiquement des carrousels photo à partir de vos images produits et les publie sur votre compte TikTok via l'API officielle." />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     * { font-family: 'Inter', sans-serif; }
-    body { background: #f9f9f9; color: #111111; }
-    .btn-primary { background: #111827; color: #fff; border-radius: 8px; padding: 10px 20px; font-weight: 600; font-size: 14px; cursor: pointer; border: none; transition: background 0.15s; }
+    body { background: #ffffff; color: #111111; }
+    .btn-primary { background: #111827; color: #fff; border-radius: 10px; padding: 12px 22px; font-weight: 600; font-size: 14px; cursor: pointer; border: none; transition: background 0.15s; display: inline-block; }
     .btn-primary:hover { background: #333; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .spin { animation: spin 1s linear infinite; }
+    .btn-ghost { background: #fff; color: #111827; border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px 22px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.15s; display: inline-block; }
+    .btn-ghost:hover { border-color: #111827; }
+    .card { background: #fff; border: 1px solid #ececec; border-radius: 16px; }
   </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4">
-  <div class="w-full max-w-sm">
+<body class="min-h-screen">
 
-    <div class="text-center mb-8">
-      <div class="inline-flex items-center gap-2 mb-2">
-        <svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-        </svg>
+  <!-- Barre de navigation -->
+  <header class="border-b border-gray-100 sticky top-0 bg-white/90 backdrop-blur z-10">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         <span class="font-semibold text-gray-900 text-lg">ContentAI</span>
       </div>
-      <p class="text-sm text-gray-400">Créez et publiez du contenu automatiquement</p>
+      <a href="https://contentai-backend-jnl3.onrender.com/" class="btn-primary">Lancer l'application</a>
     </div>
+  </header>
 
-    <div class="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm">
-      <h2 class="text-base font-semibold text-gray-900 text-center mb-1">Connectez votre compte</h2>
-      <p class="text-xs text-gray-400 text-center mb-6">Choisissez les plateformes sur lesquelles vous souhaitez publier</p>
-
-      <!-- TikTok -->
-      <button onclick="connectTikTok()"
-        class="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl border border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-all cursor-pointer mb-3 group">
-        <div class="w-8 h-8 rounded-lg bg-black flex items-center justify-center flex-shrink-0">
-          <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.56V6.79a4.84 4.84 0 01-1.07-.1z"/></svg>
-        </div>
-        <div class="flex-1 text-left">
-          <p class="text-sm font-medium text-gray-900">Continuer avec TikTok</p>
-          <p class="text-xs text-gray-400">Publication de vidéos et Reels</p>
-        </div>
-        <div id="tiktok-status" class="flex-shrink-0">
-          <svg class="w-4 h-4 text-gray-300 group-hover:text-gray-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </div>
-      </button>
-
-      <!-- Instagram -->
-      <button onclick="connectInstagram()"
-        class="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl border border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-all cursor-pointer mb-3 group">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
-          <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </div>
-        <div class="flex-1 text-left">
-          <p class="text-sm font-medium text-gray-900">Continuer avec Instagram</p>
-          <p class="text-xs text-gray-400">Reels et posts carrousel</p>
-        </div>
-        <div id="instagram-status" class="flex-shrink-0">
-          <svg class="w-4 h-4 text-gray-300 group-hover:text-gray-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </div>
-      </button>
-
-      <!-- YouTube -->
-      <button onclick="connectYoutube()"
-        class="w-full flex items-center gap-3 px-4 py-3.5 rounded-xl border border-gray-200 hover:border-gray-900 hover:bg-gray-50 transition-all cursor-pointer mb-6 group">
-        <div class="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center flex-shrink-0">
-          <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-        </div>
-        <div class="flex-1 text-left">
-          <p class="text-sm font-medium text-gray-900">Continuer avec YouTube</p>
-          <p class="text-xs text-gray-400">YouTube Shorts</p>
-        </div>
-        <div id="youtube-status" class="flex-shrink-0">
-          <svg class="w-4 h-4 text-gray-300 group-hover:text-gray-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-        </div>
-      </button>
-
-      <button id="btn-continue" onclick="enterApp()" disabled
-        class="w-full py-3 rounded-xl text-sm font-semibold transition-all"
-        style="background:#e5e7eb; color:#9ca3af; cursor:not-allowed">
-        Continuer
-      </button>
-      <p class="text-center text-xs text-gray-300 mt-4">Connectez au moins une plateforme pour continuer</p>
+  <!-- Hero -->
+  <section class="max-w-3xl mx-auto px-6 pt-20 pb-16 text-center">
+    <span class="inline-block text-xs font-medium text-gray-500 bg-gray-100 rounded-full px-3 py-1 mb-5">Publication automatique sur TikTok</span>
+    <h1 class="text-4xl sm:text-5xl font-semibold text-gray-900 leading-tight mb-5">
+      Vos carrousels TikTok,<br/>créés et publiés automatiquement.
+    </h1>
+    <p class="text-lg text-gray-500 mb-8 max-w-xl mx-auto">
+      ContentAI transforme vos photos de produits en carrousels prêts à poster, avec accroche et musique,
+      puis les publie directement sur votre compte TikTok via l'API officielle.
+    </p>
+    <div class="flex items-center justify-center gap-3 flex-wrap">
+      <a href="https://contentai-backend-jnl3.onrender.com/" class="btn-primary">Se connecter avec TikTok</a>
+      <a href="app.html" class="btn-ghost">Voir l'interface</a>
     </div>
+    <p class="text-xs text-gray-400 mt-4">Gratuit pour démarrer · Vous gardez le contrôle de chaque publication</p>
+  </section>
 
-    <p class="text-center text-xs text-gray-300 mt-5">En continuant, vous acceptez nos <a href="https://agencemarketflow.fr/mentions-legales.html" target="_blank" class="underline hover:text-gray-500 transition-colors">Mentions légales</a> et notre <a href="https://agencemarketflow.fr/politique-confidentialite.html" target="_blank" class="underline hover:text-gray-500 transition-colors">Politique de confidentialité</a></p>
-  </div>
-
-  <!-- MODAL TIKTOK -->
-  <div id="modal-tiktok" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background:rgba(0,0,0,0.5)">
-    <div class="bg-white rounded-2xl w-full max-w-xs overflow-hidden shadow-xl">
-      <div class="bg-black px-6 py-5 text-center">
-        <svg class="w-8 h-8 fill-white mx-auto mb-2" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.56V6.79a4.84 4.84 0 01-1.07-.1z"/></svg>
-        <p class="text-white font-semibold text-sm">Se connecter avec TikTok</p>
+  <!-- Comment ça marche -->
+  <section class="max-w-5xl mx-auto px-6 py-12">
+    <h2 class="text-2xl font-semibold text-gray-900 text-center mb-2">Comment ça marche</h2>
+    <p class="text-sm text-gray-400 text-center mb-12">Trois étapes, et le contenu part tout seul.</p>
+    <div class="grid sm:grid-cols-3 gap-5">
+      <div class="card p-6">
+        <div class="w-9 h-9 rounded-full bg-gray-900 text-white text-sm font-bold flex items-center justify-center mb-4">1</div>
+        <h3 class="font-semibold text-gray-900 mb-1">Connectez votre TikTok</h3>
+        <p class="text-sm text-gray-500">Autorisez ContentAI en un clic via la connexion officielle TikTok.</p>
       </div>
-      <div class="px-6 py-5">
-        <p class="text-xs text-gray-500 mb-4 text-center"><span class="font-semibold text-gray-900">ContentAI</span> souhaite accéder à votre compte TikTok</p>
-        <div class="space-y-2.5 mb-5">
-          <div class="flex items-start gap-2.5"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><p class="text-xs text-gray-600">Publier des vidéos sur votre compte</p></div>
-          <div class="flex items-start gap-2.5"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><p class="text-xs text-gray-600">Planifier des publications à l'avance</p></div>
-          <div class="flex items-start gap-2.5"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><p class="text-xs text-gray-600">Accéder aux statistiques de vos vidéos</p></div>
-          <div class="flex items-start gap-2.5"><svg class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg><p class="text-xs text-gray-400">Accéder à vos messages privés</p></div>
-        </div>
-        <button onclick="confirmConnect('tiktok')" class="w-full py-2.5 rounded-xl text-sm font-semibold text-white mb-2 cursor-pointer hover:opacity-90 transition-all" style="background:#000">Autoriser</button>
-        <button onclick="closeModal('modal-tiktok')" class="w-full py-2.5 rounded-xl text-sm font-medium text-gray-500 border border-gray-200 cursor-pointer hover:border-gray-400 transition-all">Annuler</button>
+      <div class="card p-6">
+        <div class="w-9 h-9 rounded-full bg-gray-900 text-white text-sm font-bold flex items-center justify-center mb-4">2</div>
+        <h3 class="font-semibold text-gray-900 mb-1">Importez vos photos</h3>
+        <p class="text-sm text-gray-500">Ajoutez vos images produits. L'IA génère l'accroche et assemble le carrousel.</p>
+      </div>
+      <div class="card p-6">
+        <div class="w-9 h-9 rounded-full bg-gray-900 text-white text-sm font-bold flex items-center justify-center mb-4">3</div>
+        <h3 class="font-semibold text-gray-900 mb-1">Publiez sur TikTok</h3>
+        <p class="text-sm text-gray-500">Le carrousel est publié sur votre compte, avec une musique ajoutée automatiquement.</p>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- MODAL INSTAGRAM -->
-  <div id="modal-instagram" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background:rgba(0,0,0,0.5)">
-    <div class="bg-white rounded-2xl w-full max-w-xs overflow-hidden shadow-xl">
-      <div class="px-6 py-5 text-center" style="background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)">
-        <svg class="w-8 h-8 fill-white mx-auto mb-2" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        <p class="text-white font-semibold text-sm">Se connecter avec Instagram</p>
+  <!-- Fonctionnalités -->
+  <section class="max-w-5xl mx-auto px-6 py-12">
+    <div class="grid sm:grid-cols-2 gap-5">
+      <div class="card p-6">
+        <h3 class="font-semibold text-gray-900 mb-1">🎨 Génération automatique</h3>
+        <p class="text-sm text-gray-500">Accroche, mise en page et assemblage du carrousel générés par l'IA à partir de vos photos.</p>
       </div>
-      <div class="px-6 py-5">
-        <p class="text-xs text-gray-500 mb-4 text-center"><span class="font-semibold text-gray-900">ContentAI</span> souhaite accéder à votre compte Instagram</p>
-        <div class="space-y-2.5 mb-5">
-          <div class="flex items-start gap-2.5"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><p class="text-xs text-gray-600">Publier des Reels et carrousels</p></div>
-          <div class="flex items-start gap-2.5"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><p class="text-xs text-gray-600">Planifier des publications</p></div>
-          <div class="flex items-start gap-2.5"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><p class="text-xs text-gray-600">Lire les statistiques de vos posts</p></div>
-        </div>
-        <button onclick="confirmConnect('instagram')" class="w-full py-2.5 rounded-xl text-sm font-semibold text-white mb-2 cursor-pointer hover:opacity-90 transition-all" style="background:linear-gradient(135deg,#dc2743,#bc1888)">Autoriser</button>
-        <button onclick="closeModal('modal-instagram')" class="w-full py-2.5 rounded-xl text-sm font-medium text-gray-500 border border-gray-200 cursor-pointer hover:border-gray-400 transition-all">Annuler</button>
+      <div class="card p-6">
+        <h3 class="font-semibold text-gray-900 mb-1">📲 Publication directe</h3>
+        <p class="text-sm text-gray-500">Publication sur votre compte TikTok via l'API officielle (Content Posting API).</p>
       </div>
-    </div>
-  </div>
-
-  <!-- MODAL YOUTUBE -->
-  <div id="modal-youtube" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background:rgba(0,0,0,0.5)">
-    <div class="bg-white rounded-2xl w-full max-w-xs overflow-hidden shadow-xl">
-      <div class="bg-red-600 px-6 py-5 text-center">
-        <svg class="w-8 h-8 fill-white mx-auto mb-2" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-        <p class="text-white font-semibold text-sm">Se connecter avec YouTube</p>
+      <div class="card p-6">
+        <h3 class="font-semibold text-gray-900 mb-1">🎵 Musique automatique</h3>
+        <p class="text-sm text-gray-500">Un son de la bibliothèque commerciale TikTok ajouté automatiquement à chaque carrousel.</p>
       </div>
-      <div class="px-6 py-5">
-        <p class="text-xs text-gray-500 mb-4 text-center"><span class="font-semibold text-gray-900">ContentAI</span> souhaite accéder à votre chaîne YouTube</p>
-        <div class="space-y-2.5 mb-5">
-          <div class="flex items-start gap-2.5"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><p class="text-xs text-gray-600">Publier des YouTube Shorts</p></div>
-          <div class="flex items-start gap-2.5"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><p class="text-xs text-gray-600">Gérer les métadonnées des vidéos</p></div>
-          <div class="flex items-start gap-2.5"><svg class="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><p class="text-xs text-gray-600">Lire les analytics de votre chaîne</p></div>
-        </div>
-        <button onclick="confirmConnect('youtube')" class="w-full py-2.5 rounded-xl text-sm font-semibold text-white mb-2 cursor-pointer hover:opacity-90 transition-all bg-red-600">Autoriser</button>
-        <button onclick="closeModal('modal-youtube')" class="w-full py-2.5 rounded-xl text-sm font-medium text-gray-500 border border-gray-200 cursor-pointer hover:border-gray-400 transition-all">Annuler</button>
+      <div class="card p-6">
+        <h3 class="font-semibold text-gray-900 mb-1">🔒 Vous gardez le contrôle</h3>
+        <p class="text-sm text-gray-500">Vous autorisez l'accès à tout moment, et pouvez le révoquer depuis vos réglages TikTok.</p>
       </div>
     </div>
-  </div>
+  </section>
 
-<script>
-  const connected = { tiktok: false, instagram: false, youtube: false };
+  <!-- Intégration TikTok -->
+  <section class="max-w-3xl mx-auto px-6 py-12">
+    <div class="card p-8 text-center">
+      <div class="w-12 h-12 rounded-xl bg-black flex items-center justify-center mx-auto mb-4">
+        <svg class="w-6 h-6 fill-white" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.56V6.79a4.84 4.84 0 01-1.07-.1z"/></svg>
+      </div>
+      <h2 class="text-xl font-semibold text-gray-900 mb-2">Intégration TikTok officielle</h2>
+      <p class="text-sm text-gray-500 max-w-lg mx-auto">
+        ContentAI utilise les produits officiels TikTok for Developers — <strong>Login Kit</strong> pour la
+        connexion sécurisée et la <strong>Content Posting API</strong> pour publier vos carrousels.
+        Nous n'accédons qu'aux informations nécessaires et ne publions qu'à votre demande.
+      </p>
+    </div>
+  </section>
 
-  function connectTikTok()    { document.getElementById('modal-tiktok').classList.remove('hidden'); }
-  function connectInstagram() { document.getElementById('modal-instagram').classList.remove('hidden'); }
-  function connectYoutube()   { document.getElementById('modal-youtube').classList.remove('hidden'); }
-  function closeModal(id)     { document.getElementById(id).classList.add('hidden'); }
+  <!-- CTA final -->
+  <section class="max-w-3xl mx-auto px-6 py-16 text-center">
+    <h2 class="text-2xl font-semibold text-gray-900 mb-4">Prêt à automatiser votre TikTok ?</h2>
+    <a href="https://contentai-backend-jnl3.onrender.com/" class="btn-primary">Lancer l'application</a>
+  </section>
 
-  function confirmConnect(platform) {
-    connected[platform] = true;
-    closeModal('modal-' + platform);
-    document.getElementById(platform + '-status').innerHTML = `<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>`;
-    const btn = document.getElementById('btn-continue');
-    btn.disabled = false;
-    btn.style.background = '#111827';
-    btn.style.color = '#fff';
-    btn.style.cursor = 'pointer';
-  }
+  <!-- Footer -->
+  <footer class="border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <span class="font-semibold text-gray-900 text-sm">ContentAI</span>
+      </div>
+      <div class="flex items-center gap-5 text-xs text-gray-400">
+        <a href="cgu.html" class="hover:text-gray-900 transition-colors">Conditions d'utilisation</a>
+        <a href="confidentialite.html" class="hover:text-gray-900 transition-colors">Politique de confidentialité</a>
+        <a href="mailto:agence.marketflow@gmail.com" class="hover:text-gray-900 transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
 
-  function enterApp() {
-    // Stocker les connexions pour l'app
-    sessionStorage.setItem('connected', JSON.stringify(connected));
-    window.location.href = 'app.html';
-  }
-</script>
 </body>
 </html>
