@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ContentAI — Politique de confidentialité</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { background: #f9f9f9; color: #111111; }
+    h2 { font-size: 1.05rem; font-weight: 600; color: #111827; margin: 1.8rem 0 0.6rem; }
+    p, li { font-size: 0.9rem; line-height: 1.7; color: #374151; }
+    ul { list-style: disc; padding-left: 1.4rem; margin: 0.5rem 0; }
+    a.link { color: #111827; text-decoration: underline; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="max-w-2xl mx-auto px-6 py-12">
+
+    <!-- En-tête -->
+    <div class="flex items-center gap-2 mb-2">
+      <svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+      </svg>
+      <span class="font-semibold text-gray-900 text-lg">ContentAI</span>
+    </div>
+    <h1 class="text-2xl font-semibold text-gray-900 mb-1">Politique de confidentialité</h1>
+    <p class="text-xs text-gray-400 mb-8">Dernière mise à jour : 29 juin 2026</p>
+
+    <div class="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm">
+
+      <p>La présente politique décrit comment <strong>ContentAI</strong> (« le Service », édité par
+      Arthur Grangé) collecte, utilise et protège vos données, notamment les données issues de votre
+      compte <strong>TikTok</strong> lorsque vous connectez celui-ci au Service.</p>
+
+      <h2>1. Responsable du traitement</h2>
+      <p>Arthur Grangé — ContentAI / MarketFlow.<br/>
+      Contact : <a class="link" href="mailto:agence.marketflow@gmail.com">agence.marketflow@gmail.com</a></p>
+
+      <h2>2. Ce que fait ContentAI</h2>
+      <p>ContentAI permet à un utilisateur de créer automatiquement des contenus promotionnels
+      (carrousels photo) à partir de ses propres images de produits, puis de les publier sur son
+      compte TikTok via l'API officielle de TikTok.</p>
+
+      <h2>3. Données TikTok que nous traitons</h2>
+      <p>Lorsque vous connectez votre compte TikTok via « Se connecter avec TikTok » (Login Kit),
+      vous nous autorisez à accéder, selon les autorisations (« scopes ») que vous accordez, aux
+      données suivantes :</p>
+      <ul>
+        <li><strong>user.info.basic</strong> — informations de profil de base : identifiant
+        (<code>open_id</code>), nom d'affichage et photo de profil. Utilisés uniquement pour
+        afficher le compte connecté dans l'interface.</li>
+        <li><strong>video.publish / video.upload</strong> — pour publier sur votre compte TikTok,
+        en votre nom et à votre demande, les contenus que vous avez créés dans le Service.</li>
+      </ul>
+      <p>Nous accédons également à un <strong>jeton d'accès (access token)</strong> et à un
+      <strong>jeton de rafraîchissement</strong> fournis par TikTok, nécessaires pour effectuer ces
+      publications.</p>
+
+      <h2>4. Comment nous utilisons ces données</h2>
+      <ul>
+        <li>Afficher votre compte TikTok connecté dans l'interface ;</li>
+        <li>Publier, à votre demande explicite, les contenus que vous créez sur votre compte TikTok ;</li>
+        <li>Maintenir votre session connectée (rafraîchissement automatique du jeton).</li>
+      </ul>
+      <p>Nous <strong>n'utilisons jamais</strong> vos données TikTok à d'autres fins, ne les
+      <strong>vendons pas</strong> et ne les partageons pas à des fins publicitaires.</p>
+
+      <h2>5. Conservation et suppression</h2>
+      <ul>
+        <li>Les jetons d'accès TikTok sont conservés uniquement le temps où votre compte est connecté,
+        côté serveur, et ne sont jamais exposés au navigateur.</li>
+        <li>Vous pouvez vous <strong>déconnecter à tout moment</strong> depuis l'interface : vos jetons
+        sont alors supprimés de notre session.</li>
+        <li>Vous pouvez aussi <strong>révoquer l'accès</strong> directement dans les réglages de votre
+        compte TikTok (Paramètres → Sécurité → Applications autorisées).</li>
+        <li>Sur demande à l'adresse de contact ci-dessus, nous supprimons l'ensemble des données
+        associées à votre compte sous 30 jours.</li>
+      </ul>
+
+      <h2>6. Prestataires techniques</h2>
+      <ul>
+        <li><strong>Render</strong> (hébergement du backend) — traite les requêtes du Service.</li>
+        <li><strong>TikTok for Developers</strong> — fournisseur de l'API. L'usage des données TikTok
+        respecte les <a class="link" href="https://developers.tiktok.com/doc/content-sharing-guidelines/" target="_blank" rel="noopener">conditions et politiques développeur de TikTok</a>.</li>
+      </ul>
+
+      <h2>7. Vos droits (RGPD)</h2>
+      <p>Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et
+      d'opposition sur vos données. Pour les exercer, écrivez à
+      <a class="link" href="mailto:agence.marketflow@gmail.com">agence.marketflow@gmail.com</a>.
+      Vous pouvez également saisir la CNIL (cnil.fr).</p>
+
+      <h2>8. Sécurité</h2>
+      <p>Les jetons et secrets sont stockés côté serveur, via des variables d'environnement, et les
+      échanges se font exclusivement en HTTPS.</p>
+
+      <h2>9. Modifications</h2>
+      <p>Cette politique peut être mise à jour. La date de dernière mise à jour en haut de page fait foi.</p>
+
+      <div class="mt-8 pt-6 border-t border-gray-100 flex items-center gap-4 text-xs text-gray-400">
+        <a class="link" href="/contentai/">Accueil</a>
+        <a class="link" href="/contentai/cgu.html">Conditions d'utilisation</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
