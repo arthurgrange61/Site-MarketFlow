@@ -4,30 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ContentAI — Conditions d'utilisation</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    * { font-family: 'Inter', sans-serif; }
-    body { background: #f9f9f9; color: #111111; }
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f9f9f9; color: #111111; margin: 0; min-height: 100vh; }
+    .page { max-width: 700px; margin: 0 auto; padding: 48px 24px; }
+    .brand-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .brand-row span { font-weight: 600; color: #111827; font-size: 18px; }
+    h1 { font-size: 24px; font-weight: 600; color: #111827; margin: 0 0 4px; }
+    .date { font-size: 12px; color: #9ca3af; margin-bottom: 32px; }
+    .card { background: #fff; border-radius: 16px; border: 1px solid #f3f4f6; padding: 32px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
     h2 { font-size: 1.05rem; font-weight: 600; color: #111827; margin: 1.8rem 0 0.6rem; }
     p, li { font-size: 0.9rem; line-height: 1.7; color: #374151; }
     ul { list-style: disc; padding-left: 1.4rem; margin: 0.5rem 0; }
     a.link { color: #111827; text-decoration: underline; }
+    .footer-links { margin-top: 32px; padding-top: 24px; border-top: 1px solid #f3f4f6; display: flex; align-items: center; gap: 16px; font-size: 12px; color: #9ca3af; }
+    .footer-links a { color: #9ca3af; text-decoration: underline; }
   </style>
 </head>
-<body class="min-h-screen">
-  <div class="max-w-2xl mx-auto px-6 py-12">
+<body>
+  <div class="page">
 
-    <div class="flex items-center gap-2 mb-2">
-      <svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+    <div class="brand-row">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
       </svg>
-      <span class="font-semibold text-gray-900 text-lg">ContentAI</span>
+      <span>ContentAI</span>
     </div>
-    <h1 class="text-2xl font-semibold text-gray-900 mb-1">Conditions d'utilisation</h1>
-    <p class="text-xs text-gray-400 mb-8">Dernière mise à jour : 29 juin 2026</p>
+    <h1>Conditions d'utilisation</h1>
+    <p class="date">Dernière mise à jour : 29 juin 2026</p>
 
-    <div class="bg-white rounded-2xl border border-gray-100 p-8 shadow-sm">
+    <div class="card">
 
       <p>Les présentes conditions régissent l'utilisation du service <strong>ContentAI</strong>
       (« le Service »), édité par Arthur Grangé. En utilisant le Service, vous acceptez ces conditions.</p>
@@ -79,9 +85,9 @@
       <p>Les présentes conditions sont régies par le droit français. Pour toute question :
       <a class="link" href="mailto:agence.marketflow@gmail.com">agence.marketflow@gmail.com</a>.</p>
 
-      <div class="mt-8 pt-6 border-t border-gray-100 flex items-center gap-4 text-xs text-gray-400">
-        <a class="link" href="/contentai/">Accueil</a>
-        <a class="link" href="/contentai/confidentialite.html">Politique de confidentialité</a>
+      <div class="footer-links">
+        <a href="/contentai/">Accueil</a>
+        <a href="/contentai/confidentialite.html">Politique de confidentialité</a>
       </div>
     </div>
   </div>

@@ -5,125 +5,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ContentAI — Créez et publiez vos carrousels TikTok automatiquement</title>
   <meta name="description" content="ContentAI génère automatiquement des carrousels photo à partir de vos images produits et les publie sur votre compte TikTok via l'API officielle." />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    * { font-family: 'Inter', sans-serif; }
-    body { background: #ffffff; color: #111111; }
-    .btn-primary { background: #111827; color: #fff; border-radius: 10px; padding: 12px 22px; font-weight: 600; font-size: 14px; cursor: pointer; border: none; transition: background 0.15s; display: inline-block; }
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #ffffff; color: #111111; line-height: 1.5;
+    }
+    a { text-decoration: none; color: inherit; }
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+    .wrap-sm { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+
+    header { border-bottom: 1px solid #f0f0f0; position: sticky; top: 0; background: rgba(255,255,255,0.92); backdrop-filter: blur(6px); z-index: 10; }
+    header .inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+    .brand { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 18px; color: #111827; }
+
+    .btn { display: inline-block; border-radius: 10px; padding: 12px 22px; font-weight: 600; font-size: 14px; cursor: pointer; border: none; transition: all 0.15s; }
+    .btn-primary { background: #111827; color: #fff; }
     .btn-primary:hover { background: #333; }
-    .btn-ghost { background: #fff; color: #111827; border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px 22px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.15s; display: inline-block; }
+    .btn-ghost { background: #fff; color: #111827; border: 1px solid #e5e7eb; }
     .btn-ghost:hover { border-color: #111827; }
-    .card { background: #fff; border: 1px solid #ececec; border-radius: 16px; }
+
+    .hero { text-align: center; padding: 80px 24px 60px; }
+    .badge { display: inline-block; font-size: 12px; font-weight: 500; color: #6b7280; background: #f3f4f6; border-radius: 999px; padding: 5px 14px; margin-bottom: 20px; }
+    .hero h1 { font-size: 42px; font-weight: 600; color: #111827; line-height: 1.2; margin-bottom: 20px; }
+    .hero p.lead { font-size: 18px; color: #6b7280; max-width: 560px; margin: 0 auto 32px; }
+    .cta-row { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .hero .fine { font-size: 12px; color: #9ca3af; margin-top: 16px; }
+
+    section.section { padding: 48px 24px; max-width: 1000px; margin: 0 auto; }
+    h2.title { font-size: 26px; font-weight: 600; color: #111827; text-align: center; margin-bottom: 8px; }
+    p.subtitle { font-size: 14px; color: #9ca3af; text-align: center; margin-bottom: 48px; }
+
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    @media (max-width: 700px) { .grid3, .grid2 { grid-template-columns: 1fr; } .hero h1 { font-size: 32px; } }
+
+    .card { background: #fff; border: 1px solid #ececec; border-radius: 16px; padding: 24px; }
+    .num { width: 36px; height: 36px; border-radius: 999px; background: #111827; color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .card h3 { font-size: 15px; font-weight: 600; color: #111827; margin-bottom: 4px; }
+    .card p { font-size: 14px; color: #6b7280; }
+
+    .integration { max-width: 700px; margin: 0 auto; padding: 48px 24px; }
+    .integration .card { text-align: center; padding: 32px; }
+    .icon-tiktok { width: 48px; height: 48px; border-radius: 12px; background: #000; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .integration h2 { font-size: 20px; font-weight: 600; color: #111827; margin-bottom: 8px; }
+    .integration p { font-size: 14px; color: #6b7280; max-width: 480px; margin: 0 auto; }
+
+    .cta-final { text-align: center; padding: 64px 24px; }
+    .cta-final h2 { font-size: 26px; font-weight: 600; color: #111827; margin-bottom: 16px; }
+
+    footer { border-top: 1px solid #f0f0f0; }
+    footer .inner { max-width: 1000px; margin: 0 auto; padding: 32px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    footer .links { display: flex; gap: 20px; font-size: 12px; color: #9ca3af; }
+    footer .links a:hover { color: #111827; }
   </style>
 </head>
-<body class="min-h-screen">
+<body>
 
-  <!-- Barre de navigation -->
-  <header class="border-b border-gray-100 sticky top-0 bg-white/90 backdrop-blur z-10">
-    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-2">
-        <svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        <span class="font-semibold text-gray-900 text-lg">ContentAI</span>
+  <header>
+    <div class="wrap inner">
+      <div class="brand">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        ContentAI
       </div>
-      <a href="https://contentai-backend-jnl3.onrender.com/" class="btn-primary">Lancer l'application</a>
+      <a href="https://contentai-backend-jnl3.onrender.com/" class="btn btn-primary">Lancer l'application</a>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="max-w-3xl mx-auto px-6 pt-20 pb-16 text-center">
-    <span class="inline-block text-xs font-medium text-gray-500 bg-gray-100 rounded-full px-3 py-1 mb-5">Publication automatique sur TikTok</span>
-    <h1 class="text-4xl sm:text-5xl font-semibold text-gray-900 leading-tight mb-5">
-      Vos carrousels TikTok,<br/>créés et publiés automatiquement.
-    </h1>
-    <p class="text-lg text-gray-500 mb-8 max-w-xl mx-auto">
-      ContentAI transforme vos photos de produits en carrousels prêts à poster, avec accroche et musique,
-      puis les publie directement sur votre compte TikTok via l'API officielle.
-    </p>
-    <div class="flex items-center justify-center gap-3 flex-wrap">
-      <a href="https://contentai-backend-jnl3.onrender.com/auth/login" class="btn-primary">Se connecter avec TikTok</a>
-      <a href="app.html" class="btn-ghost">Voir l'interface</a>
+  <section class="hero">
+    <span class="badge">Publication automatique sur TikTok</span>
+    <h1>Vos carrousels TikTok,<br/>créés et publiés automatiquement.</h1>
+    <p class="lead">ContentAI transforme vos photos de produits en carrousels prêts à poster, avec accroche et musique, puis les publie directement sur votre compte TikTok via l'API officielle.</p>
+    <div class="cta-row">
+      <a href="https://contentai-backend-jnl3.onrender.com/auth/login" class="btn btn-primary">Se connecter avec TikTok</a>
+      <a href="app.html" class="btn btn-ghost">Voir l'interface</a>
     </div>
-    <p class="text-xs text-gray-400 mt-4">Gratuit pour démarrer · Vous gardez le contrôle de chaque publication</p>
+    <p class="fine">Gratuit pour démarrer · Vous gardez le contrôle de chaque publication</p>
   </section>
 
-  <!-- Comment ça marche -->
-  <section class="max-w-5xl mx-auto px-6 py-12">
-    <h2 class="text-2xl font-semibold text-gray-900 text-center mb-2">Comment ça marche</h2>
-    <p class="text-sm text-gray-400 text-center mb-12">Trois étapes, et le contenu part tout seul.</p>
-    <div class="grid sm:grid-cols-3 gap-5">
-      <div class="card p-6">
-        <div class="w-9 h-9 rounded-full bg-gray-900 text-white text-sm font-bold flex items-center justify-center mb-4">1</div>
-        <h3 class="font-semibold text-gray-900 mb-1">Connectez votre TikTok</h3>
-        <p class="text-sm text-gray-500">Autorisez ContentAI en un clic via la connexion officielle TikTok.</p>
+  <section class="section">
+    <h2 class="title">Comment ça marche</h2>
+    <p class="subtitle">Trois étapes, et le contenu part tout seul.</p>
+    <div class="grid3">
+      <div class="card">
+        <div class="num">1</div>
+        <h3>Connectez votre TikTok</h3>
+        <p>Autorisez ContentAI en un clic via la connexion officielle TikTok.</p>
       </div>
-      <div class="card p-6">
-        <div class="w-9 h-9 rounded-full bg-gray-900 text-white text-sm font-bold flex items-center justify-center mb-4">2</div>
-        <h3 class="font-semibold text-gray-900 mb-1">Importez vos photos</h3>
-        <p class="text-sm text-gray-500">Ajoutez vos images produits. L'IA génère l'accroche et assemble le carrousel.</p>
+      <div class="card">
+        <div class="num">2</div>
+        <h3>Importez vos photos</h3>
+        <p>Ajoutez vos images produits. L'IA génère l'accroche et assemble le carrousel.</p>
       </div>
-      <div class="card p-6">
-        <div class="w-9 h-9 rounded-full bg-gray-900 text-white text-sm font-bold flex items-center justify-center mb-4">3</div>
-        <h3 class="font-semibold text-gray-900 mb-1">Publiez sur TikTok</h3>
-        <p class="text-sm text-gray-500">Le carrousel est publié sur votre compte, avec une musique ajoutée automatiquement.</p>
+      <div class="card">
+        <div class="num">3</div>
+        <h3>Publiez sur TikTok</h3>
+        <p>Le carrousel est publié sur votre compte, avec une musique ajoutée automatiquement.</p>
       </div>
     </div>
   </section>
 
-  <!-- Fonctionnalités -->
-  <section class="max-w-5xl mx-auto px-6 py-12">
-    <div class="grid sm:grid-cols-2 gap-5">
-      <div class="card p-6">
-        <h3 class="font-semibold text-gray-900 mb-1">🎨 Génération automatique</h3>
-        <p class="text-sm text-gray-500">Accroche, mise en page et assemblage du carrousel générés par l'IA à partir de vos photos.</p>
+  <section class="section">
+    <div class="grid2">
+      <div class="card">
+        <h3>🎨 Génération automatique</h3>
+        <p>Accroche, mise en page et assemblage du carrousel générés par l'IA à partir de vos photos.</p>
       </div>
-      <div class="card p-6">
-        <h3 class="font-semibold text-gray-900 mb-1">📲 Publication directe</h3>
-        <p class="text-sm text-gray-500">Publication sur votre compte TikTok via l'API officielle (Content Posting API).</p>
+      <div class="card">
+        <h3>📲 Publication directe</h3>
+        <p>Publication sur votre compte TikTok via l'API officielle (Content Posting API).</p>
       </div>
-      <div class="card p-6">
-        <h3 class="font-semibold text-gray-900 mb-1">🎵 Musique automatique</h3>
-        <p class="text-sm text-gray-500">Un son de la bibliothèque commerciale TikTok ajouté automatiquement à chaque carrousel.</p>
+      <div class="card">
+        <h3>🎵 Musique automatique</h3>
+        <p>Un son de la bibliothèque commerciale TikTok ajouté automatiquement à chaque carrousel.</p>
       </div>
-      <div class="card p-6">
-        <h3 class="font-semibold text-gray-900 mb-1">🔒 Vous gardez le contrôle</h3>
-        <p class="text-sm text-gray-500">Vous autorisez l'accès à tout moment, et pouvez le révoquer depuis vos réglages TikTok.</p>
+      <div class="card">
+        <h3>🔒 Vous gardez le contrôle</h3>
+        <p>Vous autorisez l'accès à tout moment, et pouvez le révoquer depuis vos réglages TikTok.</p>
       </div>
     </div>
   </section>
 
-  <!-- Intégration TikTok -->
-  <section class="max-w-3xl mx-auto px-6 py-12">
-    <div class="card p-8 text-center">
-      <div class="w-12 h-12 rounded-xl bg-black flex items-center justify-center mx-auto mb-4">
-        <svg class="w-6 h-6 fill-white" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.56V6.79a4.84 4.84 0 01-1.07-.1z"/></svg>
+  <section class="integration">
+    <div class="card">
+      <div class="icon-tiktok">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.56V6.79a4.84 4.84 0 01-1.07-.1z"/></svg>
       </div>
-      <h2 class="text-xl font-semibold text-gray-900 mb-2">Intégration TikTok officielle</h2>
-      <p class="text-sm text-gray-500 max-w-lg mx-auto">
-        ContentAI utilise les produits officiels TikTok for Developers — <strong>Login Kit</strong> pour la
-        connexion sécurisée et la <strong>Content Posting API</strong> pour publier vos carrousels.
-        Nous n'accédons qu'aux informations nécessaires et ne publions qu'à votre demande.
-      </p>
+      <h2>Intégration TikTok officielle</h2>
+      <p>ContentAI utilise les produits officiels TikTok for Developers — <strong>Login Kit</strong> pour la connexion sécurisée et la <strong>Content Posting API</strong> pour publier vos carrousels. Nous n'accédons qu'aux informations nécessaires et ne publions qu'à votre demande.</p>
     </div>
   </section>
 
-  <!-- CTA final -->
-  <section class="max-w-3xl mx-auto px-6 py-16 text-center">
-    <h2 class="text-2xl font-semibold text-gray-900 mb-4">Prêt à automatiser votre TikTok ?</h2>
-    <a href="https://contentai-backend-jnl3.onrender.com/" class="btn-primary">Lancer l'application</a>
+  <section class="cta-final">
+    <h2>Prêt à automatiser votre TikTok ?</h2>
+    <a href="https://contentai-backend-jnl3.onrender.com/" class="btn btn-primary">Lancer l'application</a>
   </section>
 
-  <!-- Footer -->
-  <footer class="border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <svg class="w-4 h-4 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        <span class="font-semibold text-gray-900 text-sm">ContentAI</span>
+  <footer>
+    <div class="inner">
+      <div class="brand" style="font-size:14px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        ContentAI
       </div>
-      <div class="flex items-center gap-5 text-xs text-gray-400">
-        <a href="cgu.html" class="hover:text-gray-900 transition-colors">Conditions d'utilisation</a>
-        <a href="confidentialite.html" class="hover:text-gray-900 transition-colors">Politique de confidentialité</a>
-        <a href="mailto:agence.marketflow@gmail.com" class="hover:text-gray-900 transition-colors">Contact</a>
+      <div class="links">
+        <a href="cgu.html">Conditions d'utilisation</a>
+        <a href="confidentialite.html">Politique de confidentialité</a>
+        <a href="mailto:agence.marketflow@gmail.com">Contact</a>
       </div>
     </div>
   </footer>
