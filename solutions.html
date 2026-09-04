@@ -105,6 +105,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .agent-stat-n{font-size:52px;font-weight:800;letter-spacing:-2px;line-height:1;}
 .agent-stat-l{font-size:13px;color:rgba(255,255,255,.4);margin-top:6px;line-height:1.5;}
 
+.examples-section{padding:80px 48px;max-width:1200px;margin:0 auto;}
+.examples-title{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--g400);margin-bottom:40px;}
+.examples-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.ex-card{padding:28px 32px 28px 0;border-right:1px solid var(--g200);}
+.ex-card:not(:first-child){padding-left:32px;}
+.ex-card:last-child{border-right:none;}
+.ex-tag{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--g400);margin-bottom:10px;}
+.ex-name{font-size:16px;font-weight:700;color:var(--black);margin-bottom:8px;}
+.ex-desc{font-size:13px;color:var(--g600);line-height:1.7;}
+@media(max-width:768px){.examples-grid{grid-template-columns:1fr;}.ex-card{border-right:none;border-bottom:1px solid var(--g200);padding:24px 0;}.ex-card:not(:first-child){padding-left:0;}.examples-section{padding:60px 20px;}}
+
 /* CTA BAND */
 .cta-band{
   background:var(--black);color:var(--white);
@@ -182,7 +193,7 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
   <canvas id="pCanvas"></canvas>
   <div class="page-hero-inner">
     <span class="page-tag rv">Nos solutions</span>
-    <h1 class="rv">Des agents IA<br>taillés pour<br>votre agence</h1>
+    <h1 class="rv">Des agents IA<br>taillés pour<br>votre entreprise</h1>
     <p class="rv">Chaque agent est conçu pour une mission précise. Opérationnel en 14 jours, intégré à vos outils existants.</p>
   </div>
 </div>
@@ -194,7 +205,7 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
     <div class="agent-left">
       <div class="agent-num">01</div>
       <div class="agent-name">Agent Création de Contenu</div>
-      <div class="agent-desc">Création et publication automatique de contenu sur tous vos réseaux sociaux. Votre agence reste active 7j/7 sans effort humain — posts, visuels, captions, horaires optimisés.</div>
+      <div class="agent-desc">Création et publication automatique de contenu sur tous vos réseaux sociaux. Votre entreprise reste active 7j/7 sans effort humain — posts, visuels, captions, horaires optimisés.</div>
       <div class="agent-features">
         <div class="feat"><div class="feat-dot"></div><span>Génération de contenu adapté à chaque réseau</span></div>
         <div class="feat"><div class="feat-dot"></div><span>Publication automatique aux meilleurs horaires</span></div>
@@ -256,9 +267,46 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
   </div>
 </div>
 
+<!-- EXEMPLES D'AGENTS -->
+<div class="examples-section">
+  <p class="examples-title">Exemples d'agents créés sur mesure</p>
+  <div class="examples-grid">
+    <div class="ex-card">
+      <div class="ex-tag">Commercial</div>
+      <div class="ex-name">Agent Relance Client</div>
+      <div class="ex-desc">Rédige et envoie des emails de relance personnalisés depuis votre CRM, au bon moment, sans intervention humaine.</div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-tag">Analytics</div>
+      <div class="ex-name">Agent Reporting</div>
+      <div class="ex-desc">Génère chaque semaine un rapport de performance complet et l'envoie automatiquement à votre équipe ou vos clients.</div>
+    </div>
+    <div class="ex-card">
+      <div class="ex-tag">Support</div>
+      <div class="ex-name">Agent Service Client</div>
+      <div class="ex-desc">Répond aux demandes entrantes 24h/24, qualifie les tickets et escalade uniquement les cas complexes à votre équipe.</div>
+    </div>
+    <div class="ex-card" style="margin-top:0;border-top:1px solid var(--g200);padding-top:28px;">
+      <div class="ex-tag">Stratégie</div>
+      <div class="ex-name">Agent Veille Concurrentielle</div>
+      <div class="ex-desc">Surveille vos concurrents en temps réel — publications, prix, actualités — et vous envoie un brief hebdomadaire.</div>
+    </div>
+    <div class="ex-card" style="margin-top:0;border-top:1px solid var(--g200);padding-top:28px;">
+      <div class="ex-tag">E-commerce</div>
+      <div class="ex-name">Agent Fiches Produits</div>
+      <div class="ex-desc">Génère des fiches produits SEO-optimisées à partir d'une photo ou d'un brief, prêtes à publier en quelques secondes.</div>
+    </div>
+    <div class="ex-card" style="margin-top:0;border-top:1px solid var(--g200);padding-top:28px;">
+      <div class="ex-tag">Sur mesure</div>
+      <div class="ex-name">Votre agent →</div>
+      <div class="ex-desc">Vous avez un process répétitif à automatiser ? On conçoit l'agent adapté à vos outils et votre façon de travailler.</div>
+    </div>
+  </div>
+</div>
+
 <!-- CTA -->
 <div class="cta-band" id="contact">
-  <h2 class="rv">Prêt à automatiser<br>votre agence ?</h2>
+  <h2 class="rv">Prêt à automatiser<br>votre entreprise ?</h2>
   <p class="rv">Audit gratuit · Réponse sous 24h · Sans engagement</p>
   <a href="home.html#contact" class="btn-white rv">
     Demander un audit gratuit

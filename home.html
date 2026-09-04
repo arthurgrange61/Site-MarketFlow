@@ -193,7 +193,7 @@ nav{
 .s-title .dim{color:var(--g300);}
 
 /* ─── SERVICES ─── */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;}
 .svc-card{padding:52px 48px 52px 0;cursor:default;border-right:1px solid var(--g200);}
 .svc-card:not(:first-child){padding-left:48px;}
 .svc-card:last-child{border-right:none;}
@@ -405,24 +405,18 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
 <!-- SERVICES -->
 <div class="section">
   <p class="s-tag rv">Ce que nous faisons</p>
-  <h2 class="s-title rv">Trois façons de transformer<br>votre agence</h2>
+  <h2 class="s-title rv">Deux façons de transformer<br>votre entreprise</h2>
   <div class="svc-grid">
     <div class="svc-card rv-scale">
       <div class="svc-n">01</div>
-      <div class="svc-name">Automatisation réseaux sociaux</div>
-      <div class="svc-desc">Création et publication automatique de contenu sur tous vos réseaux. Votre agence poste 7j/7, sans effort humain, sans délai.</div>
-      <div class="svc-pills"><span class="pill">Instagram</span><span class="pill">LinkedIn</span><span class="pill">TikTok</span><span class="pill">Facebook</span></div>
+      <div class="svc-name">Workflows IA & agents spécialisés</div>
+      <div class="svc-desc">Nous concevons et déployons des workflows IA sur mesure et des agents autonomes adaptés à vos métiers : contenu, commercial, SEO, reporting. Votre entreprise gagne en vitesse sans perdre en qualité.</div>
+      <div class="svc-pills"><span class="pill">Agent contenu</span><span class="pill">Agent commercial</span><span class="pill">Agent SEO</span><span class="pill">Automatisation</span></div>
     </div>
     <div class="svc-card rv-scale" style="transition-delay:.1s">
       <div class="svc-n">02</div>
-      <div class="svc-name">Agents IA spécialisés</div>
-      <div class="svc-desc">Des agents dédiés à chaque métier de votre agence : commercial, SEO, reporting, relation client. Chacun conçu pour votre flux de travail.</div>
-      <div class="svc-pills"><span class="pill">Agent commercial</span><span class="pill">Agent SEO</span><span class="pill">Reporting auto</span></div>
-    </div>
-    <div class="svc-card rv-scale" style="transition-delay:.2s">
-      <div class="svc-n">03</div>
       <div class="svc-name">Formation de vos équipes</div>
-      <div class="svc-desc">Ateliers pratiques et programmes sur mesure pour que vos équipes maîtrisent les outils IA du marketing moderne dès demain.</div>
+      <div class="svc-desc">Des programmes pratiques pour que vos collaborateurs maîtrisent l'IA au quotidien : prompting, stratégie, outils. Ils repartent opérationnels dès le lendemain.</div>
       <div class="svc-pills"><span class="pill">Prompting</span><span class="pill">Stratégie IA</span><span class="pill">Ateliers pratiques</span></div>
     </div>
   </div>
@@ -481,14 +475,14 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
 <section id="contact">
   <div class="contact-wrap">
     <p class="s-tag rv">Contact</p>
-    <h2 class="s-title rv">Parlons de<br>votre agence</h2>
+    <h2 class="s-title rv">Parlons de<br>votre entreprise</h2>
     <p class="rv">Audit gratuit · Réponse sous 24h · Sans engagement</p>
     <form class="c-form rv" id="c-form">
       <div class="c-row">
         <div class="c-group"><label>Prénom &amp; Nom</label><input type="text" name="name" placeholder="Arthur Grange" required></div>
         <div class="c-group"><label>Email professionnel</label><input type="email" name="email" placeholder="contact@agence.fr" required></div>
       </div>
-      <div class="c-group"><label>Nom de votre agence</label><input type="text" name="agence" placeholder="Agence XYZ Marketing"></div>
+      <div class="c-group"><label>Nom de votre entreprise</label><input type="text" name="agence" placeholder="Entreprise XYZ"></div>
       <div class="c-group"><label>Votre besoin</label><textarea name="message" placeholder="Décrivez la tâche à automatiser ou posez votre question..."></textarea></div>
       <input type="hidden" name="_subject" value="Nouveau contact — MarketFlow">
       <input type="hidden" name="_captcha" value="false">
@@ -549,53 +543,6 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
   </div>
 </div>
 
-<!-- Chat Widget -->
-<style>
-#mf-btn{position:fixed;bottom:28px;right:28px;z-index:999;width:52px;height:52px;border-radius:50%;background:var(--black);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;transition:transform .3s,opacity .3s;}
-#mf-btn:hover{transform:scale(1.08);}
-#mf-btn svg{width:22px;height:22px;fill:white;}
-#mf-panel{position:fixed;bottom:92px;right:28px;z-index:998;width:360px;max-height:520px;background:#fff;border:1px solid var(--g200);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.12);display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(14px) scale(.97);transition:opacity .3s,transform .3s;pointer-events:none;}
-#mf-panel.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all;}
-#mf-head{background:var(--black);padding:18px 20px;display:flex;align-items:center;gap:12px;}
-#mf-head-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade80;}
-#mf-head-title{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;letter-spacing:-.3px;color:#fff;}
-#mf-head-sub{font-size:11px;color:rgba(255,255,255,.5);margin-top:2px;}
-#mf-msgs{flex:1;overflow-y:auto;padding:20px 16px;display:flex;flex-direction:column;gap:12px;}
-.mf-msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:13.5px;line-height:1.6;}
-.mf-msg.bot{background:var(--g100);color:var(--black);align-self:flex-start;border-radius:14px 14px 14px 4px;}
-.mf-msg.user{background:var(--black);color:#fff;align-self:flex-end;border-radius:14px 14px 4px 14px;}
-.mf-msg.typing{background:var(--g100);align-self:flex-start;padding:14px 16px;}
-.mf-dots{display:flex;gap:5px;align-items:center;}
-.mf-dots span{width:6px;height:6px;border-radius:50%;background:var(--g400);animation:dot .9s ease-in-out infinite;}
-.mf-dots span:nth-child(2){animation-delay:.15s;}
-.mf-dots span:nth-child(3){animation-delay:.3s;}
-@keyframes dot{0%,80%,100%{transform:scale(.7);opacity:.4;}40%{transform:scale(1);opacity:1;}}
-#mf-input-area{padding:12px 14px;display:flex;gap:8px;align-items:flex-end;background:#fff;}
-#mf-input{flex:1;border:1px solid var(--g200);border-radius:8px;padding:10px 14px;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--black);outline:none;resize:none;transition:border-color .2s;background:#fafafa;max-height:100px;}
-#mf-input:focus{border-color:var(--black);}
-#mf-send{background:var(--black);border:none;border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:opacity .2s;}
-#mf-send:hover{opacity:.75;}
-#mf-send:disabled{opacity:.4;cursor:default;}
-#mf-send svg{width:15px;height:15px;fill:white;}
-@media(max-width:480px){#mf-panel{width:calc(100vw - 32px);right:16px;bottom:84px;}#mf-btn{right:16px;bottom:20px;}}
-</style>
-
-<button id="mf-btn" aria-label="Chat">
-  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-</button>
-<div id="mf-panel">
-  <div id="mf-head">
-    <div id="mf-head-dot"></div>
-    <div><div id="mf-head-title">Assistant MarketFlow</div><div id="mf-head-sub">Répond à vos questions</div></div>
-  </div>
-  <div id="mf-msgs">
-    <div class="mf-msg bot">Bonjour 👋 Je suis l'assistant MarketFlow. Comment puis-je vous aider ?</div>
-  </div>
-  <div id="mf-input-area">
-    <textarea id="mf-input" rows="1" placeholder="Votre question..."></textarea>
-    <button id="mf-send"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
-  </div>
-</div>
 
 <script>
 /* ══ PARTICLE NETWORK ══ */
@@ -778,35 +725,6 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
   document.getElementById('ck-no').onclick=function(){localStorage.setItem('mf_cookie_consent','refused');b.style.display='none';};
 })();
 
-/* ══ CHAT ══ */
-(function(){
-  var KEY='gsk_M8c8yptgGvrEjT3O'+'seWSWGdyb3FY3aCIR4oFImkyIiS5JQc2F4Wj';
-  var MODEL='llama-3.3-70b-versatile';
-  var SYSTEM="Tu es l'assistant commercial de MarketFlow, une agence IA spécialisée pour les agences marketing, basée à Rouen. Réponds de manière concise, professionnelle et chaleureuse en français.\n\nMarketFlow propose : automatisation réseaux sociaux (création + publication 7j/7), agents IA spécialisés (commercial, SEO, reporting, relation client), formation IA pour équipes marketing. Mise en production en 14 jours, audit gratuit. Contact : 07 82 22 79 86 — agence.marketflow@gmail.com";
-  var btn=document.getElementById('mf-btn'),panel=document.getElementById('mf-panel'),
-      msgs=document.getElementById('mf-msgs'),input=document.getElementById('mf-input'),
-      send=document.getElementById('mf-send'),history=[];
-  btn.addEventListener('click',function(){panel.classList.toggle('open');if(panel.classList.contains('open'))input.focus();});
-  function addMsg(text,role){var el=document.createElement('div');el.className='mf-msg '+(role==='user'?'user':'bot');el.textContent=text;msgs.appendChild(el);msgs.scrollTop=msgs.scrollHeight;return el;}
-  function addTyping(){var el=document.createElement('div');el.className='mf-msg typing';el.innerHTML='<div class="mf-dots"><span></span><span></span><span></span></div>';msgs.appendChild(el);msgs.scrollTop=msgs.scrollHeight;return el;}
-  function sendMsg(){
-    var text=input.value.trim();if(!text||send.disabled)return;
-    input.value='';input.style.height='auto';addMsg(text,'user');
-    history.push({role:'user',content:text});send.disabled=true;
-    var typing=addTyping();
-    fetch('https://api.groq.com/openai/v1/chat/completions',{
-      method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+KEY},
-      body:JSON.stringify({model:MODEL,messages:[{role:'system',content:SYSTEM}].concat(history),max_tokens:512,temperature:.7})
-    }).then(function(r){return r.json();}).then(function(d){
-      typing.remove();var reply=(d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content)||"Désolé, une erreur s'est produite.";
-      addMsg(reply,'bot');history.push({role:'assistant',content:reply});
-    }).catch(function(){typing.remove();addMsg("Je suis momentanément indisponible. Contactez-nous au 07 82 22 79 86.",'bot');})
-    .finally(function(){send.disabled=false;});
-  }
-  send.addEventListener('click',sendMsg);
-  input.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
-  input.addEventListener('input',function(){input.style.height='auto';input.style.height=Math.min(input.scrollHeight,100)+'px';});
-})();
 </script>
 </body>
 </html>
