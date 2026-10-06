@@ -330,6 +330,7 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
   *{animation-duration:.01ms!important;transition-duration:.01ms!important;}
 }
 </style>
+<script src="ga4.js"></script>
 </head>
 <body>
 
@@ -530,18 +531,12 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
     <div class="ft-legal">
       <a href="mentions-legales.html">Mentions légales</a>
       <a href="politique-confidentialite.html">Confidentialité</a>
+      <a href="#" data-cookie-manage style="cursor:pointer;">Gérer les cookies</a>
     </div>
   </div>
 </footer>
 
-<!-- Cookie Banner -->
-<div id="ck" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#fff;box-shadow:0 -4px 24px rgba(0,0,0,.06);padding:20px 48px;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
-  <p style="font-size:13px;color:var(--g600);line-height:1.6;max-width:640px;margin:0;">Ce site utilise des cookies pour son bon fonctionnement. <a href="politique-confidentialite.html" style="color:var(--black);text-decoration:underline;">En savoir plus</a></p>
-  <div style="display:flex;gap:10px;flex-shrink:0;">
-    <button id="ck-no" style="padding:9px 20px;border:1px solid var(--g200);border-radius:100px;background:#fff;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--g600);cursor:pointer;">Refuser</button>
-    <button id="ck-yes" style="padding:9px 22px;border:none;border-radius:100px;background:var(--black);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:#fff;cursor:pointer;">Accepter</button>
-  </div>
-</div>
+<!-- Cookie Banner géré par ga4.js -->
 
 
 <script>
@@ -717,13 +712,6 @@ footer{background:var(--black);color:var(--white);padding:64px 48px 32px;}
   });
 })();
 
-/* ══ COOKIE ══ */
-(function(){
-  var b=document.getElementById('ck');
-  if(!localStorage.getItem('mf_cookie_consent')){b.style.display='flex';}
-  document.getElementById('ck-yes').onclick=function(){localStorage.setItem('mf_cookie_consent','accepted');b.style.display='none';};
-  document.getElementById('ck-no').onclick=function(){localStorage.setItem('mf_cookie_consent','refused');b.style.display='none';};
-})();
 
 </script>
 </body>
